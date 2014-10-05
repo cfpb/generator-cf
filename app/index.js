@@ -21,7 +21,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     var log = this.log;
 
     var welcome = this.yeoman + multiline.stripIndent(function () {/*
-      Welcome to Capital Framework's component generator!
+      Welcome to Capital Framework's generator!
 
       To learn about Capital Framework, visit https://cfpb.github.io/capital-framework/
     */});
@@ -30,11 +30,17 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     var prompts = [{
       type: 'list',
-      name: 'type',
-      message: 'What type of CF component would you like to create?',
+      name: 'components',
+      message: 'Which CF components would you like in your app?',
       choices: [
-        { name: 'A CSS (Less) component', value: 'css' },
-        { name: 'A JavaScript (jQuery) component', value: 'js' }
+        { name: 'Buttons', value: 'buttons' },
+        { name: 'Colors', value: 'colors' },
+        { name: 'Expandables', value: 'expandables' },
+        { name: 'Forms', value: 'forms' },
+        { name: 'Grid', value: 'grid' },
+        { name: 'Icons', value: 'icons' },
+        { name: 'Pagination', value: 'pagination' },
+        { name: 'Typography', value: 'typography' },
       ],
       default: true
     }];

@@ -6,7 +6,11 @@
 *.exe
 *.o
 *.so
-_site
+_site/
+dist/
+src/static/css/*.css
+src/static/fonts
+src/static/js/main*.js
 
 # Packages #
 ############
@@ -38,17 +42,12 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# Dependencies #
-################
+# Grunt.js #
+############
 node_modules/
-bower_components/
-src/vendor/
-
-# Grunt #
-#########
 .grunt/
 
-# Test reports #
-################
-test/coverage
-test/junit
+# Bower packages #
+##################
+bower_components/
+src/vendor/
