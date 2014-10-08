@@ -13,3 +13,5 @@ $ npm link
 $ cd some-empty-directory-somewhere
 $ yo capital-framework
 ```
+
+Edit the source files and run `yo capital-framework` to see the changes.
