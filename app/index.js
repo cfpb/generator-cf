@@ -31,14 +31,13 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       name: 'components',
       message: 'Which CF components would you like in your app?',
       choices: [
+        { name: 'Core', value: 'core' },
         { name: 'Buttons', value: 'buttons' },
-        { name: 'Colors', value: 'colors' },
         { name: 'Expandables', value: 'expandables' },
         { name: 'Forms', value: 'forms' },
         { name: 'Grid', value: 'grid' },
         { name: 'Icons', value: 'icons' },
         { name: 'Pagination', value: 'pagination' },
-        { name: 'Typography', value: 'typography' },
       ],
       default: true
     }, function ( answers ) {
