@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "main": "index.js",
   "description": "<%= props.description %>",
-  "homepage": "<%= repoUrl %>",
-  "bugs": "<%= repoUrl %>/issues",
+  <%
+  if (props.homepage) { %>
+      "homepage": "<%= props.homepage %>",
+    <%
+  } %>
+    "bugs": "<%= repoUrl %>/issues",
   "author": {
-    "name": "Consumer Financial Protection Bureau",
-    "url": "http://consumerfinance.gov"
+    "name": "<%= props.authorName %>",
+    "email": "<%= props.authorEmail %>" <%
+    if (props.authorUrl) { %> ,
+        "url": "<%= props.authorUrl %>" <%
+    } %>
   },
   "repository": {
     "type": "git",
