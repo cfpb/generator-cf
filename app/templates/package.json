@@ -1,4 +1,23 @@
 {
+  "name": "<%= slugname %>",
+  "version": "0.1.0",
+  "main": "index.js",
+  "description": "<%= props.description %>",
+  "homepage": "<%= repoUrl %>",
+  "bugs": "<%= repoUrl %>/issues",
+  "author": {
+    "name": "Consumer Financial Protection Bureau",
+    "url": "http://consumerfinance.gov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "<%= repoUrl %>"
+  },
+  "license": "Public Domain",
+  "keywords": [
+    "<%= slugname %>"<% for (var i=0;i<keywords.length;i++) { %>,
+    "<%= keywords[i] %>"<% } %>
+  ],
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-autoprefixer": "~0.6.5",
@@ -10,6 +29,7 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-uglify": "~0.2.7",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "cf-grunt-config": "~0.3.0"
   }
 }
