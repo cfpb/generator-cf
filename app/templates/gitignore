@@ -8,9 +8,6 @@
 *.so
 _site/
 dist/
-src/static/css/*.css
-src/static/fonts
-src/static/js/main*.js
 
 # Packages #
 ############

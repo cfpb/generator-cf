@@ -1,14 +1,14 @@
 {
-  "name": "generator-capital-framework",
-  "version": "0.0.0",
-  "description": "Yeoman generator",
+  "name": "generator-cf",
+  "version": "0.1.0",
+  "description": "Capital Framework Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "cfpb/generator-capital-framework",
+  "repository": "cfpb/generator-cf",
   "author": {
     "name": "Consumer Financial Protection Bureau",
-    "email": "",
-    "url": "https://github.com/cfpb"
+    "email": "christopher.contolini@cfpb.gov",
+    "url": "https://cfpb.github.io"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -20,13 +20,16 @@
     "app"
   ],
   "keywords": [
+    "capital",
+    "framework",
     "yeoman-generator"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
+    "cf-grunt-config": "^0.3.0",
     "chalk": "~0.4.0",
-    "yosay": "^0.1.0",
-    "multiline": "~0.3.4"
+    "multiline": "~0.3.4",
+    "yeoman-generator": "^0.17.7",
+    "yosay": "^0.1.0"
   },
   "devDependencies": {
     "mocha": "*"

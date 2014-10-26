@@ -2,13 +2,7 @@
   "name": "<%= slugname %>",
   "version": "0.1.0",
   "main": "index.js",
-  "description": "<%= props.description %>",
-  <%
-  if (props.homepage) { %>
-      "homepage": "<%= props.homepage %>",
-    <%
-  } %>
-    "bugs": "<%= repoUrl %>/issues",
+  <% if (props.homepage) { %>"homepage": "<%= props.homepage %>",<% } %>
   "author": {
     "name": "<%= props.authorName %>",
     "email": "<%= props.authorEmail %>" <%
@@ -16,20 +10,16 @@
         "url": "<%= props.authorUrl %>" <%
     } %>
   },
-  "repository": {
-    "type": "git",
-    "url": "<%= repoUrl %>"
-  },
-  "license": "Public Domain",
+  "license": "<%= props.license %>",
   "keywords": [
-    "<%= slugname %>"<% for (var i=0;i<keywords.length;i++) { %>,
-    "<%= keywords[i] %>"<% } %>
+    "<%= slugname %>"
   ],
   "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-autoprefixer": "~0.6.5",
     "grunt-banner": "~0.2.2",
     "grunt-bower-task": "~0.4.0",
+    "grunt-concurrent": "~1.0.0",
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-cssmin": "~0.9.0",
@@ -37,6 +27,10 @@
     "grunt-contrib-less": "~0.11.0",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-watch": "~0.5.3",
-    "cf-grunt-config": "~0.3.0"
+    "grunt-legacssy": "~0.3.1",
+    "grunt-string-replace": "~0.2.7",
+    "grunt-topdoc": "~0.2.0",
+    "load-grunt-tasks": "~0.6.0",
+    "time-grunt": "~1.0.0"
   }
 }

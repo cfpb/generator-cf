@@ -1,0 +1,34 @@
+{
+  "name": "capital-framework",
+  "version": "0.1.0",
+  "description": "<%= props.description %>",
+  <% if (props.homepage) { %>"homepage": "<%= props.homepage %>",<% } %>
+  "author": {
+    "name": "<%= props.authorName %>",
+    "email": "<%= props.authorEmail %>" <%
+    if (props.authorUrl) { %> ,
+        "url": "<%= props.authorUrl %>" <%
+    } %>
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cfpb/capital-framework.git"
+  },
+  "license": "<%= props.license %>",
+  "dependencies": {
+  },
+  "exportsOverride": {
+    "cf-*": {
+      "css": "src/**/*.css",
+      "less": "src/**/*.less",
+      "fonts": "src/fonts/*.*",
+      "js": "src/**/*.js"
+    },
+    "html5shiv": {
+      "js": "dist/html5shiv-printshiv.min.js"
+    },
+    "jquery.easing": {
+      "js": "js/jquery.easing.js"
+    }
+  }
+}
