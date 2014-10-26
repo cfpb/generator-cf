@@ -113,6 +113,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
   install: function() {
 
+    if ( this.options['skip-install'] ) return;
+
     var done = this.async(),
         actuallyDone = this._.after(2, done),
         components = this.components.map( function( component ) {

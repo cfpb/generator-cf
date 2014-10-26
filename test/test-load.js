@@ -2,7 +2,7 @@
 'use strict';
 var assert = require('assert');
 
-describe('capital-framework generator', function () {
+describe('cf generator', function () {
   it('can be imported without blowing up', function () {
     var app = require('../app');
     assert(app !== undefined);

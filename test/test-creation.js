@@ -3,14 +3,14 @@
 var path = require('path');
 var helpers = require('yeoman-generator').test;
 
-describe('capital-framework generator', function () {
+describe('cf generator', function () {
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('capital-framework:app', [
+      this.app = helpers.createGenerator('cf:app', [
         '../../app'
       ]);
       done();
@@ -20,8 +20,10 @@ describe('capital-framework generator', function () {
   it('creates expected files', function (done) {
     var expected = [
       // add files you expect to exist here.
-      '.jshintrc',
-      '.editorconfig'
+      '.bowerrc',
+      '.gitignore',
+      'bower.json',
+      'Gruntfile.js'
     ];
 
     helpers.mockPrompt(this.app, {
