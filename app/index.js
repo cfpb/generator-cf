@@ -98,9 +98,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.copy('bowerrc', '.bowerrc');
-      this.copy('COPYING.txt', 'COPYING.txt');
       this.copy('gitignore', '.gitignore');
-      this.copy('TERMS.md', 'TERMS.md');
     },
 
     srcFiles: function() {

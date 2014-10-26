@@ -1,17 +1,28 @@
-# generator-capital-framework [![Build Status](https://secure.travis-ci.org/cfpb/generator-capital-framework.png?branch=master)](https://travis-ci.org/cfpb/generator-capital-framework)
+# generator-cf [![Build Status](https://secure.travis-ci.org/cfpb/generator-cf.png?branch=master)](https://travis-ci.org/cfpb/generator-cf)
 
-> [Yeoman](http://yeoman.io) generator
+> [Yeoman](http://yeoman.io) generator for [Capital Framework](http://cfpb.github.io/capital-framework/).
 
-## Getting Started
+## Installation
 
-For development purposes, use `npm link`:
-
-```bash
-$ git clone git@github.com:contolini/generator-capital-framework.git
-$ cd generator-capital-framework
-$ npm link
-$ cd some-empty-directory-somewhere
-$ yo capital-framework
+```sh
+$ npm install -g yo generator-cf
 ```
 
-Edit the source files and run `yo capital-framework` to see the changes.
+## Usage
+
+```sh
+$ yo cf
+```
+
+## Contributing
+
+To hack on this generator, fork this repo, clone it and use `npm link`:
+
+```bash
+$ cd generator-cf
+$ npm link
+$ cd some-empty-directory-somewhere
+$ yo cf
+```
+
+Edit the source files and re-run `yo cf` to see the changes.
