@@ -36,6 +36,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         message: 'What is the name of your project?',
         default: this._.humanize( path.basename(process.cwd()) ),
       }, function( answers ) {
+        this.humanName = answers.name;
         this.slugname = this._.slugify( answers.name );
         this.safeSlugname = this.slugname.replace( /-+([a-zA-Z0-9])/g, function ( g ) {
             return ' ' + g[1].toUpperCase();
@@ -103,6 +104,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.template('_bower.json', 'bower.json');
       this.copy('bowerrc', '.bowerrc');
       this.copy('gitignore', '.gitignore');
+      this.copy('screenshot.png', 'screenshot.png');
+      this.copy('CHANGELOG.md', 'CHANGELOG.md');
     },
 
     srcFiles: function() {
