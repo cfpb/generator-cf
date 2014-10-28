@@ -53,20 +53,24 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         default: 'The best website ever.'
       }, {
         name: 'homepage',
-        message: 'Project\'s homepage'
+        message: 'Project\'s homepage',
+        default: 'http://consumerfinance.gov'
       }, {
         name: 'license',
         message: 'Project\'s License',
-        default: 'MIT'
+        default: 'CC0'
       }, {
         name: 'authorName',
-        message: 'Author\'s name'
+        message: 'Author\'s name',
+        default: 'Consumer Financial Protection Bureau'
       }, {
         name: 'authorEmail',
-        message: 'Author\'s email'
+        message: 'Author\'s email',
+        default: 'tech@cfpb.gov'
       }, {
         name: 'authorUrl',
-        message: 'Author\'s homepage'
+        message: 'Author\'s homepage',
+        default: 'http://consumerfinance.gov'
       }];
       this.prompt(prompts, function ( answers ) {
         this.currentYear = (new Date()).getFullYear();
