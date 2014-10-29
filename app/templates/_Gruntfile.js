@@ -226,9 +226,7 @@ module.exports = function(grunt) {
             src: [
               // Only include vendor files that we use independently
               'vendor/html5shiv/html5shiv-printshiv.min.js',
-              'vendor/box-sizing-polyfill/boxsizing.htc',
-              'vendor/slick-carousel/slick.min.js',
-              'vendor/slick-carousel/slick.css'
+              'vendor/box-sizing-polyfill/boxsizing.htc'
             ],
             dest: 'static'
           }
