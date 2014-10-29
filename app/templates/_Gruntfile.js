@@ -40,29 +40,6 @@ module.exports = function(grunt) {
     },
 
     /**
-     * String replace: https://github.com/erickrdch/grunt-string-replace
-     *
-     * Replace strings on files by using string or regex patters.
-     */
-    'string-replace': {
-      chosen: {
-        files: {
-          'vendor/chosen/': 'vendor/chosen/chosen.css'
-        }
-      },
-      options: {
-        replacements: [{
-          pattern: /url\('chosen-sprite.png'\)/ig,
-          replacement: 'url("../img/chosen-sprite.png")'
-        },
-        {
-          pattern: /url\('chosen-sprite@2x.png'\)/ig,
-          replacement: 'url("../img/chosen-sprite@2x.png")'
-        }]
-      }
-    },
-
-    /**
      * Concat: https://github.com/gruntjs/grunt-contrib-concat
      *
      * Concatenate cf-* Less files prior to compiling them.
@@ -81,16 +58,7 @@ module.exports = function(grunt) {
         src: [
           'vendor/jquery/jquery.js',
           'vendor/jquery.easing/jquery.easing.js',
-          // 'vendor/history.js/jquery.history.js',
-          'vendor/chosen/chosen.jquery.js',
           'vendor/cf-*/*.js',
-          'static/js/jquery.custom-input.js',
-          'static/js/jquery.custom-select.js',
-          'static/js/jquery.cf_input-split.js',
-          'vendor/string_score/string_score.js',
-          'static/js/jquery.type-and-filter.js',
-          'static/js/breakpoint-handler.js',
-          // 'static/js/jquery.cf_pagination.js',
           'static/js/app.js'
         ],
         dest: 'static/js/main.js'
@@ -258,9 +226,7 @@ module.exports = function(grunt) {
             src: [
               // Only include vendor files that we use independently
               'vendor/html5shiv/html5shiv-printshiv.min.js',
-              'vendor/box-sizing-polyfill/boxsizing.htc',
-              'vendor/slick-carousel/slick.min.js',
-              'vendor/slick-carousel/slick.css'
+              'vendor/box-sizing-polyfill/boxsizing.htc'
             ],
             dest: 'static'
           }
@@ -326,73 +292,6 @@ module.exports = function(grunt) {
       }
     },
 
-    /**
-     * See note below about creating a dynamic Topdoc options object.
-     */
-    topdoc_families: [
-      'blog-docs',
-      'cf-enhancements',
-      'layout',
-      'media',
-      'media-object',
-      'meta',
-      'misc',
-      'nav-secondary',
-      'post',
-      'summary'
-    ]
-  };
-
-  /**
-   * Creates a dynamic Topdoc options object.
-   * To add more subtasks add an item to the config.topdoc_families array.
-   * For example if you created a new component with the family name of
-   * "my-component" then you could add a new item to the config.topdoc_families
-   * array called "my-component" and this function would automatically add a new
-   * Topdoc subtask to the Topdoc task. You could then run `grunt topdoc:my-component`
-   * to build it out separately or just `grunt topdoc` to run all topdoc tasks.
-   */
-  function dynamicTopdocTasks() {
-    var topdoc = {},
-        families = config.topdoc_families;
-    for (var i = 0; i < families.length; i++) {
-      var key = families[i];
-      topdoc[key] = {
-        options: {
-          source: 'static/css/',
-          destination: 'docs/' + key + '/',
-          template: 'node_modules/cf-component-demo/docs/',
-          templateData: {
-            family: 'cfgov-' + key,
-            description: key + ' for cfgov-refresh.',
-            title: 'cfgov-refresh / ' + key + ' docs',
-            repo: '<%%= pkg.homepage %%>'
-          }
-        }
-      };
-    }
-    return topdoc;
-  }
-
-  config.topdoc = dynamicTopdocTasks();
-
-  /**
-   * Create an array of all of the Topdoc subtasks.
-   * This is useful for the concurrent task which needs to know all of the
-   * tasks you want to run concurrently. Since these Topdics are dynamically
-   * created we need a way to also dynamically update the concurrent task options.
-   */
-  function getTopdocSubtasks() {
-    var families = config.topdoc_families,
-        subtasks = [];
-    for (var i = 0; i < families.length; i++) {
-      subtasks.push( 'topdoc:' + families[i] );
-    }
-    return subtasks;
-  }
-
-  config.concurrent = {
-    topdoc: getTopdocSubtasks()
   };
 
   /**
@@ -403,10 +302,10 @@ module.exports = function(grunt) {
   /**
    * Create custom task aliases and combinations.
    */
-  grunt.registerTask('vendor', ['bower:install', 'string-replace:chosen', 'concat:cf-less']);
+  grunt.registerTask('vendor', ['bower:install', 'concat:cf-less']);
   grunt.registerTask('cssdev', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('jsdev', ['concat:bodyScripts', 'uglify', 'usebanner:js']);
-  grunt.registerTask('default', ['cssdev', 'jsdev', 'copy:vendor', 'concurrent:topdoc']);
+  grunt.registerTask('default', ['cssdev', 'jsdev', 'copy:vendor']);
   grunt.registerTask('test', ['jshint']);
 
 };
