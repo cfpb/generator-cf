@@ -58,16 +58,7 @@ module.exports = function(grunt) {
         src: [
           'vendor/jquery/jquery.js',
           'vendor/jquery.easing/jquery.easing.js',
-          // 'vendor/history.js/jquery.history.js',
-          'vendor/chosen/chosen.jquery.js',
           'vendor/cf-*/*.js',
-          'static/js/jquery.custom-input.js',
-          'static/js/jquery.custom-select.js',
-          'static/js/jquery.cf_input-split.js',
-          'vendor/string_score/string_score.js',
-          'static/js/jquery.type-and-filter.js',
-          'static/js/breakpoint-handler.js',
-          // 'static/js/jquery.cf_pagination.js',
           'static/js/app.js'
         ],
         dest: 'static/js/main.js'
