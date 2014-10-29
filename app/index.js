@@ -111,6 +111,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     srcFiles: function() {
       this.mkdir('src');
       this.directory('src/static', 'src/static');
+      this.copy('src/index.html', 'src/index.html');
       this.mkdir('dist');
     },
 
