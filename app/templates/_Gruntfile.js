@@ -302,7 +302,7 @@ module.exports = function(grunt) {
   /**
    * Create custom task aliases and combinations.
    */
-  grunt.registerTask('vendor', ['bower:install' 'concat:cf-less']);
+  grunt.registerTask('vendor', ['bower:install', 'concat:cf-less']);
   grunt.registerTask('cssdev', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('jsdev', ['concat:bodyScripts', 'uglify', 'usebanner:js']);
   grunt.registerTask('default', ['cssdev', 'jsdev', 'copy:vendor']);
