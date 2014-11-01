@@ -60,21 +60,14 @@ module.exports = function(grunt) {
         ],
         dest: '<%= loc.src %>/static/css/capital-framework.less',
       },
-      bodyScripts: {
+      js: {
         src: [
           '<%= loc.src %>/vendor/jquery/jquery.js',
           '<%= loc.src %>/vendor/jquery.easing/jquery.easing.js',
-          '<%= loc.src %>/vendor/chosen/chosen.jquery.js',
           '<%= loc.src %>/vendor/cf-*/*.js',
-          '<%= loc.src %>/static/js/jquery.custom-input.js',
-          '<%= loc.src %>/static/js/jquery.custom-select.js',
-          '<%= loc.src %>/static/js/jquery.cf_input-split.js',
-          '<%= loc.src %>/vendor/string_score/string_score.js',
-          '<%= loc.src %>/static/js/jquery.type-and-filter.js',
-          '<%= loc.src %>/static/js/breakpoint-handler.js',
           '<%= loc.src %>/static/js/app.js'
         ],
-        dest: '<%= loc.src %>/static/js/main.js'
+        dest: '<%= loc.dist %>/static/js/main.js'
       }
     },
 
@@ -86,7 +79,9 @@ module.exports = function(grunt) {
     less: {
       main: {
         options: {
-          paths: grunt.file.expand('src/vendor/*'),
+          // The src/vendor paths are needed to find the CF components' files.
+          // Feel free to add additional paths to the array passed to `concat`.
+          paths: grunt.file.expand('src/vendor/*').concat([])
         },
         files: {
           '<%= loc.dist %>/static/css/main.css': ['<%= loc.src %>/static/css/main.less']
@@ -127,8 +122,8 @@ module.exports = function(grunt) {
       //   src: 'vendor/html5shiv/html5shiv-printshiv.js',
       //   dest: 'static/js/html5shiv-printshiv.js'
       // },
-      bodyScripts: {
-        src: ['<%= loc.src %>/static/js/main.js'],
+      js: {
+        src: ['<%= loc.dist %>/static/js/main.js'],
         dest: '<%= loc.dist %>/static/js/main.min.js'
       }
     },
@@ -140,22 +135,10 @@ module.exports = function(grunt) {
      * We'll be inserting it at the top of minified assets.
      */
     banner:
-      '/*!\n' +
-      ' *              ad$$             $$\n' +
-      ' *             d$"               $$\n' +
-      ' *             $$                $$\n' +
-      ' *   ,adPYba,  $$$$$ $b,dPYba,   $$,dPYba,\n' +
-      ' *  aP\'    \'$: $$    $$P\'   \'$a  $$P\'   \'$a\n' +
-      ' *  $(         $$    $$(     )$  $$(     )$\n' +
-      ' *  "b,    ,$: $$    $$b,   ,$"  $$b,   ,$"\n' +
-      ' *   `"Ybd$"\'  $$    $$`YbdP"\'   $$`Ybd$"\'\n' +
-      ' *                   $$\n' +
-      ' *                   $$\n' +
-      ' *                   ""\n' +
-      ' *\n' +
+      '/*!\n'
       ' *  <%= pkg.name %> - v<%= pkg.version %>\n' +
       ' *  <%= pkg.homepage %>' +
-      ' *  A public domain work of the Consumer Financial Protection Bureau\n' +
+      ' *  Licensed <%= pkg.license %> by <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
       ' */',
 
     usebanner: {
@@ -230,7 +213,7 @@ module.exports = function(grunt) {
      * Copy files and folders.
      */
     copy: {
-      vendor: {
+      polyfills: {
         files:
         [
           {
@@ -239,9 +222,7 @@ module.exports = function(grunt) {
             src: [
               // Only include vendor files that we use independently
               '<%= loc.src %>/vendor/html5shiv/html5shiv-printshiv.min.js',
-              '<%= loc.src %>/vendor/box-sizing-polyfill/boxsizing.htc',
-              '<%= loc.src %>/vendor/slick-carousel/slick.min.js',
-              '<%= loc.src %>/vendor/slick-carousel/slick.css'
+              '<%= loc.src %>/vendor/box-sizing-polyfill/boxsizing.htc'
             ],
             dest: '<%= loc.dist %>/static'
           }
@@ -293,17 +274,9 @@ module.exports = function(grunt) {
      * Add files to monitor below.
      */
     watch: {
-      gruntfile: {
-        files: ['Gruntfile.js', '<%= loc.src %>/static/css/**/*.less', '<%= uglify.bodyScripts.src %>'],
+      default: {
+        files: ['Gruntfile.js', '<%= loc.src %>/static/css/**/*.less', '<%= loc.src %>/static/js/**/*.js'],
         tasks: ['default']
-      },
-      css: {
-        files: ['<%= loc.src %>/static/css/*.less'],
-        tasks: ['cssdev']
-      },
-      cssjs: {
-        files: ['<%= loc.src %>/static/css/*.less', '<%= loc.src %>/static/js/app.js'],
-        tasks: ['cssdev', 'jsdev']
       }
     }
 
@@ -318,9 +291,10 @@ module.exports = function(grunt) {
    * Create custom task aliases and combinations.
    */
   grunt.registerTask('compile-cf', ['bower:cf', 'concat:cf-less']);
-  grunt.registerTask('cssdev', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
-  grunt.registerTask('jsdev', ['concat:bodyScripts', 'uglify', 'usebanner:js']);
-  grunt.registerTask('default', ['cssdev', 'jsdev', 'copy:vendor']);
+  grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
+  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
+  grunt.registerTask('build', ['test', 'css', 'js', 'copy:polyfills']);
   grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('default', ['build']);
 
 };
