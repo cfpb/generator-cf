@@ -27,7 +27,7 @@ module.exports = function(grunt) {
      * Install Bower packages and migrate static assets.
      */
     bower: {
-      install: {
+      cf: {
         options: {
           targetDir: '<%= loc.src %>/vendor/',
           install: false,
@@ -54,12 +54,11 @@ module.exports = function(grunt) {
     concat: {
       'cf-less': {
         src: [
-          '<%= loc.src %>/vendor/cf-*/src/*.less',
+          '<%= loc.src %>/vendor/cf-*/*.less',
           '!<%= loc.src %>/vendor/cf-core/*.less',
-          '<%= loc.src %>/vendor/cf-core/src/cf-core.less',
-          '!<%= loc.src %>/vendor/cf-concat/cf.less'
+          '<%= loc.src %>/vendor/cf-core/cf-core.less'
         ],
-        dest: '<%= loc.src %>/vendor/cf-concat/cf.less',
+        dest: '<%= loc.src %>/static/css/capital-framework.less',
       },
       bodyScripts: {
         src: [
@@ -87,7 +86,7 @@ module.exports = function(grunt) {
     less: {
       main: {
         options: {
-          paths: grunt.file.expand('vendor/**/'),
+          paths: grunt.file.expand('src/vendor/*'),
         },
         files: {
           '<%= loc.dist %>/static/css/main.css': ['<%= loc.src %>/static/css/main.less']
@@ -318,7 +317,7 @@ module.exports = function(grunt) {
   /**
    * Create custom task aliases and combinations.
    */
-  grunt.registerTask('vendor', ['bower:install', 'concat:cf-less']);
+  grunt.registerTask('compile-cf', ['bower:cf', 'concat:cf-less']);
   grunt.registerTask('cssdev', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('jsdev', ['concat:bodyScripts', 'uglify', 'usebanner:js']);
   grunt.registerTask('default', ['cssdev', 'jsdev', 'copy:vendor']);
