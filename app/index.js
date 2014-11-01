@@ -3,6 +3,8 @@
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var path = require('path');
+var chalk = require('chalk');
+var banner = require('./banner');
 
 // Eventually we'll generate this list dynamically from GitHub.
 var frameworkComponents = [
@@ -21,8 +23,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     greet: function() {
       this.pkg = require('../package.json');
-      this.log( yosay('Welcome to Capital Framework\'s generator!') );
-      this.log('To learn about Capital Framework, visit http://capitalframework.com');
+      banner();
+      this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('http://capitalframework.com') + '\n');
     }
 
   },

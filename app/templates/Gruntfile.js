@@ -218,6 +218,15 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
+            cwd: '<%= loc.src %>',
+            src: [
+              // HTML files
+              '*.html',
+            ],
+            dest: '<%= loc.dist %>'
+          },
+          {
+            expand: true,
             cwd: '<%= loc.src %>/static',
             src: [
               // Fonts
@@ -229,8 +238,6 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%= loc.src %>',
             src: [
-              // HTML files
-              '*.html',
               // Vendor files
               'vendor/html5shiv/html5shiv-printshiv.min.js',
               'vendor/box-sizing-polyfill/boxsizing.htc'
