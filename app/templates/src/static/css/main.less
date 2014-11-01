@@ -1,20 +1,14 @@
-/* ==========================================================================
-   Capital Framework
-   Master LESS File
-   ========================================================================== */
+// This is your project's main Less file.
 
-// @import Normalize before all other LESS/CSS
+// First import Normalize.
 @import (less) "../../vendor/normalize-css/normalize.css";
 @import (less) "../../vendor/normalize-legacy-addon/normalize-legacy-addon.css";
 
-// @import combined CF component LESS
+// Then import the combined CF component file that was created by `grunt compile-cf`.
 @import (less) "capital-framework.less";
 
-
-/* Project-specific LESS goes below
-   ========================================================================== */
-
-// The following example styles are use on the framework test page (index.html)
+// Add project-specific Less rules goes below.
+// We've generated some sample rules for you. They're used with the index.html file.
 
 body {
     padding: 2em 1em 3em;

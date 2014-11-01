@@ -133,7 +133,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
   end: {
 
     bye: function(){
-      this.log( yosay('All done! Happy hacking!') );
+      this.log( yosay('All done! Edit the files in the src directory and then `grunt build` to compile everything into the dist directory.') );
     }
 
   }

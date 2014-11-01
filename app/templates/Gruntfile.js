@@ -65,6 +65,7 @@ module.exports = function(grunt) {
           '<%= loc.src %>/vendor/jquery/jquery.js',
           '<%= loc.src %>/vendor/jquery.easing/jquery.easing.js',
           '<%= loc.src %>/vendor/cf-*/*.js',
+          '!<%= loc.src %>/vendor/cf-*/Gruntfile.js',
           '<%= loc.src %>/static/js/app.js'
         ],
         dest: '<%= loc.dist %>/static/js/main.js'
@@ -135,9 +136,9 @@ module.exports = function(grunt) {
      * We'll be inserting it at the top of minified assets.
      */
     banner:
-      '/*!\n'
+      '/*!\n' +
       ' *  <%= pkg.name %> - v<%= pkg.version %>\n' +
-      ' *  <%= pkg.homepage %>' +
+      ' *  <%= pkg.homepage %>\n' +
       ' *  Licensed <%= pkg.license %> by <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
       ' */',
 
@@ -183,7 +184,7 @@ module.exports = function(grunt) {
           processImport: false
         },
         files: {
-          '<%= loc.dist %>/static/css/main.ie.min.css': ['<%= loc.src %>/static/css/main.ie.css'],
+          '<%= loc.dist %>/static/css/main.ie.min.css': ['<%= loc.dist %>/static/css/main.ie.css'],
         }
       }
     },
@@ -202,7 +203,7 @@ module.exports = function(grunt) {
           legacyWidth: 60
         },
         files: {
-          '<%= loc.dist %>/static/css/main.ie.css': '<%= loc.src %>/static/css/main.css'
+          '<%= loc.dist %>/static/css/main.ie.css': '<%= loc.dist %>/static/css/main.css'
         }
       }
     },
@@ -213,16 +214,26 @@ module.exports = function(grunt) {
      * Copy files and folders.
      */
     copy: {
-      polyfills: {
-        files:
-        [
+      main: {
+        files: [
           {
             expand: true,
-            cwd: '',
+            cwd: '<%= loc.src %>/static',
             src: [
-              // Only include vendor files that we use independently
-              '<%= loc.src %>/vendor/html5shiv/html5shiv-printshiv.min.js',
-              '<%= loc.src %>/vendor/box-sizing-polyfill/boxsizing.htc'
+              // Fonts
+              'fonts/*'
+            ],
+            dest: '<%= loc.dist %>/static'
+          },
+          {
+            expand: true,
+            cwd: '<%= loc.src %>',
+            src: [
+              // HTML files
+              '*.html',
+              // Vendor files
+              'vendor/html5shiv/html5shiv-printshiv.min.js',
+              'vendor/box-sizing-polyfill/boxsizing.htc'
             ],
             dest: '<%= loc.dist %>/static'
           }
@@ -264,7 +275,7 @@ module.exports = function(grunt) {
           EventEmitter: true
         }
       },
-      all: ['<%= loc.src %>/static/js/main.js']
+      all: ['<%= loc.src %>/static/js/app.js']
     },
 
     /**
@@ -293,7 +304,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile-cf', ['bower:cf', 'concat:cf-less']);
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
-  grunt.registerTask('build', ['test', 'css', 'js', 'copy:polyfills']);
+  grunt.registerTask('build', ['test', 'css', 'js', 'copy']);
   grunt.registerTask('test', ['jshint']);
   grunt.registerTask('default', ['build']);
 
