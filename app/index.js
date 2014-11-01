@@ -3,6 +3,8 @@
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var path = require('path');
+var rimraf = require('rimraf');
+var exec = require('exec');
 
 // Eventually we'll generate this list dynamically from GitHub.
 var frameworkComponents = [
@@ -99,9 +101,9 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     appFiles: function() {
       this.template('_README.md', 'README.md');
-      this.template('_Gruntfile.js', 'Gruntfile.js');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
+      this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
       this.copy('gitignore', '.gitignore');
       this.copy('screenshot.png', 'screenshot.png');
@@ -121,13 +123,12 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     if ( this.options['skip-install'] ) return;
 
-    var done = this.async(),
-        actuallyDone = this._.after(2, done),
+    var done = this._.after( 2, this.async() ),
         components = this.components.map( function( component ) {
           return 'cfpb/' + component;
         });
-    this.npmInstall( '', {}, actuallyDone );
-    this.bowerInstall( components, {'save': true}, actuallyDone );
+    this.npmInstall( '', {}, done );
+    this.bowerInstall( components, {'save': true}, done );
 
   },
 
