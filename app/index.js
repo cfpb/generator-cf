@@ -3,8 +3,6 @@
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var path = require('path');
-var rimraf = require('rimraf');
-var exec = require('exec');
 
 // Eventually we'll generate this list dynamically from GitHub.
 var frameworkComponents = [
