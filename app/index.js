@@ -121,10 +121,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     if ( this.options['skip-install'] ) return;
 
     var done = this.async(),
-        actuallyDone = this._.after(2, done),
-        components = this.components.map( function( component ) {
-          return 'cfpb/' + component;
-        });
+        actuallyDone = this._.after(2, done);
+
     this.npmInstall( '', {}, actuallyDone );
     this.bowerInstall( components, {'save': true}, actuallyDone );
 
