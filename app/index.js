@@ -3,6 +3,8 @@
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var path = require('path');
+var chalk = require('chalk');
+var banner = require('./banner');
 
 // Eventually we'll generate this list dynamically from GitHub.
 var frameworkComponents = [
@@ -21,8 +23,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     greet: function() {
       this.pkg = require('../package.json');
-      this.log( yosay('Welcome to Capital Framework\'s generator!') );
-      this.log('To learn about Capital Framework, visit http://capitalframework.com');
+      banner();
+      this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('http://capitalframework.com') + '\n');
     }
 
   },
@@ -99,9 +101,9 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     appFiles: function() {
       this.template('_README.md', 'README.md');
-      this.template('_Gruntfile.js', 'Gruntfile.js');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
+      this.copy('Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
       this.copy('gitignore', '.gitignore');
       this.copy('screenshot.png', 'screenshot.png');
@@ -111,6 +113,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     srcFiles: function() {
       this.mkdir('src');
       this.directory('src/static', 'src/static');
+      this.copy('src/index.html', 'src/index.html');
       this.mkdir('dist');
     },
 
@@ -120,18 +123,17 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     if ( this.options['skip-install'] ) return;
 
-    var done = this.async(),
-        actuallyDone = this._.after(2, done);
+    var done = this._.after( 2, this.async() );
 
-    this.npmInstall( '', {}, actuallyDone );
-    this.bowerInstall( components, {'save': true}, actuallyDone );
+    this.npmInstall( '', {}, done );
+    this.bowerInstall( components, {'save': true}, done );
 
   },
 
   end: {
 
     bye: function(){
-      this.log( yosay('All done! Happy hacking!') );
+      this.log( yosay('All done! Edit the files in the src directory and then `grunt build` to compile everything into the dist directory.') );
     }
 
   }

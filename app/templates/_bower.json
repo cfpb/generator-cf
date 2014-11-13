@@ -24,6 +24,9 @@
       "fonts": "src/fonts/*.*",
       "js": "src/**/*.js"
     },
+    "box-sizing-polyfill": {
+      "js": "boxsizing.htc"
+    },
     "html5shiv": {
       "js": "dist/html5shiv-printshiv.min.js"
     },
