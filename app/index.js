@@ -126,7 +126,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     var done = this._.after( 2, this.async() );
 
     this.npmInstall( '', {}, done );
-    this.bowerInstall( components, {'save': true}, done );
+    this.bowerInstall( this.components, {'save': true}, done );
 
   },
 
