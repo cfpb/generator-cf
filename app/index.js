@@ -86,7 +86,10 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           type: 'checkbox',
           name: 'components',
           message: 'Which CF components would you like in your app?',
-          choices: components
+          choices: components,
+          default: components.map( function( c ) {
+            return c.value;
+          })
         }, function ( answers ) {
           this.components = answers.components;
           done();
