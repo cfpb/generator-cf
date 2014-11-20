@@ -5,17 +5,14 @@ var yosay = require('yosay');
 var path = require('path');
 var chalk = require('chalk');
 var banner = require('./banner');
+var request = require('request-promise');
+var filterComponents = require('./lib/filter-components');
 
-// Eventually we'll generate this list dynamically from GitHub.
-var frameworkComponents = [
-  { name: 'Core', value: 'cf-core' },
-  { name: 'Buttons', value: 'cf-buttons' },
-  { name: 'Expandables', value: 'cf-expandables' },
-  { name: 'Forms', value: 'cf-forms' },
-  { name: 'Grid', value: 'cf-grid' },
-  { name: 'Icons', value: 'cf-icons' },
-  { name: 'Pagination', value: 'cf-pagination' }
-];
+var components = request({
+  uri: 'https://api.github.com/orgs/cfpb/repos?per_page=100',
+  json: true,
+  headers: {'user-agent': 'generator-cf'}
+}).then( filterComponents ).catch( console.error );
 
 var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
@@ -76,22 +73,27 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         default: 'http://consumerfinance.gov'
       }];
       this.prompt(prompts, function ( answers ) {
-        this.currentYear = (new Date()).getFullYear();
+        this.currentYear = ( new Date() ).getFullYear();
         this.props = answers;
         done();
-      }.bind(this));
+      }.bind( this ));
     },
 
     askAboutComponents: function() {
       var done = this.async();
-      this.prompt({
-        type: 'checkbox',
-        name: 'components',
-        message: 'Which CF components would you like in your app?',
-        choices: frameworkComponents
-      }, function ( answers ) {
-        this.components = answers.components;
-        done();
+      components.then( function( components ) {
+        this.prompt({
+          type: 'checkbox',
+          name: 'components',
+          message: 'Which CF components would you like in your app?',
+          choices: components,
+          default: components.map( function( c ) {
+            return c.value;
+          })
+        }, function ( answers ) {
+          this.components = answers.components;
+          done();
+        }.bind(this));
       }.bind(this));
     }
 
