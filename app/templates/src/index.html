@@ -69,20 +69,14 @@
 
     <div class="feature-list">
 
+        <% if ( components.indexOf('cf-buttons') >= 0 ) { %>
         <div class="feature-list_item">
             <h3 class="feature-list_header">CF-Buttons</h3>
             <p><a href="#" class="btn">Link Button</a> <button class="btn">Form Button</button></p>
         </div>
+        <% } %>
 
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Colors</h3>
-            <p>
-                <span class="color-demo color-demo__green"></span>
-                <span class="color-demo color-demo__green-midtone"></span>
-                <span class="color-demo color-demo__green-tint"></span>
-            </p>
-        </div>
-
+        <% if ( components.indexOf('cf-expandables') >= 0 ) { %>
         <div class="feature-list_item">
             <h3>CF-Expandables</h3>
             <div class="expandable expandable__padded">
@@ -113,7 +107,9 @@
                 </div>
             </div>
         </div>
+        <% } %>
 
+        <% if ( components.indexOf('cf-forms') >= 0 ) { %>
         <div class="feature-list_item">
             <h3 class="feature-list_header">CF-Forms</h3>
             <form action="#">
@@ -121,7 +117,9 @@
                 <p><textarea>Example entry</textarea></p>
             </form>
         </div>
+        <% } %>
 
+        <% if ( components.indexOf('cf-grid') >= 0 ) { %>
         <div class="feature-list_item">
             <h3 class="feature-list_header">CF-Grid</h3>
             <div class="wrapper">
@@ -149,7 +147,9 @@
             </div>
             <br>
         </div>
+        <% } %>
 
+        <% if ( components.indexOf('cf-pagination') >= 0 ) { %>
         <div class="feature-list_item">
             <h3 class="feature-list_header">CF-Pagination</h3>
             <nav class="pagination">
@@ -164,7 +164,9 @@
             </nav>
             <br>
         </div>
+        <% } %>
 
+        <% if ( components.indexOf('cf-typography') >= 0 ) { %>
         <div class="feature-list_item">
             <h3 class="feature-list_header">CF-Typography</h3>
 
@@ -281,11 +283,7 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">Font Awesome</h3>
-            <p><i class="icon-coffee"></i> <i class="icon-beer"></i> <i class="icon-fighter-jet"></i></p>
-        </div>
+        <% } %>
 
     </div><!-- END .feature-list -->
 

@@ -4,6 +4,7 @@ var path = require('path');
 var helpers = require('yeoman-generator').test;
 
 describe('cf generator', function () {
+  this.timeout(10000);
   beforeEach(function (done) {
     helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
       if (err) {
@@ -25,7 +26,6 @@ describe('cf generator', function () {
       'bower.json',
       'Gruntfile.js'
     ];
-
     helpers.mockPrompt(this.app, {
       'someOption': true
     });
