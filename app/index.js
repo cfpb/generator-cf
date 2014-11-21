@@ -7,6 +7,10 @@ var chalk = require('chalk');
 var banner = require('./banner');
 var request = require('request-promise');
 var filterComponents = require('./lib/filter-components');
+var updateNotifier = require('./lib/notifier');
+
+// Alert the user if a newer version of this generator is available.
+updateNotifier();
 
 var components = request({
   uri: 'https://api.github.com/orgs/cfpb/repos?per_page=100',
