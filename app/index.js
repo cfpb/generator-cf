@@ -109,7 +109,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.template('_README.md', 'README.md');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
-      this.copy('Gruntfile.js', 'Gruntfile.js');
+      this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
       this.copy('gitignore', '.gitignore');
       this.copy('screenshot.png', 'screenshot.png');
@@ -119,6 +119,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     srcFiles: function() {
       this.mkdir('src');
       this.directory('src/static', 'src/static');
+      this.template('src/index.html', 'src/index.html');
+      this.template('src/static/css/main.less', 'src/static/css/main.less');
       this.copy('src/index.html', 'src/index.html');
       this.mkdir('dist');
     },
