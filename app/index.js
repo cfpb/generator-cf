@@ -8,10 +8,12 @@ var banner = require('./banner');
 var request = require('request-promise');
 var filterComponents = require('./lib/filter-components');
 var updateNotifier = require('./lib/notifier');
+var fs = require('fs');
 
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
 
+// Grab a list of all CF components, we'll use it later.
 var components = request({
   uri: 'https://api.github.com/orgs/cfpb/repos?per_page=100',
   json: true,
@@ -105,15 +107,31 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
   writing: {
 
+    downloadTemplate: function() {
+      var done = this.async();
+      this.extract('https://github.com/cfpb/open-source-project-template/archive/master.zip', '_cache', done);
+    },
+
     appFiles: function() {
+      var files = ['screenshot.png', 'CHANGELOG.md'];
+
+      // If this is a public domain project, grab some more files from OSPT.
+      if ( this.props.license === 'CC0' ) {
+        files = files.concat(['TERMS.md', 'CONTRIBUTING.md', 'LICENSE']);
+      }
+
+      // Copy over the OSPT files.
+      files.forEach( function _copy( file ) {
+        fs.createReadStream( this.destinationRoot() + '/_cache/open-source-project-template-master/' + file )
+          .pipe( fs.createWriteStream(file) );
+      });
+
       this.template('_README.md', 'README.md');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
       this.copy('gitignore', '.gitignore');
-      this.copy('screenshot.png', 'screenshot.png');
-      this.copy('CHANGELOG.md', 'CHANGELOG.md');
     },
 
     srcFiles: function() {
@@ -127,14 +145,25 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
   },
 
-  install: function() {
+  install: {
 
-    if ( this.options['skip-install'] ) return;
+    templateAppFiles: function() {
+      ospt.then(function(){
+        // @TODO process the OSPT README.
+        // @TODO remove the _cache dir.
+      });
+    },
 
-    var done = this._.after( 2, this.async() );
+    installComponents: function() {
 
-    this.npmInstall( '', {}, done );
-    this.bowerInstall( this.components, {'save': true}, done );
+      if ( this.options['skip-install'] ) return;
+
+      var done = this._.after( 2, this.async() );
+
+      this.npmInstall( '', {}, done );
+      this.bowerInstall( this.components, {'save': true}, done );
+
+    }
 
   },
 

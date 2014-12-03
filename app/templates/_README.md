@@ -17,7 +17,7 @@ another page is fine, but it's important that this works.
 We welcome your feedback and contributions.
 
 - [Find out about contributing](CONTRIBUTING.md)
-<% if ( false ) { // @TODO check if they selected CC0 %>
+<% if ( props.license === 'CC0' ) { %>
 ----
 
 ## Open source licensing info
