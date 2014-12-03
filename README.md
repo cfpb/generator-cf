@@ -2,6 +2,8 @@
 
 > [Yeoman](http://yeoman.io) generator for [Capital Framework](http://cfpb.github.io/capital-framework/).
 
+![generator-cf screenshot](https://raw.githubusercontent.com/cfpb/generator-cf/master/screenshot.gif)
+
 ## Installation
 
 ```sh
