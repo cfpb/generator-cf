@@ -9,6 +9,7 @@ var request = require('request-promise');
 var filterComponents = require('./lib/filter-components');
 var updateNotifier = require('./lib/notifier');
 var fs = require('fs');
+var rimraf = require('rimraf');
 
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
@@ -124,9 +125,9 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       files.forEach( function _copy( file ) {
         fs.createReadStream( this.destinationRoot() + '/_cache/open-source-project-template-master/' + file )
           .pipe( fs.createWriteStream(file) );
-      });
+      }.bind(this));
 
-      this.template('_README.md', 'README.md');
+      // this.template('_README.md', 'README.md');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
@@ -148,10 +149,22 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
   install: {
 
     templateAppFiles: function() {
-      ospt.then(function(){
-        // @TODO process the OSPT README.
-        // @TODO remove the _cache dir.
-      });
+        // The README that comes from OSPT doesn't include template variables so
+        // we have to manually regex what we want out of it.
+        var readme = this.readFileAsString( this.destinationRoot() + '/_cache/open-source-project-template-master/README.md'),
+            projectText = '# ' + this.humanName + '\r\n\r\n' + this.props.description + '\r\n\r\n![Screenshot](screenshot.png)',
+            done = this.async();
+        // Remove everything at the screenshot line and above.
+        // ([\s\S.]*) selects everything before the end of the line that ends with screenshot.png)
+        readme = readme.replace( /([\s\S.]*)screenshot\.png\)/ig, projectText );
+        // If this isn't a public domain project, remove all the licensing info 
+        // from the bottom of the README.
+        if ( this.props.license !== 'CC0' ) {
+          readme = readme.replace(/([\s\n\r]*)## Open source licensing info([\s\S]*)/ig, '');
+        }
+        this.writeFileFromString( readme, 'README.md' );
+        // Kill the _cache dir.
+        rimraf( this.destinationRoot() + '/_cache', done );
     },
 
     installComponents: function() {
