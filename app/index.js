@@ -8,10 +8,13 @@ var banner = require('./banner');
 var request = require('request-promise');
 var filterComponents = require('./lib/filter-components');
 var updateNotifier = require('./lib/notifier');
+var fs = require('fs');
+var rimraf = require('rimraf');
 
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
 
+// Grab a list of all CF components, we'll use it later.
 var components = request({
   uri: 'https://api.github.com/orgs/cfpb/repos?per_page=100',
   json: true,
@@ -105,15 +108,29 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
   writing: {
 
+    downloadTemplate: function() {
+      var done = this.async();
+      this.extract('https://github.com/cfpb/open-source-project-template/archive/master.zip', '_cache', done);
+    },
+
     appFiles: function() {
-      this.template('_README.md', 'README.md');
+      var files = ['screenshot.png', 'CHANGELOG.md'];
+
+      // If this is a public domain project, grab some more files from OSPT.
+      if ( this.props.license === 'CC0' ) {
+        files = files.concat(['TERMS.md', 'CONTRIBUTING.md', 'LICENSE']);
+      }
+
+      // Copy over the OSPT files.
+      files.forEach( function _copy( file ) {
+        fs.createReadStream( this.destinationRoot() + '/_cache/open-source-project-template-master/' + file )
+          .pipe( fs.createWriteStream(file) );
+      }.bind(this));
+
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
-      this.copy('gitignore', '.gitignore');
-      this.copy('screenshot.png', 'screenshot.png');
-      this.copy('CHANGELOG.md', 'CHANGELOG.md');
     },
 
     srcFiles: function() {
@@ -125,16 +142,46 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.mkdir('dist');
     },
 
+    processReadme: function() {
+        // The README that comes from OSPT doesn't include template variables so
+        // we have to manually regex what we want out of it.
+        var readme = this.readFileAsString( this.destinationRoot() + '/_cache/open-source-project-template-master/README.md'),
+            projectText = '# ' + this.humanName + '\r\n\r\n' + this.props.description + '\r\n\r\n![Screenshot](screenshot.png)';
+        // Remove everything at the screenshot line and above.
+        // ([\s\S.]*) selects everything before the end of the line that ends with screenshot.png)
+        readme = readme.replace( /([\s\S.]*)screenshot\.png\)/ig, projectText );
+        // If this isn't a public domain project, remove all the licensing info 
+        // from the bottom of the README.
+        if ( this.props.license !== 'CC0' ) {
+          readme = readme.replace(/([\s\n\r]*)## Open source licensing info([\s\S]*)/ig, '');
+        }
+        this.writeFileFromString( readme, 'README.md' );
+    },
+
+    processGitIgnore: function() {
+        var gitignore = this.readFileAsString( this.destinationRoot() + '/_cache/open-source-project-template-master/.gitignore'),
+            done = this.async();
+        // Add src/vendor to the end.
+        gitignore = gitignore + '\r\nsrc/vendor/';
+        this.writeFileFromString( gitignore, '.gitignore' );
+        // Kill the _cache dir.
+        rimraf( this.destinationRoot() + '/_cache', done );
+    }
+
   },
 
-  install: function() {
+  install: {
 
-    if ( this.options['skip-install'] ) return;
+    installComponents: function() {
 
-    var done = this._.after( 2, this.async() );
+      if ( this.options['skip-install'] ) return;
 
-    this.npmInstall( '', {}, done );
-    this.bowerInstall( this.components, {'save': true}, done );
+      var done = this._.after( 2, this.async() );
+
+      this.npmInstall( '', {}, done );
+      this.bowerInstall( this.components, {'save': true}, done );
+
+    }
 
   },
 
