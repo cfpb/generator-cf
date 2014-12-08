@@ -117,7 +117,8 @@ module.exports = function(grunt) {
      */
     uglify: {
       options: {
-        preserveComments: 'some'
+        preserveComments: 'some',
+        sourceMap: true
       },
       // headScripts: {
       //   src: 'vendor/html5shiv/html5shiv-printshiv.js',
