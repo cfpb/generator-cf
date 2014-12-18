@@ -10,28 +10,8 @@
 // Add project-specific Less rules goes below.
 // We've generated some sample rules for you. They're used with the index.html file.
 
-body {
-    padding: 2em 1em 3em;
-}
-
-.feature-list,
-.feature-list_item {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.feature-list_item {
-    padding-top: 1em;
-    border-bottom: 1px solid black;
-}
-
-.feature-list_item:first-child {
-    border-top: 1px solid black;
-}
-
 .color-demo {
-    <% if ( components.indexOf('cf-grid') >= 0 ) { %>.grid_column( 4 );<% } %>
+    .grid_column( 4 );
     height: 30px;
 }
 
@@ -46,28 +26,12 @@ body {
 .color-demo__green-tint {
     background-color: @green-tint;
 }
-<% if ( components.indexOf('cf-grid') >= 0 ) { %>
-.wrapper {
-    .grid_wrapper();
+
+.sample-grid {
+    .grid_nested-col-group();
 }
 
-.col-1 {
-    .grid_column( 1 );
-}
-
-.col-3 {
-    .grid_column( 3 );
-}
-
-.col-4 {
-    .grid_column( 4 );
-}
-
-.col-6 {
-    .grid_column( 6 );
-}
-<% } %>
-.feature-list_show-col:before {
+.sample-grid_col:before {
     content: "";
     display: block;
     width: 100%;
@@ -75,33 +39,36 @@ body {
     background: #FF9E1B;
 }
 
-.typography-demo {
-    width: 60%;
-    border-collapse: collapse;
+.sample-grid_col-1 {
+    .grid_column( 1 );
+}
 
-    th, td {
-        padding: 0.75em;
-        vertical-align: top;
+.sample-grid_col-3 {
+    .grid_column( 3 );
+}
+
+.sample-grid_col-4 {
+    .grid_column( 4 );
+}
+
+.sample-grid_col-6 {
+    .grid_column( 6 );
+}
+
+.typography-demo {
+    &_item {
+        .u-clearfix();
     }
-    tbody th,
-    tbody td {
-        border-top: 1px solid #BABBBD;
-    }
-    th {
-        color: #75787B;
-        font-family: "Avenir Next Medium", Arial, sans-serif;
-        font-weight: 500;
-        text-align: left;
-    }
-    h1, h2, h3, h4, h5, h6 {
-        margin-bottom: 0;
+    &_item-header {
+        float: left;
+        width: unit(200px / @base-font-size-px, em);
+        margin-right: @grid_gutter-width;
+        text-align: right;
     }
     .spec {
+        .webfont-regular();
         color: #75787B;
         font-size: 0.875em;
-    }
-    .p-sans p {
-        font-family: "Avenir Next", Arial, sans-serif;
     }
 }
 
