@@ -16,6 +16,7 @@
   },
   "license": "<%= props.license %>",
   "dependencies": {
+    "html5shiv": "latest"
   },
   "exportsOverride": {
     "cf-*": {
