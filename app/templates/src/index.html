@@ -12,9 +12,9 @@
     ===========
 -->
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--
     ==================
@@ -22,22 +22,20 @@
     ==================
 -->
 
-<title>Capital Framework demo page</title>
-<meta name="description" content="A test page for Capital Framework components.">
-
-<!-- Explicit favicon link needed for testing. Remove for production. -->
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <title>Capital Framework demo page</title>
+    <meta name="description" content="A test page for Capital Framework components.">
 
 <!--
     ======
     STYLES
     ======
-    The number of stylesheets here must be kept to a minimum. Unless adding a significant amount of CSS that is
-    specific to a single page or section of the site, all new styles should be added to src/static/css/main.less.
+    The number of stylesheets here must be kept to a minimum.
+    Unless adding a significant amount of CSS that is specific to a single page
+    or section of the site, all new styles should be added to src/static/css/app.less.
 -->
 
-<!--[if lt IE 9]>      <link rel="stylesheet" href="static/css/ie8.min.css"> <![endif]-->
-<!--[if gt IE 8]><!--> <link rel="stylesheet" href="static/css/main.min.css"> <!--<![endif]-->
+<!--[if lt IE 9]>      <link rel="stylesheet" href="/static/css/main.ie.min.css"> <![endif]-->
+<!--[if gt IE 8]><!--> <link rel="stylesheet" href="/static/css/main.min.css"> <!--<![endif]-->
 
 <!--
     ============
@@ -50,7 +48,7 @@
 -->
 
 <!--[if lt IE 9]>
-    <script src="vendor/html5shiv/html5shiv-printshiv.js"></script>
+    <script src="/static/vendor/html5shiv/html5shiv-printshiv.min.js"></script>
 <![endif]-->
 
     <script>
@@ -61,267 +59,275 @@
 
 </head>
 
-<body>
+<body ng-app="OSWizardApp" ng-controller="TeamsCtrl">
 
-<div class="wrapper">
+<!--
+    =================
+    Begin page source
+    =================
+-->
 
-    <h1>Capital Framework demo page</h1>
+<header class="wrapper wrapper__match-content" role="banner">
+    <div class="block block__sub">
+        <h1>Capital Framework demo page</h1>
+    </div>
+</header>
 
-    <div class="feature-list">
+<main class="content" id="main" role="main">
+    <div class="content_bar"></div>
+    <div class="content_wrapper">
+        <div class="content_main">
+            <div class="feature-list">
 
-        <% if ( components.indexOf('cf-buttons') >= 0 ) { %>
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Buttons</h3>
-            <p><a href="#" class="btn">Link Button</a> <button class="btn">Form Button</button></p>
-        </div>
-        <% } %>
+                <section class="feature-list_item block u-mt0">
+                    <h1>CF-Core</h1>
 
-        <% if ( components.indexOf('cf-expandables') >= 0 ) { %>
-        <div class="feature-list_item">
-            <h3>CF-Expandables</h3>
-            <div class="expandable expandable__padded">
-                <a class="expandable_target expandable_header"
-                   href="#expandable-padded-content">
-                    <span class="expandable_label expandable_header-left">
-                        Expandable Header
-                    </span>
-                    <span class="expandable_link expandable_header-right">
-                        <span class="expandable_cue-open">
-                            Show
-                            <span class="cf-icon cf-icon-plus-round"></span>
-                        </span>
-                        <span class="expandable_cue-close">
-                            Hide
-                            <span class="cf-icon cf-icon-minus-round"></span>
-                        </span>
-                    </span>
-                </a>
-                <div class="expandable_content" id="expandable-padded-content">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Neque ipsa voluptatibus soluta nobis unde quisquam
-                        temporibus magnam debitis quidem. Ducimus ratione
-                        corporis nesciunt earum vel est quaerat blanditiis
-                        dolore ipsa?
-                    </p>
-                </div>
-            </div>
-        </div>
-        <% } %>
+                    <div class="block block__sub">
+                        <h2>Colors</h2>
+                        <p>
+                            <span class="color-demo color-demo__green"></span>
+                            <span class="color-demo color-demo__green-midtone"></span>
+                            <span class="color-demo color-demo__green-tint"></span>
+                        </p>
+                    </div>
 
-        <% if ( components.indexOf('cf-forms') >= 0 ) { %>
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Forms</h3>
-            <form action="#">
-                <p><input placeholder="placeholder text" type="text"></p>
-                <p><textarea>Example entry</textarea></p>
-            </form>
-        </div>
-        <% } %>
+                    <div class="block block__sub">
+                        <h2>Typography base styles</h2>
+                        <div class="typography-demo">
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">Superheader</h3>
+                                    <div class="spec">
+                                        Avenir Next Demi<br>
+                                        48px / 66px
+                                    </div>
+                                </div>
+                                <h1 class="superheader">Getting out of debt</h1>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H1</h3>
+                                    <div class="spec">
+                                        Avenir Next Regular<br>
+                                        34px / 44px
+                                    </div>
+                                </div>
+                                <h1>Getting out of debt</h1>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H2</h3>
+                                    <div class="spec">
+                                        Avenir Next Regular<br>
+                                        26px / 33px
+                                    </div>
+                                </div>
+                                <h2>Getting out of debt</h2>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H3</h3>
+                                    <div class="spec">
+                                        Avenir Next Regular<br>
+                                        22px / 28px
+                                    </div>
+                                </div>
+                                <h3>Getting out of debt</h3>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H4</h3>
+                                    <div class="spec">
+                                        Avenir Next Medium<br>
+                                        18px / 22px
+                                    </div>
+                                </div>
+                                <h4>Getting out of debt</h4>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H5</h3>
+                                    <div class="spec">
+                                        Avenir Next Demi<br>
+                                        14px / 22px<br>
+                                        uppercase<br>
+                                        letter-spacing: 1px
+                                    </div>
+                                </div>
+                                <h5>Getting out of debt</h5>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">H6</h3>
+                                    <div class="spec">
+                                        Avenir Next Demi<br>
+                                        12px / 22px<br>
+                                        uppercase<br>
+                                        letter-spacing: 1px
+                                    </div>
+                                </div>
+                                <h6>Getting out of debt</h6>
+                            </div>
+                            <div class="block block__sub typography-demo_item">
+                                <div class="typography-demo_item-header">
+                                    <h3 class="h5">Body</h3>
+                                    <div class="spec">
+                                        Georgia<br>
+                                        16px / 22px<br>
+                                    </div>
+                                </div>
+                                <p>
+                                    Use this tool to compare school data and relevant financial factors to
+                                    make a more informed decision for your future.
+                                </p>
+                            </div>
+                        </div><!-- END .block.block__sub -->
+                    </div><!-- END .typography-demo -->
 
-        <% if ( components.indexOf('cf-grid') >= 0 ) { %>
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Grid</h3>
-            <div class="wrapper">
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-1 feature-list_show-col"></div>
-                <div class="col-6 feature-list_show-col"></div>
-                <div class="col-6 feature-list_show-col"></div>
-                <div class="col-4 feature-list_show-col"></div>
-                <div class="col-4 feature-list_show-col"></div>
-                <div class="col-4 feature-list_show-col"></div>
-                <div class="col-3 feature-list_show-col"></div>
-                <div class="col-3 feature-list_show-col"></div>
-                <div class="col-3 feature-list_show-col"></div>
-                <div class="col-3 feature-list_show-col"></div>
-            </div>
-            <br>
-        </div>
-        <% } %>
+                    <div class="block block__sub">
+                        <h2>Input base styles</h2>
+                        <form action="#">
+                            <p><input placeholder="placeholder text" type="text"></p>
+                            <p><textarea>Example entry</textarea></p>
+                        </form>
+                    </div>
 
-        <% if ( components.indexOf('cf-pagination') >= 0 ) { %>
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Pagination</h3>
-            <nav class="pagination">
-                <a class="btn btn__super pagination_prev" href="#pagination_content">
-                    <span class="btn_icon__left cf-icon cf-icon-left"></span>
-                    Previous
-                </a>
-                <a class="btn btn__super pagination_next" href="#pagination_content">
-                    Next
-                    <span class="btn_icon__right cf-icon cf-icon-right"></span>
-                </a>
-                <form class="pagination_form" action="index.html#pagination_content">
-                    <label class="pagination_label"
-                           for="pagination_current-page">
-                        Page
-                        <span class="u-visually-hidden">
-                            number out of 149 total pages
-                        </span>
-                    </label>
-                    <input
-                        class="pagination_current-page"
-                        id="pagination_current-page"
-                        name="pagination_current-page"
-                        type="number" min="1" max="149"
-                        value="149">
-                    <span class="pagination_label">
-                        <span aria-hidden="true">
-                            of 149
-                        </span>
-                    </span>
-                    <button class="btn btn__link pagination_submit"
-                            id="pagination_submit"
-                            type="submit">
-                        Go
-                    </button>
-                </form>
-            </nav>
-            <br>
-        </div>
-        <% } %>
+                </section>
 
-        <div class="feature-list_item">
-            <h3 class="feature-list_header">CF-Typography</h3>
+                <section class="feature-list_item block block__padded-top block__border-top">
+                    <h1>CF-Grid</h1>
+                    <div class="sample-grid">
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-1"></div>
+                        <div class="sample-grid_col sample-grid_col-6"></div>
+                        <div class="sample-grid_col sample-grid_col-6"></div>
+                        <div class="sample-grid_col sample-grid_col-4"></div>
+                        <div class="sample-grid_col sample-grid_col-4"></div>
+                        <div class="sample-grid_col sample-grid_col-4"></div>
+                        <div class="sample-grid_col sample-grid_col-3"></div>
+                        <div class="sample-grid_col sample-grid_col-3"></div>
+                        <div class="sample-grid_col sample-grid_col-3"></div>
+                        <div class="sample-grid_col sample-grid_col-3"></div>
+                    </div>
+                    <br>
+                </section>
 
-            <table class="typography-demo">
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Sample</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="display">
-                        <th rowspan="2">Superheader</th>
-                        <td class="sample"><h1 class="superheader">Getting out of debt</h1></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Demi<br>
-                            48px / 66px
-                        </td>
-                    </tr>
+                <section class="feature-list_item block block__padded-top block__border-top">
+                    <h1>CF-Buttons</h1>
+                    <p><a href="#" class="btn">Link Button</a> <button class="btn">Form Button</button></p>
+                </section>
 
-                    <tr>
-                        <th rowspan="2">H1</th>
-                        <td class="sample"><h1>Getting out of debt</h1></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Regular<br>
-                            34px / 44px
-                        </td>
-                    </tr>
+                <section class="feature-list_item block block__padded-top block__border-top">
+                    <h1>CF-Forms</h1>
+                    <div class="input-with-btn">
+                        <div class="input-with-btn_input">
+                            <input type="text">
+                        </div>
+                        <div class="input-with-btn_btn">
+                            <button class="btn">Search</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="feature-list_item block block__padded-top block__border-top">
+                    <h1>CF-Expandables</h1>
+                    <div class="expandable expandable__padded">
+                        <a class="expandable_target expandable_header"
+                           href="#expandable-padded-content">
+                            <span class="expandable_label expandable_header-left">
+                                Expandable Header
+                            </span>
+                            <span class="expandable_link expandable_header-right">
+                                <span class="expandable_cue-open">
+                                    Show
+                                    <span class="cf-icon cf-icon-plus-round"></span>
+                                </span>
+                                <span class="expandable_cue-close">
+                                    Hide
+                                    <span class="cf-icon cf-icon-minus-round"></span>
+                                </span>
+                            </span>
+                        </a>
+                        <div class="expandable_content" id="expandable-padded-content">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Neque ipsa voluptatibus soluta nobis unde quisquam
+                                temporibus magnam debitis quidem. Ducimus ratione
+                                corporis nesciunt earum vel est quaerat blanditiis
+                                dolore ipsa?
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="feature-list_item block block__padded-top block__border-top">
+                    <h1>CF-Pagination</h1>
+                    <nav class="pagination">
+                        <a class="btn btn__super pagination_prev" href="#pagination_content">
+                            <span class="btn_icon__left cf-icon cf-icon-left"></span>
+                            Previous
+                        </a>
+                        <a class="btn btn__super pagination_next" href="#pagination_content">
+                            Next
+                            <span class="btn_icon__right cf-icon cf-icon-right"></span>
+                        </a>
+                        <form class="pagination_form" action="index.html#pagination_content">
+                            <label class="pagination_label"
+                                   for="pagination_current-page">
+                                Page
+                                <span class="u-visually-hidden">
+                                    number out of 149 total pages
+                                </span>
+                            </label>
+                            <input
+                                class="pagination_current-page"
+                                id="pagination_current-page"
+                                name="pagination_current-page"
+                                type="number" min="1" max="149"
+                                value="149">
+                            <span class="pagination_label">
+                                <span aria-hidden="true">
+                                    of 149
+                                </span>
+                            </span>
+                            <button class="btn btn__link pagination_submit"
+                                    id="pagination_submit"
+                                    type="submit">
+                                Go
+                            </button>
+                        </form>
+                    </nav>
+                    <br>
+                </section>
 
-                    <tr>
-                        <th rowspan="2">H2</th>
-                        <td class="sample"><h2>Getting out of debt</h2></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Regular<br>
-                            26px / 33px
-                        </td>
-                    </tr>
+            </div><!-- END .feature-list -->
+        </div><!-- END .content_main -->
+    </div>
+</main>
 
-                    <tr>
-                        <th rowspan="2">H3</th>
-                        <td class="sample"><h3>Getting out of debt</h3></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Regular<br>
-                            22px / 28px
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th rowspan="2">H4</th>
-                        <td class="sample"><h4>Getting out of debt</h4></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Medium<br>
-                            18px / 22px
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th rowspan="2">H5</th>
-                        <td class="sample"><h5>Getting out of debt</h5></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Demi<br>
-                            14px / 22px<br>
-                            uppercase<br>
-                            letter-spacing: 1px
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th rowspan="2">H6</th>
-                        <td class="sample"><h6>Getting out of debt</h6></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Demi<br>
-                            12px / 22px<br>
-                            uppercase<br>
-                            letter-spacing: 1px
-                        </td>
-                    </tr>
-
-                    <tr class="p-sans">
-                        <th rowspan="2">Body (sans-serif)</th>
-                        <td class="sample"><p>Use this tool to compare school data and relevant financial factors to make a more informed decision for your future.</p></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Avenir Next Regular<br>
-                            16px / 22px<br>
-                        </td>
-                    </tr>
-
-                    <tr class="p-serif">
-                        <th rowspan="2">Body (serif)</th>
-                        <td class="sample"><p>Use this tool to compare school data and relevant financial factors to make a more informed decision for your future.</p></td>
-                    </tr>
-                    <tr>
-                        <td class="spec">
-                            Georgia<br>
-                            16px / 22px<br>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </div><!-- END .feature-list -->
-
-</div><!-- END .wrapper -->
+<footer role="contentinfo">
+    <!-- Footer stuff -->
+</footer>
 
 <!--
     ============
     BODY SCRIPTS
     ============
-    The number of scripts here must be kept to a minimum. Unless adding a significant amount of JS that is
-    specific to a single page or section of the site, all custom JS should be added to src/static/js/app.js.
+    The number of scripts here must be kept to a minimum.
+    Unless adding a significant amount of JS that is specific to a single page
+    or section of the site, all custom JS should be added to src/static/js/app.js.
 -->
 
-<script src="static/js/main.min.js"></script>
+<script src="/static/js/main.min.js"></script>
 
 </body>
-
-</html>

@@ -1,9 +1,9 @@
-// Count all cf-components included in the test page.
+// Count all features included in the test page.
 $('.feature-list').append(
-  '<div class="feature-list_item">' +
-  '<h3 class="feature-list_header">jQuery</h3>' +
-  '<p>jQuery counts a total of ' +
-  '<strong>' + ( $('.feature-list_item').size() ) + '</strong> ' +
+  '<section class="feature-list_item block block__padded-top block__border-top">' +
+  '<h1>jQuery</h1>' +
+  '<p>jQuery is working and counts a total of ' +
+  '<strong>' + $('.feature-list_item').size() + '</strong> ' +
   'cf-components.</p>' +
-  '</div>'
+  '</section>'
 );
