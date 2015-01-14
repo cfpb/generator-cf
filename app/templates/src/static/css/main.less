@@ -1,14 +1,25 @@
-// This is your project's main Less file.
+/* ==========================================================================
+   <%= slugname %>
+   ========================================================================== */
 
-// First import Normalize.
+// This is your project's main Less file.
+// Project-specific Less rules go after the imports.
+
+// Import Normalize, a Capital Framework dependency and an all-around best practice.
 @import (less) "../../vendor/normalize-css/normalize.css";
 @import (less) "../../vendor/normalize-legacy-addon/normalize-legacy-addon.css";
 
-// Then import the combined CF component file that was created by `grunt compile-cf`.
+// Import the combined Capital Framework component file that was created by `grunt compile-cf`.
 @import (less) "capital-framework.less";
 
-// Add project-specific Less rules goes below.
+// Import the official CFPB color palette.
+@import (less) "cfpb-palette.less";
+
+// Override the Capital Framework theme variables with colors from the CFPB color palette.
+@import (less) "cf-theme-overrides.less";
+
 // We've generated some sample rules for you. They're used with the index.html file.
+// Please delete them before starting your project.
 
 .color-demo {
     .grid_column( 4 );
