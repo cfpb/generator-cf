@@ -23,7 +23,7 @@
 
 .intro-message {
     padding: 1em;
-    background: @gold-20;
+    background: @expandable__padded-bg;
     .webfont-medium();
 }
 
@@ -31,7 +31,7 @@
     display: inline-block;
     padding-bottom: unit(10px / @base-font-size-px, em);
     margin-bottom: unit(30px / @base-font-size-px, em);
-    border-bottom: 4px solid @green;
+    border-bottom: 4px solid @content_bar;
 
     &_name {
         display: inline-block;
@@ -53,16 +53,16 @@
     height: 30px;
 }
 
-.color-demo__green {
-    background-color: @green;
+.color-demo__btn-bg {
+    background-color: @btn-bg;
 }
 
-.color-demo__green-midtone {
-    background-color: @green-midtone;
+.color-demo__btn-secondary-bg {
+    background-color: @btn__secondary-bg;
 }
 
-.color-demo__green-tint {
-    background-color: @green-tint;
+.color-demo__btn-disabled-bg {
+    background-color: @btn__disabled-bg;
 }
 
 .sample-grid {
@@ -74,7 +74,7 @@
     display: block;
     width: 100%;
     height: 1em;
-    background: #FF9E1B;
+    background: @btn-bg;
 }
 
 .sample-grid_col-1 {
