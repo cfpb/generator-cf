@@ -28,7 +28,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     greet: function() {
       this.pkg = require('../package.json');
       banner();
-      this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('http://capitalframework.com') + '\n');
+      this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('capitalframework.com') + '\n');
     }
 
   },
@@ -56,15 +56,15 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       var done = this.async();
       var prompts = [{
         name: 'description',
-        message: 'Description',
+        message: 'Project\'s description',
         default: 'The best website ever.'
       }, {
         name: 'homepage',
         message: 'Project\'s homepage',
-        default: 'http://consumerfinance.gov'
+        default: 'http://www.consumerfinance.gov/'
       }, {
         name: 'license',
-        message: 'Project\'s License',
+        message: 'Project\'s license',
         default: 'CC0'
       }, {
         name: 'authorName',
@@ -77,7 +77,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       }, {
         name: 'authorUrl',
         message: 'Author\'s homepage',
-        default: 'http://consumerfinance.gov'
+        default: 'https://cfpb.github.io/'
       }];
       this.prompt(prompts, function ( answers ) {
         this.currentYear = ( new Date() ).getFullYear();
