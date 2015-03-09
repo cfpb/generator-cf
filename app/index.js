@@ -51,9 +51,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.prompt({
         name: 'name',
         message: 'What is the name of your project?',
-        default: function() {
-          return this._.humanize( this.existing && this.existing.name || path.basename(process.cwd()) )
-        }.bind(this),
+        default: this._.humanize( this.existing && this.existing.name || path.basename(process.cwd()) ),
       }, function( answers ) {
         this.humanName = answers.name;
         this.slugname = this._.slugify( answers.name );
