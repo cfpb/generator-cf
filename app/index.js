@@ -27,6 +27,13 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     greet: function() {
       this.pkg = require('../package.json');
+      this.existing = function() {
+        try {
+          var manifest = require(path.join(process.cwd(), 'package.json'));
+          return manifest;
+        } catch(e) {};
+      }
+
       banner();
       this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('capitalframework.com') + '\n');
     }
@@ -37,10 +44,14 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     askForName: function() {
       var done = this.async();
+      var existing = this.existing();
+
       this.prompt({
         name: 'name',
         message: 'What is the name of your project?',
-        default: this._.humanize( path.basename(process.cwd()) ),
+        default: function() {
+          return this._.humanize( existing.name || path.basename(process.cwd()) )
+        }.bind(this),
       }, function( answers ) {
         this.humanName = answers.name;
         this.slugname = this._.slugify( answers.name );
@@ -54,30 +65,32 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
     askForDescription: function() {
       var done = this.async();
+      var existing = this.existing();
+
       var prompts = [{
         name: 'description',
         message: 'Project\'s description',
-        default: 'The best website ever.'
+        default: existing.description || 'The best website ever.'
       }, {
         name: 'homepage',
         message: 'Project\'s homepage',
-        default: 'http://www.consumerfinance.gov/'
+        default: existing.homepage || 'http://www.consumerfinance.gov/'
       }, {
         name: 'license',
         message: 'Project\'s license',
-        default: 'CC0'
+        default: existing.license || 'CC0'
       }, {
         name: 'authorName',
         message: 'Author\'s name',
-        default: 'Consumer Financial Protection Bureau'
+        default: existing.author.name || 'Consumer Financial Protection Bureau'
       }, {
         name: 'authorEmail',
         message: 'Author\'s email',
-        default: 'tech@cfpb.gov'
+        default: existing.author.email || 'tech@cfpb.gov'
       }, {
         name: 'authorUrl',
         message: 'Author\'s homepage',
-        default: 'https://cfpb.github.io/'
+        default: existing.author.url || 'https://cfpb.github.io/'
       }];
       this.prompt(prompts, function ( answers ) {
         this.currentYear = ( new Date() ).getFullYear();
@@ -150,7 +163,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         // Remove everything at the screenshot line and above.
         // ([\s\S.]*) selects everything before the end of the line that ends with screenshot.png)
         readme = readme.replace( /([\s\S.]*)screenshot\.png\)/ig, projectText );
-        // If this isn't a public domain project, remove all the licensing info 
+        // If this isn't a public domain project, remove all the licensing info
         // from the bottom of the README.
         if ( this.props.license !== 'CC0' ) {
           readme = readme.replace(/([\s\n\r]*)## Open source licensing info([\s\S]*)/ig, '');
