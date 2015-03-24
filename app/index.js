@@ -193,6 +193,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           .pipe( fs.createWriteStream(file) );
       }.bind(this));
 
+      this.template('_README.md', 'README.md');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
@@ -206,22 +207,6 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.template('src/static/css/main.less', 'src/static/css/main.less');
       this.copy('src/index.html', 'src/index.html');
       this.mkdir('dist');
-    },
-
-    processReadme: function() {
-        // The README that comes from OSPT doesn't include template variables so
-        // we have to manually regex what we want out of it.
-        var readme = this.readFileAsString( this.destinationRoot() + '/_cache/open-source-project-template-master/README.md'),
-            projectText = '# ' + this.humanName + '\r\n\r\n' + this.props.description + '\r\n\r\n![Screenshot](screenshot.png)';
-        // Remove everything at the screenshot line and above.
-        // ([\s\S.]*) selects everything before the end of the line that ends with screenshot.png)
-        readme = readme.replace( /([\s\S.]*)screenshot\.png\)/ig, projectText );
-        // If this isn't a public domain project, remove all the licensing info
-        // from the bottom of the README.
-        if ( this.props.license !== 'CC0' ) {
-          readme = readme.replace(/([\s\n\r]*)## Open source licensing info([\s\S]*)/ig, '');
-        }
-        this.writeFileFromString( readme, 'README.md' );
     },
 
     processGitIgnore: function() {
