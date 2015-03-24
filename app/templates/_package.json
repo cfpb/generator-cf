@@ -8,6 +8,10 @@
     "email": "<%= props.authorEmail %>"<% if (props.authorUrl) { %>,
     "url": "<%= props.authorUrl %>"<% } %>
   },
+  "repository": {
+    "type": "<%= props.repoType %>",
+    "url": "<%= props.repoUrl %>"
+  },
   "license": "<%= props.license %>",
   "keywords": [
     "<%= slugname %>"

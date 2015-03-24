@@ -9,8 +9,8 @@
     "url": "<%= props.authorUrl %>"<% } %>
   },
   "repository": {
-    "type": "git",
-    "url": "https://github.com/cfpb/capital-framework.git"
+    "type": "<%= props.repoType %>",
+    "url": "<%= props.repoUrl %>"
   },
   "license": "<%= props.license %>",
   "dependencies": {

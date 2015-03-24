@@ -79,6 +79,14 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         message: 'Project\'s license',
         default: this.existing && this.existing.license || 'CC0'
       }, {
+        name: 'repoType',
+        message: 'Repository type',
+        default: this.existing && this.existing.repository && this.existing.repository.type || 'git'
+      }, {
+        name: 'repoUrl',
+        message: 'Repository URL',
+        default: this.existing && this.existing.repository && this.existing.repository.url || 'https://github.com/cfpb/capital-framework.git'
+      }, {
         name: 'authorName',
         message: 'Author\'s name',
         default: this.existing && this.existing.author && this.existing.author.name || 'Consumer Financial Protection Bureau'
