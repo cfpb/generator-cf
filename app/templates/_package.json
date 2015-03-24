@@ -5,10 +5,8 @@
   <% if (props.homepage) { %>"homepage": "<%= props.homepage %>",<% } %>
   "author": {
     "name": "<%= props.authorName %>",
-    "email": "<%= props.authorEmail %>" <%
-    if (props.authorUrl) { %> ,
-        "url": "<%= props.authorUrl %>" <%
-    } %>
+    "email": "<%= props.authorEmail %>"<% if (props.authorUrl) { %>,
+    "url": "<%= props.authorUrl %>"<% } %>
   },
   "license": "<%= props.license %>",
   "keywords": [
