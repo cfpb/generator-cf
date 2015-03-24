@@ -24,6 +24,7 @@ describe('cf generator', function () {
       '.bowerrc',
       '.gitignore',
       'bower.json',
+      'package.json',
       'Gruntfile.js'
     ];
     helpers.mockPrompt(this.app, {
