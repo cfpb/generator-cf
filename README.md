@@ -6,15 +6,35 @@
 
 ## Installation
 
-```sh
-$ npm install -g yo generator-cf
+Install Yeoman and the Capital Framework generator
+
+```bash
+npm install -g yo generator-cf
 ```
 
 ## Usage
 
-```sh
-$ yo cf
+Create a new project directory and `cd` to it
+```bash
+mkdir my-new-project && cd $_
 ```
+
+Run the Capital Framework generator
+```bash
+yo cf
+```
+
+Compile the assets
+```bash
+grunt
+```
+
+View the demo page
+```bash
+open ./dist/index.html
+```
+
+Build your project!
 
 ## Contributing
 
