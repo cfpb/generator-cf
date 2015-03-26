@@ -112,7 +112,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         this.prompt({
           type: 'checkbox',
           name: 'components',
-          message: 'Which CF components would you like in your app?',
+          message: 'You’re about to install CF Core. Which additional CF components would you like in your app?',
           choices: components,
           default: components.map( function( c ) {
             return c.value;
@@ -130,6 +130,8 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
               versionedComponents.push({ 'name': repo, 'ver': data[0].name });
             }).catch( console.error );
           };
+
+          answers.components.push('cf-core');
 
           answers.components.forEach( function(el) {
             getLatest(el);
