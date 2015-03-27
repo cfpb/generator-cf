@@ -250,40 +250,15 @@ module.exports = function(grunt) {
     },
 
     /**
-     * JSHint: https://github.com/gruntjs/grunt-contrib-jshint
+     * ESLint: https://github.com/sindresorhus/grunt-eslint
      *
-     * Validate files with JSHint.
-     * Below are options that conform to idiomatic.js standards.
-     * Feel free to add/remove your favorites: http://www.jshint.com/docs/#options
+     * Validate files with ESLint.
      */
-    jshint: {
-      options: {
-        camelcase: false,
-        curly: true,
-        forin: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        quotmark: true,
-        sub: true,
-        boss: true,
-        strict: true,
-        evil: true,
-        eqnull: true,
-        browser: true,
-        plusplus: false,
-        globals: {
-          jQuery: true,
-          $: true,
-          module: true,
-          require: true,
-          define: true,
-          console: true,
-          EventEmitter: true
-        }
-      },
-      all: ['<%%= loc.src %>/static/js/app.js']
+    eslint: {
+      target: [
+        'Gruntfile.js',
+        '<%%= loc.src %>/static/js/app.js'
+      ]
     },
 
     /**
@@ -312,7 +287,7 @@ module.exports = function(grunt) {
   grunt.registerTask('compile-cf', ['bower:cf', 'concat:cf-less']);
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('test', ['eslint']);
   grunt.registerTask('build', ['test', 'css', 'js', 'copy']);
   grunt.registerTask('default', ['build']);
 
