@@ -168,6 +168,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
+      this.copy('eslintrc', '.eslintrc');
     },
 
     srcFiles: function() {
