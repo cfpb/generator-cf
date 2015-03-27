@@ -118,7 +118,24 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
             return c.value;
           })
         }, function ( answers ) {
-          this.components = answers.components.push('cf-core');
+          var versionedComponents = this.components = [];
+
+          // Get latest repo tag
+          var getLatest = function( repo ) {
+            request({
+              uri: 'https://api.github.com/repos/cfpb/' + repo + '/tags',
+              json: true,
+              headers: { 'user-agent': 'generator-cf'}
+            }, function( err, res, data ) {
+              versionedComponents.push({ 'name': repo, 'ver': data[0].name });
+            }).catch( console.error );
+          };
+
+          answers.components.push('cf-core');
+
+          answers.components.forEach( function(el) {
+            getLatest(el);
+          });
           done();
         }.bind(this));
       }.bind(this));
@@ -199,7 +216,6 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       var done = this._.after( 2, this.async() );
 
       this.npmInstall( '', {}, done );
-      this.bowerInstall( this.components, {'save': true}, done );
 
     }
 
