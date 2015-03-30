@@ -256,7 +256,7 @@ module.exports = function(grunt) {
      */
     eslint: {
       target: [
-        'Gruntfile.js',
+        // 'Gruntfile.js', // uncomment to lint the Gruntfle
         '<%%= loc.src %>/static/js/app.js'
       ]
     },

@@ -1,5 +1,6 @@
 ecmaFeatures:
   ecmascript: 6
+  modules: true
 
 env:
   browser: true
@@ -44,7 +45,7 @@ rules:
   no-process-exit: 1
 
   # Stylistic issues
-  indent: 2
+  indent: [2, 2]
   brace-style: 2
   camelcase: 2
   new-cap: 1

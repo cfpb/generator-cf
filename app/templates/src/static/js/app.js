@@ -1,3 +1,4 @@
+'use strict';
 // Count all features included in the test page.
 $('.feature-list').append(
   '<section class="feature-list_item block block__padded-top block__border-top">' +
