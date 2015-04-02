@@ -16,7 +16,7 @@ updateNotifier();
 
 // Grab a list of all CF components, we'll use it later.
 var components = request({
-  uri: 'https://api.github.com/orgs/cfpb/repos?per_page=100',
+  uri: 'https://api.github.com/search/repositories?q=%22cf-%22+NOT+cfpb+NOT+cfgov+NOT+deprecated+NOT+generator+user:cfpb+language:JavaScript+language:css+language:html',
   json: true,
   headers: {'user-agent': 'generator-cf'}
 }).then( filterComponents ).catch( console.error );
