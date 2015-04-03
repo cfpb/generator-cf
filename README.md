@@ -1,12 +1,12 @@
 # generator-cf [![Build Status](https://secure.travis-ci.org/cfpb/generator-cf.png?branch=master)](https://travis-ci.org/cfpb/generator-cf)
 
-> [Yeoman](http://yeoman.io) generator for [Capital Framework](http://cfpb.github.io/capital-framework/).
+[Yeoman](http://yeoman.io) generator for [Capital Framework](http://cfpb.github.io/capital-framework/).
 
 ![generator-cf screenshot](https://raw.githubusercontent.com/cfpb/generator-cf/master/screenshot.gif)
 
 ## Installation
 
-Install Yeoman and the Capital Framework generator
+Install Yeoman and the Capital Framework generator:
 
 ```bash
 npm install -g yo generator-cf
@@ -14,22 +14,22 @@ npm install -g yo generator-cf
 
 ## Usage
 
-Create a new project directory and `cd` to it
+Create a new project directory and `cd` to it:
 ```bash
 mkdir my-new-project && cd $_
 ```
 
-Run the Capital Framework generator
+Run the Capital Framework generator:
 ```bash
 yo cf
 ```
 
-Compile the assets
+Compile the assets:
 ```bash
 grunt
 ```
 
-View the demo page
+View the demo page:
 ```bash
 open ./dist/index.html
 ```
@@ -48,3 +48,11 @@ $ yo cf
 ```
 
 Edit the source files and re-run `yo cf` to see the changes.
+
+----
+
+## Open source licensing info
+1. [TERMS](TERMS.md)
+2. [LICENSE](LICENSE)
+3. [CFPB Source Code Policy](https://github.com/cfpb/source-code-policy/)
+
