@@ -2,8 +2,12 @@ module.exports = function(grunt) {
 
   'use strict';
 
-  require('load-grunt-tasks')(grunt);
   require('time-grunt')(grunt);
+  require('jit-grunt')(grunt, {
+    // Static mappings below; needed because task name does not match package name
+    bower: 'grunt-bower-task',
+    usebanner: 'grunt-banner'
+  });
 
   var path = require('path');
   var config = {
