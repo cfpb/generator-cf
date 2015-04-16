@@ -35,9 +35,9 @@ module.exports = function(grunt) {
           cleanTargetDir: false,
           layout: function(type, component) {
             if (type === 'img') {
-              return path.join('../static/img');
+              return path.join('static/img');
             } else if (type === 'fonts') {
-              return path.join('../static/fonts');
+              return path.join('static/fonts');
             } else {
               return path.join(component);
             }
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
           '!<%%= loc.src %>/vendor/cf-core/*.less',
           '<%%= loc.src %>/vendor/cf-core/cf-core.less'
         ],
-        dest: '<%%= loc.src %>/static/css/capital-framework.less',
+        dest: '<%%= loc.src %>/vendor/capital-framework/capital-framework.less',
       },
       js: {
         src: [
@@ -230,8 +230,9 @@ module.exports = function(grunt) {
             expand: true,
             cwd: '<%%= loc.src %>/static',
             src: [
-              // Fonts
-              'fonts/*'
+              // Static assets
+              'fonts/*',
+              'img/*'
             ],
             dest: '<%%= loc.dist %>/static'
           },
@@ -241,7 +242,10 @@ module.exports = function(grunt) {
             src: [
               // Vendor files
               'vendor/html5shiv/html5shiv-printshiv.min.js',
-              'vendor/box-sizing-polyfill/boxsizing.htc'
+              'vendor/box-sizing-polyfill/boxsizing.htc',
+              // Vendor static assets
+              'vendor/static/fonts/*',
+              'vendor/static/img/*'
             ],
             dest: '<%%= loc.dist %>/static'
           }
