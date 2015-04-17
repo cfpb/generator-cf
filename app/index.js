@@ -14,6 +14,13 @@ var rimraf = require('rimraf');
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
 
+// Set list of repos from which we grab standard files.
+// These will be used in the downloadTemplate function in the writing priority.
+var osLibraries = [
+  'https://github.com/cfpb/open-source-project-template/archive/master.zip',
+  'https://github.com/cfpb/front-end/archive/master.zip'
+];
+
 // Grab a list of all CF components, we'll use it later.
 var components = request({
   uri: 'https://api.github.com/search/repositories?q=%22cf-%22+NOT+cfpb+NOT+cfgov+NOT+deprecated+NOT+generator+user:cfpb+language:JavaScript+language:css+language:html',
@@ -146,8 +153,12 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
   writing: {
 
     downloadTemplate: function() {
-      var done = this.async();
-      this.extract('https://github.com/cfpb/open-source-project-template/archive/master.zip', '_cache', done);
+      var numLibraries = osLibraries.length;
+      var done = this._.after( numLibraries, this.async() );
+
+      osLibraries.forEach(function (library) {
+        this.extract(library, '_cache', done);
+      }.bind(this));
     },
 
     appFiles: function() {
@@ -164,11 +175,17 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           .pipe( fs.createWriteStream(file) );
       }.bind(this));
 
+      // Copy files from the front-end repo.
+      var feFiles = ['.eslintrc'];
+      feFiles.forEach( function _copy( file ) {
+        fs.createReadStream( this.destinationRoot() + '/_cache/front-end-master/' + file )
+          .pipe( fs.createWriteStream(file) );
+      }.bind(this));
+
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
-      this.copy('eslintrc', '.eslintrc');
     },
 
     srcFiles: function() {
