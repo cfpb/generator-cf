@@ -48,6 +48,8 @@ $ yo cf
 ```
 
 Edit the source files and re-run `yo cf` to see the changes.
+Please modify the current tests or write new tests if you add functionality to the generator.
+Tests can be executed by running `npm test` from the project's root.
 
 ----
 
