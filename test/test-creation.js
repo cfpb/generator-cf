@@ -22,6 +22,7 @@ describe('cf generator', function () {
     var expected = [
       // add files you expect to exist here.
       '.bowerrc',
+      '.eslintrc',
       '.gitignore',
       'bower.json',
       'package.json',
