@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 0.7.0 - 2015-05-19
+
+### Added
+- Added webfont variables to override default webfonts in cf-core
+
 
 ## 0.6.0 – 2015-04-20
 
