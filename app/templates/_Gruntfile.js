@@ -279,7 +279,7 @@ module.exports = function(grunt) {
    */
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
-  grunt.registerTask('test', ['lintjs', 'mocha_istanbul']);
+  grunt.registerTask('test', ['lintjs']);
   grunt.registerMultiTask('lintjs', 'Lint the JavaScript', function(){
     grunt.config.set(this.target, this.data);
     grunt.task.run(this.target);
