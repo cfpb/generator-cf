@@ -26,50 +26,16 @@ module.exports = function(grunt) {
     },
 
     /**
-     * Bower: https://github.com/yatskevich/grunt-bower-task
-     *
-     * Set up Bower packages and migrate static assets.
-     */
-    bower: {
-      cf: {
-        options: {
-          targetDir: '<%%= loc.src %>/vendor/',
-          install: false,
-          verbose: true,
-          cleanTargetDir: false,
-          layout: function(type, component) {
-            if (type === 'img') {
-              return path.join('static/img');
-            } else if (type === 'fonts') {
-              return path.join('static/fonts');
-            } else {
-              return path.join(component);
-            }
-          }
-        }
-      }
-    },
-
-    /**
      * Concat: https://github.com/gruntjs/grunt-contrib-concat
      *
      * Concatenate cf-* Less files prior to compiling them.
      */
     concat: {
-      'cf-less': {
-        src: [
-          '<%%= loc.src %>/vendor/cf-*/*.less',
-          '!<%%= loc.src %>/vendor/cf-core/*.less',
-          '<%%= loc.src %>/vendor/cf-core/cf-core.less'
-        ],
-        dest: '<%%= loc.src %>/vendor/capital-framework/capital-framework.less',
-      },
       js: {
         src: [
-          '<%%= loc.src %>/vendor/jquery/jquery.js',
-          '<%%= loc.src %>/vendor/jquery.easing/jquery.easing.js',
-          '<%%= loc.src %>/vendor/cf-*/*.js',
-          '!<%%= loc.src %>/vendor/cf-*/Gruntfile.js',
+          '<%%= loc.src %>/vendor/jquery/dist/jquery.js',
+          '<%%= loc.src %>/vendor/jquery.easing/js/jquery.easing.js',
+          '<%%= loc.src %>/vendor/cf-*/src/js/*.js',
           '<%%= loc.src %>/static/js/app.js'
         ],
         dest: '<%%= loc.dist %>/static/js/main.js'
@@ -214,6 +180,13 @@ module.exports = function(grunt) {
     },
 
     /**
+     * Clean: https://github.com/gruntjs/grunt-contrib-clean
+     *
+     * Clean files and folders
+     */
+    clean: ['dist'],
+
+    /**
      * Copy: https://github.com/gruntjs/grunt-contrib-copy
      *
      * Copy files and folders.
@@ -232,24 +205,20 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: '<%%= loc.src %>/static',
+            flatten: true,
+            cwd: '<%%= loc.src %>',
             src: [
-              // Static assets
-              'fonts/*',
-              'img/*'
+              // Fonts
+              'vendor/cf-icons/src/fonts/*'
             ],
-            dest: '<%%= loc.dist %>/static'
+            dest: '<%%= loc.dist %>/static/fonts'
           },
           {
             expand: true,
             cwd: '<%%= loc.src %>',
             src: [
               // Vendor files
-              'vendor/html5shiv/html5shiv-printshiv.min.js',
               'vendor/box-sizing-polyfill/boxsizing.htc',
-              // Vendor static assets
-              'vendor/static/fonts/*',
-              'vendor/static/img/*'
             ],
             dest: '<%%= loc.dist %>/static'
           }
@@ -292,11 +261,10 @@ module.exports = function(grunt) {
   /**
    * Create custom task aliases and combinations.
    */
-  grunt.registerTask('compile-cf', ['bower:cf', 'concat:cf-less']);
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
   grunt.registerTask('test', ['eslint']);
-  grunt.registerTask('build', ['test', 'css', 'js', 'copy']);
+  grunt.registerTask('build', ['clean', 'css', 'js', 'copy']);
   grunt.registerTask('default', ['build']);
 
 };

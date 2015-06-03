@@ -111,6 +111,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         default: this.existing && this.existing.author && this.existing.author.url || 'https://cfpb.github.io/'
       }];
       this.prompt(prompts, function ( answers ) {
+        this.isCfpbEmployee = answers.authorEmail.indexOf('cfpb.gov') > -1;
         this.currentYear = ( new Date() ).getFullYear();
         this.props = answers;
         done();
@@ -138,11 +139,17 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
               json: true,
               headers: { 'user-agent': 'generator-cf'}
             }, function( err, res, data ) {
-              versionedComponents.push({ 'name': repo, 'ver': data[0].name });
+              versionedComponents.push({ 'name': repo, 'ver': '^' + data[0].name });
             }).catch( console.error );
           };
 
-          answers.components.push('cf-core');
+          // If they selected every component, install the general 
+          // capital-framework component instead of every individual component.
+          if (components.length === answers.components.length) {
+            answers.components = ['capital-framework'];
+          } else {
+            answers.components.push('cf-core');
+          }
 
           answers.components.forEach( function(el) {
             getLatest(el);
@@ -235,7 +242,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
       if ( this.options['skip-install'] ) return;
 
-      var done = this._.after( 2, this.async() );
+      var done = this.async();
 
       this.npmInstall( '', {}, done );
 
@@ -245,7 +252,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
   end: {
 
-    bye: function(){
+    bye: function() {
       this.log( yosay('All done! Edit the files in the src directory and then `grunt build` to compile everything into the dist directory.') );
     }
 
