@@ -10,6 +10,15 @@ module.exports = function(grunt) {
   });
 
   var path = require('path');
+
+  // Allows a `--quiet` flag to be passed to Grunt from the command-line.
+  // If the flag is present the value is true, otherwise it is false.
+  // This flag can be used to, for example, suppress warning output
+  // from linters.
+  var env = {
+    quiet: grunt.option('quiet') ? true : false
+  };
+
   var config = {
 
     /**
@@ -227,15 +236,22 @@ module.exports = function(grunt) {
     },
 
     /**
-     * ESLint: https://github.com/sindresorhus/grunt-eslint
-     *
-     * Validate files with ESLint.
+     * Lint the JavaScript.
      */
-    eslint: {
-      target: [
-        // 'Gruntfile.js', // uncomment to lint the Gruntfle
-        '<%%= loc.src %>/static/js/app.js'
-      ]
+    lintjs: {
+      /**
+       * Validate files with ESLint.
+       * https://www.npmjs.com/package/grunt-contrib-eslint
+       */
+      eslint: {
+        options: {
+          quiet: env.quiet
+        },
+        src: [
+          // 'Gruntfile.js', // Uncomment to lint the Gruntfile.
+          '<%%= loc.src %>/static/js/app.js'
+        ]
+      }
     },
 
     /**
@@ -263,8 +279,12 @@ module.exports = function(grunt) {
    */
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
   grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
-  grunt.registerTask('test', ['eslint']);
-  grunt.registerTask('build', ['clean', 'css', 'js', 'copy']);
+  grunt.registerTask('test', ['lintjs', 'mocha_istanbul']);
+  grunt.registerMultiTask('lintjs', 'Lint the JavaScript', function(){
+    grunt.config.set(this.target, this.data);
+    grunt.task.run(this.target);
+  });
+  grunt.registerTask('build', ['test', 'clean', 'css', 'js', 'copy']);
   grunt.registerTask('default', ['build']);
 
 };
