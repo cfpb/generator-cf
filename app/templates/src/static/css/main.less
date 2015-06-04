@@ -9,16 +9,16 @@
 @import (less) "../../vendor/normalize-css/normalize.css";
 @import (less) "../../vendor/normalize-legacy-addon/normalize-legacy-addon.css";
 
-// Import the combined Capital Framework component file that was created by `grunt compile-cf`.
-@import (less) "../../vendor/capital-framework/capital-framework.less";
-
+// Import Capital Framework.
+<% for(var i=0; i<components.length; i++) { %>@import (less) "../../vendor/<%= components[i].name %>/src/<%= components[i].name %>.less";
+<% } %>
 // Import the brand color palette.
 @import (less) "brand-palette.less";
 
 // Uncomment to import Avenir font on CFPB projects.
 // If this project is on a non-CFPB domain,
 // use this file as a template for adding web fonts.
-//@import (less) 'licensed-fonts.css';
+<% if (!isCfpbEmployee) { %>//<% } %>@import (less) 'licensed-fonts.css';
 
 // Override the Capital Framework theme variables with colors from the brand color palette.
 @import (less) "cf-theme-overrides.less";

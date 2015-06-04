@@ -15,22 +15,5 @@
   "license": "<%= props.license %>",
   "dependencies": { <% for(var i=0; i<components.length; i++) { %>
     "<%= components[i].name %>": "<%= components[i].ver%>"<% if (i < components.length - 1) { %>,<% } %><% } %>
-  },
-  "exportsOverride": {
-    "cf-*": {
-      "css": "src/**/*.css",
-      "less": "src/**/*.less",
-      "fonts": "src/fonts/*.*",
-      "js": "src/**/*.js"
-    },
-    "box-sizing-polyfill": {
-      "js": "boxsizing.htc"
-    },
-    "html5shiv": {
-      "js": "dist/html5shiv-printshiv.min.js"
-    },
-    "jquery.easing": {
-      "js": "js/jquery.easing.js"
-    }
   }
 }

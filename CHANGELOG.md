@@ -3,16 +3,25 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
-## Unreleased – Unreleased
+## 1.0.0 – 2015-06-02
 
-## Additions
+### Changed
+- Supersedes `eslint` task by `lintjs`.
+- If user selects every component, install capital-framework instead of every
+  component individually.
+- Fixes async bug that was preventing final goodbye message from being echoed.
+- Updated all dev dependencies in package.json to latest versions.
 
+## Added
 - Adds `lintjs` task.
 - Adds `--quiet` CLI flag to Gruntfile to suppress warnings in linter.
+- Checks author's email to determine if they're a CFPB employee and uncomments
+  licensed-fonts.css if they are.
+- Adds `clean` task to delete the dist dir before recreating it.
 
-## Changes
-
-- Supersedes `eslint` task by `lintjs`.
+### Removed
+- Grunt bower and concat-cf tasks.
+- `exportsOverride` section in bower.json.
 
 
 ## 0.7.0 - 2015-05-19
