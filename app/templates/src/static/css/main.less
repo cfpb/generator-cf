@@ -5,10 +5,6 @@
 // This is your project's main Less file.
 // Project-specific Less rules go after the imports.
 
-// Import Normalize, a Capital Framework dependency and an all-around best practice.
-@import (less) "../../vendor/normalize-css/normalize.css";
-@import (less) "../../vendor/normalize-legacy-addon/normalize-legacy-addon.css";
-
 // Import Capital Framework.
 <% for(var i=0; i<components.length; i++) { %>@import (less) "../../vendor/<%= components[i].name %>/src/<%= components[i].name %>.less";
 <% } %>
