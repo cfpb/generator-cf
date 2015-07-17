@@ -143,7 +143,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
             }).catch( console.error );
           };
 
-          // If they selected every component, install the general 
+          // If they selected every component, install the general
           // capital-framework component instead of every individual component.
           if (components.length === answers.components.length) {
             answers.components = ['capital-framework'];
@@ -193,6 +193,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           .pipe( fs.createWriteStream(file) );
       }.bind(this));
 
+      this.template('_setup.sh', 'setup.sh');
       this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
       this.template('_Gruntfile.js', 'Gruntfile.js');
@@ -244,7 +245,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
       var done = this.async();
 
-      this.npmInstall( '', {}, done );
+      this.spawnCommand( './setup.sh', [], done );
 
     }
 

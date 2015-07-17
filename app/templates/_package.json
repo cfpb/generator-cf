@@ -37,7 +37,6 @@
     "time-grunt": "~1.2.1"
   },
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "bower install"
+    "test": "grunt test"
   }
 }
