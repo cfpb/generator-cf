@@ -245,7 +245,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
       var done = this.async();
 
-      this.spawnCommand( './setup.sh', [], done );
+      this.spawnCommand( './setup.sh' ).on( 'close', done );
 
     }
 
