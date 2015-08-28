@@ -1,17 +1,29 @@
-# Changelog
+# Change Log
 
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
+
+
+## 1.1.1 – 2015-08-27
+
+### Changed
+- Set default `@grid_wrapper-width` in `cf-theme-overrides.less` to 1230px.
+  (@cfpb/design-manual#342)
+- Set default `@expandable-group-divider` to `@gray-50`.
+  (@cfpb/design-manual#143)
+
 
 ## 1.1.0 – 2015-08-03
 
 ### Added
 - `setup.sh` script.
 
+
 ## 1.0.1 – 2015-07-08
 
 ### Removed
 - Normalize.css imports.
+
 
 ## 1.0.0 – 2015-06-02
 
