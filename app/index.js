@@ -157,8 +157,31 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           done();
         }.bind(this));
       }.bind(this));
-    }
+    },
 
+    askForBuildTool: function() {
+      var done = this.async();
+
+      this.prompt( {
+        required: true,
+        type:     'list',
+        name:     'buildToolChoice',
+        message:  'Which build tool do you prefer?',
+        choices:  [
+          {
+            name: 'Grunt',
+            value: 'grunt'
+          },
+          {
+            name: 'Gulp',
+            value: 'gulp'
+          }
+        ]
+      }, function( answers ) {
+        this.buildToolChoice = answers.buildToolChoice;
+        done();
+      }.bind(this) );
+    }
   },
 
   writing: {
@@ -193,12 +216,22 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           .pipe( fs.createWriteStream(file) );
       }.bind(this));
 
-      this.template('_README.md', 'README.md');
-      this.template('_setup.sh', 'setup.sh');
-      this.template('_package.json', 'package.json');
       this.template('_bower.json', 'bower.json');
-      this.template('_Gruntfile.js', 'Gruntfile.js');
       this.copy('bowerrc', '.bowerrc');
+
+      if ( this.buildToolChoice === 'gulp' ) {
+        this.template( 'gulp/_package.json', 'package.json' );
+        this.template('gulp/_README.md', 'README.md');
+        this.copy( 'gulp/_gulpfile.js', 'gulpfile.js' );
+        this.copy( 'gulp/_setup.sh', 'setup.sh' );
+        this.directory( 'gulp/gulp', 'gulp' );
+        this.directory( 'gulp/config', 'config' );
+      } else {
+        this.template( 'grunt/_package.json', 'package.json' );
+        this.template( 'grunt/_README.md', 'README.md' );
+        this.copy( 'grunt/_Gruntfile.js', 'Gruntfile.js' );
+        this.copy( 'grunt/_setup.sh', 'setup.sh' );
+      }
     },
 
     srcFiles: function() {

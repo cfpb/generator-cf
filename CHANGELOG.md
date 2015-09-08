@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 
+## Unreleased
+
+### Added
+- Added option to use Gulp as project build tool
+
+### Changed
+- Moved Grunt specific template files to `/grunt` directory
+
+
 ## 1.2.0 - 2015-10-13
 
 ### Added
@@ -18,7 +27,6 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ### Changed
 - Updates the `copy` task to include images, include HTML files in subfolders,
   exclude HTML files from dependencies, include html5shiv.
-
 
 ## 1.1.2 - 2015-09-28
 
