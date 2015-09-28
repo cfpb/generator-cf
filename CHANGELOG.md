@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 1.1.2 - 2015-09-28
+- Updated grunt-eslint in template from `17.1.0` to `17.2.0`.
+
 
 ## 1.1.1 – 2015-08-27
 
