@@ -10,13 +10,10 @@ init(){
 
   if [ -f .bowerrc ]; then
     # Get the "directory" line from .bowerrc
-    BOWER_DIR=$(grep "directory" .bowerrc)
-    # Strip off the first part of that line.
-    BOWER_DIR=${BOWER_DIR/\"directory\"\: \"/}
-    # Strip off the final " from the line.
-    BOWER_DIR="${BOWER_DIR%?}"
-    echo 'Bower components directory:' $BOWER_DIR
+    BOWER_DIR=$(grep "directory" .bowerrc | cut -d '"' -f 4)
   fi
+  echo 'npm components directory:' $NODE_DIR
+  echo 'Bower components directory:' $BOWER_DIR
 }
 
 # Clean project dependencies.
