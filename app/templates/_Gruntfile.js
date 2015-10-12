@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     /**
      * Concat: https://github.com/gruntjs/grunt-contrib-concat
      *
-     * Concatenate cf-* JS files prior to compiling them.
+     * Concatenate JavaScript files prior to uglifying them.
      */
     concat: {
       js: {
