@@ -8,8 +8,6 @@ module.exports = function(grunt) {
     usebanner: 'grunt-banner'
   });
 
-  var path = require('path');
-
   // Allows a `--quiet` flag to be passed to Grunt from the command-line.
   // If the flag is present the value is true, otherwise it is false.
   // This flag can be used to, for example, suppress warning output
@@ -224,12 +222,12 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: '<%= loc.src %>/static',
+            cwd: '<%%= loc.src %>/static',
             src: [
               // Images
               'img/**'
             ],
-            dest: '<%= loc.dist %>/static'
+            dest: '<%%= loc.dist %>/static'
           },
           {
             expand: true,
@@ -272,15 +270,15 @@ module.exports = function(grunt) {
      */
     watch: {
       css: {
-        files: ['<%= loc.src %>/static/css/**/*.less'],
+        files: ['<%%= loc.src %>/static/css/**/*.less'],
         tasks: ['css']
       },
       js: {
-        files: ['Gruntfile.js', '<%= loc.src %>/static/js/**/*.js'],
+        files: ['Gruntfile.js', '<%%= loc.src %>/static/js/**/*.js'],
         tasks: ['js']
       },
       html: {
-        files: ['<%= loc.src %>/**/*.html'],
+        files: ['<%%= loc.src %>/**/*.html'],
         tasks: ['copy:dist']
       }
     }
