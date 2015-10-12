@@ -13,8 +13,7 @@
     "url": "<%= props.repoUrl %>"
   },
   "license": "<%= props.license %>",
-  "dependencies": {
-<% for(var i=0; i<components.length; i++) { %>
+  "dependencies": { <% for(var i=0; i<components.length; i++) { %>
     "<%= components[i].name %>": "<%= components[i].ver %>",<% } %>
     "html5shiv": "latest"
   }
