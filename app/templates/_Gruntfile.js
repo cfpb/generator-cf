@@ -5,11 +5,8 @@ module.exports = function(grunt) {
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt, {
     // Static mappings below; needed because task name does not match package name
-    bower: 'grunt-bower-task',
     usebanner: 'grunt-banner'
   });
-
-  var path = require('path');
 
   // Allows a `--quiet` flag to be passed to Grunt from the command-line.
   // If the flag is present the value is true, otherwise it is false.
@@ -37,7 +34,7 @@ module.exports = function(grunt) {
     /**
      * Concat: https://github.com/gruntjs/grunt-contrib-concat
      *
-     * Concatenate cf-* Less files prior to compiling them.
+     * Concatenate JavaScript files prior to uglifying them.
      */
     concat: {
       js: {
@@ -201,14 +198,15 @@ module.exports = function(grunt) {
      * Copy files and folders.
      */
     copy: {
-      main: {
+      dist: {
         files: [
           {
             expand: true,
             cwd: '<%%= loc.src %>',
             src: [
               // HTML files
-              '*.html',
+              '**/*.html',
+              '!**/vendor/**'
             ],
             dest: '<%%= loc.dist %>'
           },
@@ -224,10 +222,20 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
+            cwd: '<%%= loc.src %>/static',
+            src: [
+              // Images
+              'img/**'
+            ],
+            dest: '<%%= loc.dist %>/static'
+          },
+          {
+            expand: true,
             cwd: '<%%= loc.src %>',
             src: [
               // Vendor files
               'vendor/box-sizing-polyfill/boxsizing.htc',
+              'vendor/html5shiv/dist/html5shiv-printshiv.min.js'
             ],
             dest: '<%%= loc.dist %>/static'
           }
@@ -261,9 +269,17 @@ module.exports = function(grunt) {
      * Add files to monitor below.
      */
     watch: {
-      default: {
-        files: ['Gruntfile.js', '<%%= loc.src %>/static/css/**/*.less', '<%%= loc.src %>/static/js/**/*.js'],
-        tasks: ['default']
+      css: {
+        files: ['<%%= loc.src %>/static/css/**/*.less'],
+        tasks: ['css']
+      },
+      js: {
+        files: ['Gruntfile.js', '<%%= loc.src %>/static/js/**/*.js'],
+        tasks: ['js']
+      },
+      html: {
+        files: ['<%%= loc.src %>/**/*.html'],
+        tasks: ['copy:dist']
       }
     }
 
@@ -277,14 +293,14 @@ module.exports = function(grunt) {
   /**
    * Create custom task aliases and combinations.
    */
-  grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css']);
-  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js']);
+  grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css', 'copy:dist']);
+  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js'], 'copy:dist');
   grunt.registerTask('test', ['lintjs']);
   grunt.registerMultiTask('lintjs', 'Lint the JavaScript', function(){
     grunt.config.set(this.target, this.data);
     grunt.task.run(this.target);
   });
-  grunt.registerTask('build', ['test', 'clean', 'css', 'js', 'copy']);
+  grunt.registerTask('build', ['test', 'clean', 'css', 'js', 'copy:dist']);
   grunt.registerTask('default', ['build']);
 
 };
