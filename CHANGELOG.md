@@ -3,7 +3,26 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+
+## 1.2.0 - 2015-10-13
+
+### Added
+- Re-adds html5shiv to the list of Bower dependencies.
+- Adds `copy` to the `css` and `js` task aliases so that the changes get copied
+  to `dist/` after they're run.
+
+## Fixed
+- Grunt `watch` updated so that it only builds what is needed,
+  depending on what has been changed.
+
+### Changed
+- Updates the `copy` task to include images, include HTML files in subfolders,
+  exclude HTML files from dependencies, include html5shiv.
+
+
 ## 1.1.2 - 2015-09-28
+
+### Changed
 - Updated grunt-eslint in template from `17.1.0` to `17.2.0`.
 
 
