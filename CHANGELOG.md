@@ -6,6 +6,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
 
+## 1.3.0 - 2015-10-15
+
 ### Added
 - Added option to use Gulp as project build tool
 
