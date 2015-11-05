@@ -6,6 +6,13 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Unreleased
 
+
+## 1.3.1 - 2015-11-05
+
+### Fixed
+- Corrected typo in Grunt `js` alias that was preventing JS from compiling.
+
+
 ## 1.3.0 - 2015-10-15
 
 ### Added
@@ -22,13 +29,14 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Adds `copy` to the `css` and `js` task aliases so that the changes get copied
   to `dist/` after they're run.
 
-## Fixed
+### Fixed
 - Grunt `watch` updated so that it only builds what is needed,
   depending on what has been changed.
 
 ### Changed
 - Updates the `copy` task to include images, include HTML files in subfolders,
   exclude HTML files from dependencies, include html5shiv.
+
 
 ## 1.1.2 - 2015-09-28
 
