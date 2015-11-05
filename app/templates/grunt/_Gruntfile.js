@@ -294,7 +294,7 @@ module.exports = function(grunt) {
    * Create custom task aliases and combinations.
    */
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css', 'copy:dist']);
-  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js'], 'copy:dist');
+  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js', 'copy:dist']);
   grunt.registerTask('test', ['lintjs']);
   grunt.registerMultiTask('lintjs', 'Lint the JavaScript', function(){
     grunt.config.set(this.target, this.data);
