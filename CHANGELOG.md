@@ -7,6 +7,16 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 
 
+## 1.4.0 - 2015-11-13
+
+### Changed
+- Overhauled color palette in CFPB's `brand-palette.less` variables file.
+
+**WARNING:** This is a breaking change for CFPB projects that use this file.
+Please heed the instructions given at the bottom of the file for updating
+your project's color variables when implementing the updated palette.
+
+
 ## 1.3.1 - 2015-11-05
 
 ### Fixed
