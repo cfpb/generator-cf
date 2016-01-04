@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     /**
      * Pull in the package.json file so we can read its metadata.
      */
-    pkg: grunt.file.readJSON('bower.json'),
+    pkg: grunt.file.readJSON('package.json'),
 
     /**
      * Set some src and dist location variables.
@@ -32,18 +32,13 @@ module.exports = function(grunt) {
     },
 
     /**
-     * Concat: https://github.com/gruntjs/grunt-contrib-concat
+     * Browserify: https://github.com/jmreidy/grunt-browserify/
      *
-     * Concatenate JavaScript files prior to uglifying them.
+     * Grunt task for node-browserify.
      */
-    concat: {
-      js: {
-        src: [
-          '<%%= loc.src %>/vendor/jquery/dist/jquery.js',
-          '<%%= loc.src %>/vendor/jquery.easing/js/jquery.easing.js',
-          '<%%= loc.src %>/vendor/cf-*/src/js/*.js',
-          '<%%= loc.src %>/static/js/app.js'
-        ],
+    browserify: {
+      main: {
+        src: ['<%%= loc.src %>/static/js/main.js'],
         dest: '<%%= loc.dist %>/static/js/main.js'
       }
     },
@@ -58,7 +53,7 @@ module.exports = function(grunt) {
         options: {
           // The src/vendor paths are needed to find the CF components' files.
           // Feel free to add additional paths to the array passed to `concat`.
-          paths: grunt.file.expand('src/vendor/*').concat([])
+          paths: grunt.file.expand('node_modules/cf-*/src/').concat([])
         },
         files: {
           '<%%= loc.dist %>/static/css/main.css': ['<%%= loc.src %>/static/css/main.less']
@@ -96,10 +91,6 @@ module.exports = function(grunt) {
         preserveComments: 'some',
         sourceMap: true
       },
-      // headScripts: {
-      //   src: 'vendor/html5shiv/html5shiv-printshiv.js',
-      //   dest: 'static/js/html5shiv-printshiv.js'
-      // },
       js: {
         src: ['<%%= loc.dist %>/static/js/main.js'],
         dest: '<%%= loc.dist %>/static/js/main.min.js'
@@ -213,10 +204,9 @@ module.exports = function(grunt) {
           {
             expand: true,
             flatten: true,
-            cwd: '<%%= loc.src %>',
             src: [
               // Fonts
-              'vendor/cf-icons/src/fonts/*'
+              'node_modules/cf-icons/src/fonts/*'
             ],
             dest: '<%%= loc.dist %>/static/fonts'
           },
@@ -231,14 +221,14 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: '<%%= loc.src %>',
+            cwd: 'node_modules',
             src: [
               // Vendor files
-              'vendor/box-sizing-polyfill/boxsizing.htc',
-              'vendor/html5shiv/dist/html5shiv-printshiv.min.js'
+              'box-sizing-polyfill/boxsizing.htc',
+              'html5shiv/dist/html5shiv-printshiv.min.js'
             ],
-            dest: '<%%= loc.dist %>/static'
-          }
+            dest: '<%%= loc.dist %>/static/vendor'
+          } 
         ]
       }
     },
@@ -257,7 +247,7 @@ module.exports = function(grunt) {
         },
         src: [
           // 'Gruntfile.js', // Uncomment to lint the Gruntfile.
-          '<%%= loc.src %>/static/js/app.js'
+          '<%%= loc.src %>/static/js/main.js'
         ]
       }
     },
@@ -294,7 +284,7 @@ module.exports = function(grunt) {
    * Create custom task aliases and combinations.
    */
   grunt.registerTask('css', ['less', 'autoprefixer', 'legacssy', 'cssmin', 'usebanner:css', 'copy:dist']);
-  grunt.registerTask('js', ['concat:js', 'uglify', 'usebanner:js', 'copy:dist']);
+  grunt.registerTask('js', ['browserify', 'uglify', 'usebanner:js', 'copy:dist']);
   grunt.registerTask('test', ['lintjs']);
   grunt.registerMultiTask('lintjs', 'Lint the JavaScript', function(){
     grunt.config.set(this.target, this.data);

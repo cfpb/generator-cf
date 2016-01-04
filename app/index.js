@@ -10,6 +10,12 @@ var filterComponents = require('./lib/filter-components');
 var updateNotifier = require('./lib/notifier');
 var fs = require('fs');
 var rimraf = require('rimraf');
+var RegClient = require('silent-npm-registry-client');
+var client = new RegClient();
+var promisify = require('promisify-node');
+
+// Give the npm registry client a promise interface.
+promisify(client);
 
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
@@ -134,22 +140,13 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
 
           // Get latest repo tag
           var getLatest = function( repo ) {
-            request({
-              uri: 'https://api.github.com/repos/cfpb/' + repo + '/tags',
-              json: true,
-              headers: { 'user-agent': 'generator-cf'}
-            }, function( err, res, data ) {
-              versionedComponents.push({ 'name': repo, 'ver': '^' + data[0].name });
+            var uri = 'https://registry.npmjs.org/' + repo;
+            client.get( uri, { timeout: 1000 } ).then(function( data ) {
+              versionedComponents.push({ 'name': repo, 'ver': '^' + data['dist-tags'].latest });
             }).catch( console.error );
           };
 
-          // If they selected every component, install the general
-          // capital-framework component instead of every individual component.
-          if (components.length === answers.components.length) {
-            answers.components = ['capital-framework'];
-          } else {
-            answers.components.push('cf-core');
-          }
+          answers.components.push('cf-core');
 
           answers.components.forEach( function(el) {
             getLatest(el);
@@ -215,9 +212,6 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         fs.createReadStream( this.destinationRoot() + '/_cache/front-end-master/' + file )
           .pipe( fs.createWriteStream(file) );
       }.bind(this));
-
-      this.template('_bower.json', 'bower.json');
-      this.copy('bowerrc', '.bowerrc');
 
       if ( this.buildToolChoice === 'gulp' ) {
         this.template( 'gulp/_package.json', 'package.json' );

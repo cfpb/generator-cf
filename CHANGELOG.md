@@ -7,6 +7,21 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 
 
+## 2.0.0 - 2016-01-04
+
+### Added
+- cf-type-testing to ignore list.
+
+### Changed
+- Migration to Voltrazord: Build processes now use npm instead of Bower.
+
+### Fixed
+- cf-theme-overrides.less now uses new brand palette color variables.
+
+### Removed
+- All Bower references.
+
+
 ## 1.4.0 - 2015-11-13
 
 ### Changed

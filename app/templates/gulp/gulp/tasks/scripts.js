@@ -11,7 +11,7 @@ var browserSync = require( 'browser-sync' );
 gulp.task( 'scripts', function() {
   return gulp.src( config.src )
     .pipe( $.sourcemaps.init() )
-    .pipe( $.concat( config.name ) )
+    .pipe( $.webpack() )
     .pipe( $.uglify() )
     .on( 'error', handleErrors )
     .pipe( $.header( banner, { pkg: pkg } ) )
