@@ -6,7 +6,7 @@
 // Project-specific Less rules go after the imports.
 
 // Import Capital Framework.
-<% for(var i=0; i<components.length; i++) { %>@import (less) "../../vendor/<%= components[i].name %>/src/<%= components[i].name %>.less";
+<% for(var i=0; i<components.length; i++) { %>@import (less) "<%= components[i].name %>.less";
 <% } %>
 // Import the brand color palette.
 @import (less) "brand-palette.less";

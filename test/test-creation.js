@@ -26,10 +26,8 @@ describe('cf generator', function () {
   it('creates expected files when run', function (done) {
     var expected = [
       // add files you expect to exist here.
-      '.bowerrc',
       '.eslintrc',
       '.gitignore',
-      'bower.json',
       'package.json'
     ];
     helpers.mockPrompt(this.app, {

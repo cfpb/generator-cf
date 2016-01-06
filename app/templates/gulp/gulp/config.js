@@ -1,6 +1,7 @@
 'use strict';
 
 var fs = require( 'fs' );
+var glob = require( 'glob' );
 
 /**
  * Set up file paths
@@ -8,12 +9,12 @@ var fs = require( 'fs' );
 var loc = {
   src:  './src',
   dist: './dist',
-  lib:  JSON.parse( fs.readFileSync( './.bowerrc' ) ).directory, // eslint-disable-line no-sync, no-inline-comments, max-len
+  lib:  './node_modules', // eslint-disable-line no-sync, no-inline-comments, max-len
   test: './test'
 };
 
 module.exports = {
-  pkg:    JSON.parse( fs.readFileSync( 'bower.json' ) ), // eslint-disable-line no-sync, no-inline-comments, max-len
+  pkg:    JSON.parse( fs.readFileSync( 'package.json' ) ), // eslint-disable-line no-sync, no-inline-comments, max-len
   banner:
       '/*!\n' +
       ' *  <%%= pkg.name %> - v<%%= pkg.version %>\n' +
@@ -43,19 +44,13 @@ module.exports = {
     src:      '/main.less',
     dest:     loc.dist + '/static/css',
     settings: {
-      paths: [
-        loc.lib,
-        loc.lib + '/cf-typography/src'
-      ],
+      paths: glob.sync(loc.lib + '/cf-*/src/'),
       compress: true
     }
   },
   scripts: {
     src: [
-      loc.lib + '/jquery/dist/jquery.js',
-      loc.lib + '/jquery.easing/js/jquery.easing.js',
-      loc.lib + '/cf-*/src/js/*.js',
-      loc.src + '/static/js/app.js'
+      loc.src + '/static/js/main.js'
     ],
     dest: loc.dist + '/static/js/',
     name: 'main.js'
