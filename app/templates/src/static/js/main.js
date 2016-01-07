@@ -1,5 +1,9 @@
 'use strict';
-
+<%
+  if ( components.some( function ( el ) {
+         return el.name === 'cf-expandables';
+       } ) ) {
+%>
 global.$ = require( 'jquery' );
 require( 'cf-expandables' );
 
@@ -14,4 +18,6 @@ $( '.feature-list' ).append(
   '<strong>' + $( '.feature-list_item' ).size() + '</strong> ' +
   'cf-components.</p>' +
   '</section>'
-);
+);<%
+  }
+%>
