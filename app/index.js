@@ -232,8 +232,6 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       this.mkdir('src');
       this.directory('src/static', 'src/static');
       this.template('src/index.html', 'src/index.html');
-      this.template('src/static/css/main.less', 'src/static/css/main.less');
-      this.copy('src/index.html', 'src/index.html');
       this.mkdir('dist');
     },
 
