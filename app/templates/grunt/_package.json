@@ -16,7 +16,7 @@
   "keywords": [
     "<%= slugname %>"
   ],
-  "dependencies": { <% for(var i=0; i<components.length; i++) { %>
+  "dependencies": {<% for(var i=0; i<components.length; i++) { %>
     "<%= components[i].name %>": "<%= components[i].ver %>",<% } %>
     "html5shiv": "latest",
     "jquery": "^1.11.0"
