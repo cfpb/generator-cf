@@ -193,7 +193,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     },
 
     appFiles: function() {
-      var files = ['screenshot.png', 'CHANGELOG.md', '.npmrc'];
+      var files = ['screenshot.png', 'CHANGELOG.md'];
 
       // If this is a public domain project, grab some more files from OSPT.
       if ( this.props.license === 'CC0' ) {
@@ -243,6 +243,10 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         this.writeFileFromString( gitignore, '.gitignore' );
         // Kill the _cache dir.
         rimraf( this.destinationRoot() + '/_cache', done );
+    },
+
+    copyNpmrc: function() {
+      this.template('.npmrc', '.npmrc');
     }
 
   },
