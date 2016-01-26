@@ -193,7 +193,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     },
 
     appFiles: function() {
-      var files = ['screenshot.png', 'CHANGELOG.md'];
+      var files = ['screenshot.png', 'CHANGELOG.md', '.npmrc'];
 
       // If this is a public domain project, grab some more files from OSPT.
       if ( this.props.license === 'CC0' ) {
