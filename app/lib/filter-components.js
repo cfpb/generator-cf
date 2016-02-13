@@ -1,14 +1,9 @@
-var ignore = require('./ignore.json');
 var frameworkComponents = [];
 
 function getCfComponents( data ) {
-  data.items.forEach( function(el, i) {
-
+  data.forEach( function(el, i) {
     var name;
-    // Is it listed in the ignore.json file?
-    var ignoreIt = ignore.indexOf( el.name ) >= 0;
-
-    if ( !ignoreIt ) {
+    if ( el.type === 'dir' ) {
       name = el.name.replace( 'cf-', '' );
       frameworkComponents.push({
         name: name.charAt(0).toUpperCase() + name.slice(1),
