@@ -29,7 +29,7 @@ var osLibraries = [
 
 // Grab a list of all CF components, we'll use it later.
 var components = request({
-  uri: 'https://api.github.com/search/repositories?q=%22cf-%22+NOT+cfpb+NOT+cfgov+NOT+deprecated+NOT+generator+user:cfpb+language:JavaScript+language:css+language:html',
+  uri: 'https://api.github.com/repos/cfpb/capital-framework/contents/src',
   json: true,
   headers: {'user-agent': 'generator-cf'}
 }).then( filterComponents ).catch( console.error );
