@@ -243,6 +243,10 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
         this.writeFileFromString( gitignore, '.gitignore' );
         // Kill the _cache dir.
         rimraf( this.destinationRoot() + '/_cache', done );
+    },
+
+    copyNpmrc: function() {
+      this.template('.npmrc', '.npmrc');
     }
 
   },
