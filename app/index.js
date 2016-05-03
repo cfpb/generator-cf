@@ -142,7 +142,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
           var getLatest = function( repo ) {
             var uri = 'https://registry.npmjs.org/' + repo;
             client.get( uri, { timeout: 1000 } ).then(function( data ) {
-              versionedComponents.push({ 'name': repo, 'ver': '^' + data['dist-tags'].latest });
+              versionedComponents.push({ 'name': repo, 'ver': data['dist-tags'].latest });
             }).catch( console.error );
           };
 
@@ -246,7 +246,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     },
 
     copyNpmrc: function() {
-      this.template('.npmrc', '.npmrc');
+      this.template('_npmrc', '.npmrc');
     }
 
   },
