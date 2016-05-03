@@ -53,7 +53,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
       banner();
       this.log(
         '\nWelcome to the Capital Framework generator, brought\n' +
-        'to you by the ' + chalk.green('Consumer Financial Proection Bureau') + '.'
+        'to you by the ' + chalk.green('Consumer Financial Protection Bureau') + '.'
       );
       this.log('\nTo learn about Capital Framework, visit ' + chalk.bold('capitalframework.com') + '.\n');
     }
