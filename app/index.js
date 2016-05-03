@@ -246,7 +246,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend({
     },
 
     copyNpmrc: function() {
-      this.template('.npmrc', '.npmrc');
+      this.template('_npmrc', '.npmrc');
     }
 
   },
