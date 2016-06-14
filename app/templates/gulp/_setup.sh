@@ -12,8 +12,8 @@ init(){
 
 # Clean project dependencies.
 clean(){
-  # If the node directory already exists, clear it 
-  # so we know we're working with a clean slate of 
+  # If the node directory already exists, clear it
+  # so we know we're working with a clean slate of
   # the dependencies listed in package.json.
   if [ -d $NODE_DIR ]; then
     echo 'Removing project dependency directories...'

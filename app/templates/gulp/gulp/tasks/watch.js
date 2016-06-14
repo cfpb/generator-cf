@@ -1,8 +1,8 @@
 'use strict';
 
 /* Notes:
-   - this task watches the source files for changes, then fires off the relevant task
-   - gulp/tasks/browserSync.js reloads the browser with the compiled files
+   - watch.js watches the source files for changes, then calls the needed task.
+   - gulp/tasks/browserSync.js reloads the browser with the compiled files.
 */
 
 var gulp = require( 'gulp' );

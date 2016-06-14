@@ -14,12 +14,13 @@ var loc = {
 };
 
 module.exports = {
-  pkg:    JSON.parse( fs.readFileSync( 'package.json' ) ), // eslint-disable-line no-sync, no-inline-comments, max-len
+  pkg: JSON.parse( fs.readFileSync( 'package.json' ) ), // eslint-disable-line no-sync, no-inline-comments, max-len
   banner:
       '/*!\n' +
       ' *  <%%= pkg.name %> - v<%%= pkg.version %>\n' +
       ' *  <%%= pkg.homepage %>\n' +
-      ' *  Licensed <%%= pkg.license %> by <%= pkg.author.name %> <%= pkg.author.email %>\n' +
+      ' *  Licensed <%%= pkg.license %> by' +
+      ' <%= pkg.author.name %> <%= pkg.author.email %>\n' +
       ' */',
   lint: {
     src: [
@@ -44,7 +45,7 @@ module.exports = {
     src:      '/main.less',
     dest:     loc.dist + '/static/css',
     settings: {
-      paths: glob.sync(loc.lib + '/cf-*/src/'),
+      paths: glob.sync( loc.lib + '/cf-*/src/' ),
       compress: true
     }
   },
@@ -75,7 +76,7 @@ module.exports = {
       src:  loc.lib + '/cf-icons/src/fonts/*',
       dest: loc.dist + '/static/fonts/'
     },
-    vendorjs: {
+    vendorJs: {
       src: [
         loc.lib + '/box-sizing-polyfill/boxsizing.htc',
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'

@@ -4,7 +4,8 @@ module.exports = function(grunt) {
 
   require('time-grunt')(grunt);
   require('jit-grunt')(grunt, {
-    // Static mappings below; needed because task name does not match package name
+    // Static mappings below;
+    // Needed because task name does not match package name.
     usebanner: 'grunt-banner'
   });
 
@@ -228,7 +229,7 @@ module.exports = function(grunt) {
               'html5shiv/dist/html5shiv-printshiv.min.js'
             ],
             dest: '<%%= loc.dist %>/static/vendor'
-          } 
+          }
         ]
       }
     },
