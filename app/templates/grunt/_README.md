@@ -8,7 +8,6 @@
 
 - [Grunt](http://gruntjs.com): task runner for pulling in assets,
   linting and concatenating code, etc.
-- [Bower](http://bower.io): Package manager for front-end dependencies.
 - [Less](http://lesscss.org): CSS pre-processor.
 - [Capital Framework](https://cfpb.github.io/capital-framework/getting-started):
   User interface pattern-library produced by the CFPB.

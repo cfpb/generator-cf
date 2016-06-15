@@ -1,36 +1,39 @@
 'use strict';
 
 var gulp = require( 'gulp' );
-var $ = require( 'gulp-load-plugins' )();
-var config = require( '../config' ).copy;
-var handleErrors = require( '../utils/handleErrors' );
+var plugins = require( 'gulp-load-plugins' )();
+var configCopy = require( '../config' ).copy;
+var handleErrors = require( '../utils/handle-errors' );
 var browserSync = require( 'browser-sync' );
 
 gulp.task( 'copy:files', function() {
-  return gulp.src( config.files.src )
-    .pipe( $.changed( config.files.dest ) )
+  var files = configCopy.files;
+  return gulp.src( files.src )
+    .pipe( plugins.changed( files.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.files.dest ) )
+    .pipe( gulp.dest( files.dest ) )
     .pipe( browserSync.reload( {
       stream: true
     } ) );
 } );
 
 gulp.task( 'copy:icons', function() {
-  return gulp.src( config.icons.src )
-    .pipe( $.changed( config.icons.dest ) )
+  var icons = configCopy.icons;
+  return gulp.src( icons.src )
+    .pipe( plugins.changed( icons.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.icons.dest ) )
+    .pipe( gulp.dest( icons.dest ) )
     .pipe( browserSync.reload( {
       stream: true
     } ) );
 } );
 
 gulp.task( 'copy:vendorjs', function() {
-  return gulp.src( config.vendorjs.src )
-    .pipe( $.changed( config.vendorjs.dest ) )
+  var vendorJs = configCopy.vendorJs;
+  return gulp.src( vendorJs.src )
+    .pipe( plugins.changed( vendorJs.dest ) )
     .on( 'error', handleErrors )
-    .pipe( gulp.dest( config.vendorjs.dest ) )
+    .pipe( gulp.dest( vendorJs.dest ) )
     .pipe( browserSync.reload( {
       stream: true
     } ) );

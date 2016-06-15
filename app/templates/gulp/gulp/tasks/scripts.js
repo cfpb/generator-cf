@@ -1,29 +1,30 @@
 'use strict';
 
 var gulp = require( 'gulp' );
-var $ = require( 'gulp-load-plugins' )();
-var pkg = require( '../config' ).pkg;
-var banner = require( '../config' ).banner;
-var config = require( '../config' ).scripts;
-var handleErrors = require( '../utils/handleErrors' );
+var plugins = require( 'gulp-load-plugins' )();
+var config = require( '../config' );
+var configPkg = config.pkg;
+var configBanner = config.banner;
+var configScripts = config.scripts;
+var handleErrors = require( '../utils/handle-errors' );
 var browserSync = require( 'browser-sync' );
 
 gulp.task( 'scripts', function() {
-  return gulp.src( config.src )
-    .pipe( $.sourcemaps.init() )
-    .pipe( $.webpack( {
+  return gulp.src( configScripts.src )
+    .pipe( plugins.sourcemaps.init() )
+    .pipe( plugins.webpack( {
       output: {
         filename: '[name].js'
       }
     } ) )
-    .pipe( $.uglify() )
+    .pipe( plugins.uglify() )
     .on( 'error', handleErrors )
-    .pipe( $.header( banner, { pkg: pkg } ) )
-    .pipe( $.rename( {
+    .pipe( plugins.header( configBanner, { pkg: configPkg } ) )
+    .pipe( plugins.rename( {
       suffix: '.min'
     } ) )
-    .pipe( $.sourcemaps.write( '.' ) )
-    .pipe( gulp.dest( config.dest ) )
+    .pipe( plugins.sourcemaps.write( '.' ) )
+    .pipe( gulp.dest( configScripts.dest ) )
     .pipe( browserSync.reload( {
       stream: true
     } ) );
