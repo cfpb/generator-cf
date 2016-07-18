@@ -11,7 +11,12 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
   component was deselected during generation.
 - Generator no longer tries to copy `main.less` and `index.html` twice.
 - Added missing color vars for block borders to `cf-theme-enhancements.less`.
-- Added a default `.npmrc` that will automatically save all npm installs to the `package.json` and pin the specific version installed
+- Added a default `.npmrc` that will automatically save all npm installs to the
+  `package.json` and pin the specific version installed.
+- Removed extraneous whitespace from dependencies and index.html.
+- Updated gulp to `3.9.1` from `3.9.0`.
+- Fixed max line length warnings in linter.
+- Normalized spacing in parentheses.
 
 
 ## 2.0.0 - 2016-01-04

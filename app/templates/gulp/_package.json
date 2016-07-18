@@ -16,7 +16,7 @@
   "keywords": [
     "<%= slugname %>"
   ],
-  "dependencies": { <% for(var i=0; i<components.length; i++) { %>
+  "dependencies": {<% for(var i=0; i<components.length; i++) { %>
     "<%= components[i].name %>": "^<%= components[i].ver %>",<% } %>
     "html5shiv": "3.7.3"
   },
@@ -24,7 +24,7 @@
     "browser-sync": "2.8.0",
     "del": "1.2.0",
     "fs": "0.0.2",
-    "gulp": "3.9.0",
+    "gulp": "3.9.1",
     "gulp-autoprefixer": "3.1.0",
     "gulp-changed": "1.2.1",
     "gulp-concat": "2.6.0",
