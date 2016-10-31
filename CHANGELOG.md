@@ -17,6 +17,8 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Updated gulp to `3.9.1` from `3.9.0`.
 - Fixed max line length warnings in linter.
 - Normalized spacing in parentheses.
+- Updated gulp-eslint to `3.x` and grunt-eslint to `19.x` for compatibility with
+  imported `.eslintrc` file.
 
 
 ## 2.0.0 - 2016-01-04
