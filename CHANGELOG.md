@@ -3,8 +3,13 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 2.2.1 - 2016-11-28
 
-## Unreleased
+### Fixed
+- Updated `@btn-font-size` to `16px` from `14px`.
+
+
+## 2.2.0 - 2016-06-15
 
 ### Fixed
 - Generated `main.js` no longer breaks on first run if the cf-expandables
