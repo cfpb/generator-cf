@@ -3,8 +3,15 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 2.2.1 - 2016-11-28
 
-## Unreleased
+### Fixed
+- Updated `@btn-font-size` to `16px` from `14px`.
+- Updated reference to `development` from `front-end`
+  to reflect name change of that repo.
+
+
+## 2.2.0 - 2016-06-15
 
 ### Fixed
 - Generated `main.js` no longer breaks on first run if the cf-expandables
@@ -19,6 +26,17 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Normalized spacing in parentheses.
 - Updated gulp-eslint to `3.x` and grunt-eslint to `19.x` for compatibility with
   imported `.eslintrc` file.
+
+
+## 2.1.1 -
+
+### Fixed
+
+
+
+## 2.1.0 -
+
+### Fixed
 
 
 ## 2.0.0 - 2016-01-04
