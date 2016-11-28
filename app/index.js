@@ -211,7 +211,7 @@ var CapitalFrameworkGenerator = yeoman.generators.Base.extend( {
       // Copy files from the front-end repo.
       var feFiles = ['.eslintrc'];
       feFiles.forEach( function _copy( file ) {
-        fs.createReadStream( this.destinationRoot() + '/_cache/front-end-master/' + file )
+        fs.createReadStream( this.destinationRoot() + '/_cache/development-master/' + file )
           .pipe( fs.createWriteStream( file ) );
       }.bind( this ) );
 
