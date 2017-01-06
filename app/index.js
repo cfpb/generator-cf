@@ -24,7 +24,7 @@ updateNotifier();
 // These will be used in the downloadTemplate function in the writing priority.
 var osLibraries = [
   'https://github.com/cfpb/open-source-project-template/archive/master.zip',
-  'https://github.com/cfpb/front-end/archive/master.zip'
+  'https://github.com/cfpb/development/archive/master.zip'
 ];
 
 // Grab a list of all CF components, we'll use it later.
