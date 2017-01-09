@@ -1,6 +1,6 @@
 {
   "name": "generator-cf",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Capital Framework Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",

@@ -3,9 +3,23 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+
+## 2.2.2 - 2017-01-06
+
+### Fixed
+- Updated one more reference to `development` from `front-end`
+  to reflect name change of that repo.
+
+
 ## 2.2.1 - 2016-11-28
 
 ### Fixed
+- Removed extraneous whitespace from dependencies and `index.html`.
+- Updated gulp to `3.9.1` from `3.9.0`.
+- Fixed max line length warnings in linter.
+- Normalized spacing in parentheses.
+- Updated gulp-eslint to `3.x` and grunt-eslint to `19.x` for compatibility
+  with imported `.eslintrc` file.
 - Updated `@btn-font-size` to `16px` from `14px`.
 - Updated reference to `development` from `front-end`
   to reflect name change of that repo.
@@ -13,30 +27,40 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## 2.2.0 - 2016-06-15
 
+### Added
+- GitHub issue/PR templates
+
+### Changed
+- Normalized Gulp task names to match cfgov-refresh
+- Updated installed gulp-eslint to 2.0.0 from 1.0.0.
+- Updated installed gulp-autoprefixer to 3.1.0 from 2.3.1
+- General cleanup of capping line length, removing whitespace, etc.
+
+
+## 2.1.1 - 2016-05-03
+
+### Fixed
+- Renamee .npmrc template file so that npm doesn't ignore it
+- Removed duplicate caret range specifier
+- Typo in bureau name
+
+
+## 2.1.0 - 2016-04-07
+
+### Added
+- Added a default `.npmrc` that will automatically save all npm installs to the
+  `package.json` and pin the specific version installed.
+
 ### Fixed
 - Generated `main.js` no longer breaks on first run if the cf-expandables
   component was deselected during generation.
 - Generator no longer tries to copy `main.less` and `index.html` twice.
 - Added missing color vars for block borders to `cf-theme-enhancements.less`.
-- Added a default `.npmrc` that will automatically save all npm installs to the
-  `package.json` and pin the specific version installed.
-- Removed extraneous whitespace from dependencies and index.html.
-- Updated gulp to `3.9.1` from `3.9.0`.
-- Fixed max line length warnings in linter.
-- Normalized spacing in parentheses.
-- Updated gulp-eslint to `3.x` and grunt-eslint to `19.x` for compatibility with
-  imported `.eslintrc` file.
+- Update the GH endpoint used to retrieve list of components and remove ignore
+  list that is no longer required.
 
-
-## 2.1.1 -
-
-### Fixed
-
-
-
-## 2.1.0 -
-
-### Fixed
+### Changed
+- Pinned dependencies in generated package.json files
 
 
 ## 2.0.0 - 2016-01-04
