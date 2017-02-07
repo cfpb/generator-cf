@@ -7,7 +7,7 @@
   "repository": "cfpb/generator-cf",
   "author": {
     "name": "Consumer Financial Protection Bureau",
-    "email": "christopher.contolini@cfpb.gov",
+    "email": "tech@cfpb.gov",
     "url": "https://cfpb.github.io"
   },
   "engines": {
