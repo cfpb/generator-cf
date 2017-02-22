@@ -12,6 +12,9 @@
     "type": "<%= props.repoType %>",
     "url": "<%= props.repoUrl %>"
   },
+    "scripts": {
+    "start": "parallelshell 'http-server ./dist/ -p7000' 'grunt watch'"
+  },
   "license": "<%= props.license %>",
   "keywords": [
     "<%= slugname %>"
@@ -39,6 +42,7 @@
     "grunt-string-replace": "1.2.0",
     "grunt-topdoc": "0.3.0",
     "jit-grunt": "0.9.1",
+    "parallelshell": "2.0.0",
     "time-grunt": "1.2.1"
   },
   "scripts": {

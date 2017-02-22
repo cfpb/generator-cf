@@ -12,6 +12,9 @@
     "type": "<%= props.repoType %>",
     "url": "<%= props.repoUrl %>"
   },
+  "scripts": {
+    "start": "parallelshell 'http-server ./dist/ -p7000' 'gulp watch'"
+  },
   "license": "<%= props.license %>",
   "keywords": [
     "<%= slugname %>"
@@ -42,6 +45,7 @@
     "gulp-uglify": "1.4.1",
     "gulp-util": "3.0.6",
     "jquery": "1.11.3",
+    "parallelshell": "2.0.0",
     "pretty-hrtime": "1.0.0",
     "require-dir": "0.3.0"
   }

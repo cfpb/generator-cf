@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
+## 2.3.0 - 2017-02-22
+
+### Added
+- Added option to run http-server
 
 ## 2.2.2 - 2017-01-06
 

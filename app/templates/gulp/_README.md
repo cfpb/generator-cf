@@ -53,7 +53,7 @@ gulp watch
 After running `./setup.sh` or compiling with Gulp,
 you can view the site in a browser by opening `/dist/index.html`.
 Alternatively, you may want to use a local server with something like
-`python -m SimpleHTTPServer`.
+`http-server`. To do so, run `npm install http-server -g` and `npm start`.
 
 ## Known issues
 
