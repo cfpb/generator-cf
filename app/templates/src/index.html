@@ -109,13 +109,13 @@
                         <div class="typography-demo">
                             <div class="block block__sub typography-demo_item">
                                 <div class="typography-demo_item-header">
-                                    <h3 class="h5">Superheader</h3>
+                                    <h3 class="h5">Superheading</h3>
                                     <div class="spec">
                                         Avenir Next Demi<br>
                                         48px / 66px
                                     </div>
                                 </div>
-                                <h1 class="superheader">Getting out of debt</h1>
+                                <h1 class="superheading">Getting out of debt</h1>
                             </div>
                             <div class="block block__sub typography-demo_item">
                                 <div class="typography-demo_item-header">
@@ -200,8 +200,8 @@
                     <div class="block block__sub">
                         <h2>Input base styles</h2>
                         <form action="#">
-                            <p><input placeholder="placeholder text" type="text"></p>
-                            <p><textarea>Example entry</textarea></p>
+                            <p><input class="a-text-input" placeholder="placeholder text" type="text"></p>
+                            <p><textarea class="a-text-input">Example entry</textarea></p>
                         </form>
                     </div>
 
@@ -216,7 +216,7 @@
                            Docs
                        </a>
                     </div>
-                    <p><a href="#" class="btn">Link Button</a> <button class="btn">Form Button</button></p>
+                    <p><a href="#" class="a-btn">Link Button</a> <button class="a-btn">Form Button</button></p>
                 </section>
 
                 <section class="feature-list_item block block__padded-top block__border-top">
@@ -228,24 +228,23 @@
                            Docs
                        </a>
                     </div>
-                    <div class="expandable expandable__padded">
-                        <a class="expandable_target expandable_header"
-                           href="#expandable-padded-content">
-                            <span class="expandable_label expandable_header-left">
+                    <div class="o-expandable o-expandable__padded">
+                        <button class="o-expandable_target o-expandable_header">
+                            <span class="o-expandable_label o-expandable_header-left">
                                 Expandable Header
                             </span>
-                            <span class="expandable_link expandable_header-right">
-                                <span class="expandable_cue-open">
+                            <span class="o-expandable_link o-expandable_header-right">
+                                <span class="o-expandable_cue-open">
                                     Show
                                     <span class="cf-icon cf-icon-plus-round"></span>
                                 </span>
-                                <span class="expandable_cue-close">
+                                <span class="o-expandable_cue-close">
                                     Hide
                                     <span class="cf-icon cf-icon-minus-round"></span>
                                 </span>
                             </span>
-                        </a>
-                        <div class="expandable_content" id="expandable-padded-content">
+                        </button>
+                        <div class="o-expandable_content">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing
                                 elit. Neque ipsa voluptatibus soluta nobis unde quisquam
@@ -266,14 +265,14 @@
                            Docs
                        </a>
                     </div>
-                    <div class="input-with-btn">
-                        <div class="input-with-btn_input">
-                            <input type="text">
+                    <form class="o-form__input-w-btn">
+                        <div class="o-form__input-w-btn_input-container">
+                            <input class="a-text-input" type="text" title="Test input">
                         </div>
-                        <div class="input-with-btn_btn">
-                            <button class="btn">Search</button>
+                        <div class="o-form__input-w-btn_btn-container">
+                            <button class="a-btn" type="submit">Search</button>
                         </div>
-                    </div>
+                    </form>
                 </section>
 
                 <section class="feature-list_item block block__padded-top block__border-top">
@@ -375,41 +374,47 @@
                            Docs
                        </a>
                     </div>
-                    <nav class="pagination">
-                        <a class="btn btn__super pagination_prev" href="#pagination_content">
-                            <span class="btn_icon__left cf-icon cf-icon-left"></span>
-                            Previous
-                        </a>
-                        <a class="btn btn__super pagination_next" href="#pagination_content">
-                            Next
-                            <span class="btn_icon__right cf-icon cf-icon-right"></span>
-                        </a>
-                        <form class="pagination_form" action="index.html#pagination_content">
-                            <label class="pagination_label"
-                                   for="pagination_current-page">
-                                Page
-                                <span class="u-visually-hidden">
-                                    number out of 149 total pages
-                                </span>
-                            </label>
-                            <input
-                                class="pagination_current-page"
-                                id="pagination_current-page"
-                                name="pagination_current-page"
-                                type="number" min="1" max="149"
-                                value="149">
-                            <span class="pagination_label">
-                                <span aria-hidden="true">
-                                    of 149
-                                </span>
-                            </span>
-                            <button class="btn btn__link pagination_submit"
-                                    id="pagination_submit"
-                                    type="submit">
-                                Go
-                            </button>
-                        </form>
-                    </nav>
+                    <nav class="m-pagination" role="navigation" aria-label="Pagination">
+                      <a class="a-btn
+                                a-btn_icon-position-left
+                                a-btn_icon__left
+                                m-pagination_btn-prev"
+                         href="?page=1#o-filterable-list-controls">
+                          Newer
+                      </a>
+                      <a class="a-btn
+                                a-btn_icon-position-right
+                                a-btn_icon__right
+                                m-pagination_btn-next"
+                         href="?page=3#o-filterable-list-controls">
+                          Older
+                      </a>
+                      <form class="m-pagination_form"
+                              action="#o-filterable-list-controls">
+                          <label class="m-pagination_label"
+                                   for="m-pagination_current-page">
+                              Page
+                              <span class="u-visually-hidden">
+                                  number 2 out
+                              </span>
+                              <input class="m-pagination_current-page"
+                                       id="m-pagination_current-page"
+                                       name="page"
+                                       type="number"
+                                       min="1"
+                                       max="149"
+                                       pattern="[0-9]*"
+                                       inputmode="numeric"
+                                       value="2">
+                              of 149
+                          </label>
+                          <button class="a-btn
+                                         a-btn__link
+                                         m-pagination_btn-submit"
+                                    id="m-pagination_btn-submit"
+                                    type="submit">Go</button>
+                      </form>
+                  </nav>
                     <br>
                 </section>
 
@@ -422,45 +427,43 @@
                            Docs
                        </a>
                     </div>
-                    <aside class="pull-quote">
-                        <div class="pull-quote_body">
+                    <aside class="m-pull-quote">
+                        <div class="m-pull-quote_body">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Cum corrupti tempora nam nihil qui mollitia consectetur
                             corporis nemo culpa dolorum!
                         </div>
                         <footer>
-                            <cite class="pull-quote_citation">
+                            <cite class="m-pull-quote_citation">
                                 - Author Name
                             </cite>
                         </footer>
                     </aside>
                     <br>
-                    <h2 class="header-slug">
-                        <span class="header-slug_inner">
+                    <header class="m-slug-header">
+                        <h2 class="a-heading">
                             Blog summary
-                        </span>
-                    </h2>
-                    <h2 class="fancy-slug">
-                        <span class="fancy-slug_text">
-                            <span class="fancy-slug_ribbon-left"></span>
-                            Watchroom
-                            <span class="fancy-slug_ribbon-right"></span>
-                        </span>
-                    </h2>
-                    <div class="meta-header">
-                        <span class="meta-header_right date">
-                            Nov 4, 2013
-                        </span>
-                        <a href="#" class="meta-header_left category-slug">
-                            <span class="cf-icon cf-icon-credit-card"></span>
-                            Consumer finance
-                        </a>
-                    </div>
-                    <ul class="list__branded">
-                        <li class="list_item">First item</li>
-                        <li class="list_item">Second item</li>
-                        <li class="list_item">Third item</li>
-                    </ul>
+                        </h2>
+                    </header>
+                    <header class="m-meta-header">
+                        <div class="m-meta-header_right">
+                            <span class="a-date">
+                                Nov 4, 2013
+                            </span>
+                        </div>
+                        <div class="m-meta-header_left">
+                            <span class="u-visually-hidden">Categories: </span>
+                            <a href="#" class="a-heading a-heading__icon">
+                                <span class="cf-icon cf-icon-credit-card"></span>
+                                Consumer finance
+                            </a>
+                            |
+                            <a href="#" class="a-heading a-heading__icon">
+                                <span class="cf-icon cf-icon-credit-card"></span>
+                                Consumer finance
+                            </a>
+                        </div>
+                    </header>
                 </section>
 
             </div><!-- END .feature-list -->
