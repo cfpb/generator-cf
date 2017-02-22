@@ -6,20 +6,6 @@
 /* cf-core
    ========================================================================== */
 
-// Sizing variables
-
-@base-font-size-px:             16px;
-@base-line-height-px:           22px;
-@base-line-height:              unit(@base-line-height-px / @base-font-size-px);
-@mobile-max:                    599px;
-@tablet-min:                    600px;
-
-// Font variables
-
-@webfont-regular:               'AvenirNextLTW01-Regular';
-@webfont-italic:                'AvenirNextLTW01-Italic';
-@webfont-medium:                'AvenirNextLTW01-Medium';
-@webfont-demi:                  'AvenirNextLTW01-Demi';
 
 // Color variables
 
@@ -36,11 +22,14 @@
 @link-text-active:              @dark-navy;
 @link-underline-active:         @dark-navy;
 
+// table
+@table-border:                  @gray;
+
 // thead
 @thead-text:                    @white;
 @thead-bg:                      @dark-gray;
-@td-bg:                         @gray-5;
-@td-bg-alt:                     @gray-10;
+//@td-bg:                         @gray-5;
+//@td-bg-alt:                     @gray-10;
 
 // input
 @input-bg:                      @white;
@@ -49,75 +38,122 @@
 @input-placeholder:             @gray-60;
 
 // .figure__bordered
-@figure__bordered:              @gray-40;
+//@figure__bordered:              @gray-40;
+
+
+// Sizing variables
+
+@base-font-size-px:             16px;
+@base-line-height-px:           22px;
+@base-line-height:              unit( @base-line-height-px / @base-font-size-px );
+
+@size-xl:                       48px;
+
+@size-i:                        34px;
+@size-ii:                       26px;
+@size-iii:                      22px;
+@size-iv:                       18px;
+@size-v:                        14px;
+@size-vi:                       12px;
+
+// Breakpoint variables
+
+@bp-xs-max:                     600px;
+@bp-sm-min:                     @bp-xs-max + 1px;
+@bp-sm-max:                     900px;
+@bp-med-min:                    @bp-sm-max + 1px;
+@bp-med-max:                    1020px;
+@bp-lg-min:                     @bp-med-max + 1px;
+@bp-lg-max:                     1230px;
+@bp-xl-min:                     @bp-lg-max + 1px;
+
+
+// Font variables
+
+@webfont-regular:               'AvenirNextLTW01-Regular';
+@webfont-italic:                'AvenirNextLTW01-Italic';
+@webfont-medium:                'AvenirNextLTW01-Medium';
+@webfont-demi:                  'AvenirNextLTW01-Demi';
 
 
 /* cf-buttons
    ========================================================================== */
 
+
 // Color variables
 
-// .btn
+// .a-btn
 @btn-text:                      @white;
 @btn-bg:                        @pacific;
 @btn-bg-hover:                  @pacific-80;
 @btn-bg-active:                 @navy;
 
-// .btn__secondary
+// .a-btn__secondary
 @btn__secondary-text:           @white;
 @btn__secondary-bg:             @gray-80;
 @btn__secondary-bg-hover:       @gray-60;
 @btn__secondary-bg-active:      @dark-gray;
 
-// .btn__warning
+// .a-btn__warning
 @btn__warning-text:             @white;
 @btn__warning-bg:               @red;
 @btn__warning-bg-hover:         @red-80;
 @btn__warning-bg-active:        @dark-red;
 
-// .btn__disabled
+// .a-btn__disabled
 @btn__disabled-text:            @gray-80;
 @btn__disabled-bg:              @gray-10;
 @btn__disabled-outline:         @gray-10;
 
 // Sizing variables
 
-// .btn
+// .a-btn
 @btn-font-size:                 16px;
+@btn-border-radius-size:        4px;
 @btn-v-padding:                 8px;
 @btn-v-padding-modifier-ie:     0.8;
+
+// .a-btn__super
 @super-btn-font-size:           18px;
 
 
 /* cf-expandables
    ========================================================================== */
 
+
 // Color variables
 
-// .expandable
+// .o-expandable
 @expandable-focus:              @black;
 
-// .expandable_label
+// .o-expandable_label
 @expandable_label-text:         @black;
 
-// .expandable_link
+// .o-expandable_link
 @expandable_link-text:          @pacific;
 
-// .expandable__padded
+// .o-expandable__padded
 @expandable__padded-bg:         @gray-10;
 @expandable__padded-bg-hover:   @gray-10;
 @expandable__padded-divider:    @gray-40;
 
-// .expandable-group
+// .o-expandable-group
 @expandable-group_header-text:  @gray-80;
 @expandable-group_header-bg:    @gray-10;
 @expandable-group-bg:           @white;
 @expandable-group-divider:      @gray-40;
 
+
 // Sizing variables
 
-// .expandable_link
+// .o-expandable_link
 @expandable_link-font-size:     @btn-font-size;
+
+
+// Timing variables
+
+// .o-expandable_content__transition
+@expandable__transition-speed:  0.25s;
 
 
 /* cf-forms
@@ -125,37 +161,49 @@
 
 // Color variables
 
-// .error
-@input-error:                   @red;
+// .a-text-input borders
+@input-border:                  @gray-80;
+@input-border__hover:           @pacific;
+@input-border__focused:         @pacific;
+@input-border__active:          @pacific;
+@input-border__error:           @red;
+@input-border__warning:         @gold;
+@input-border__success:         @green;
+@input-border__selected:        @dark-gray;
 
-// warning
-@input-warning:                 @gold;
+// .a-text-input backgrounds
+@input-bg:                      @white;
+@input-bg__active:              @pacific;
+@input-bg__disabled:            @gray-5;
 
-// .success
-@input-success:                 @green;
+// .a-text-input text
+@input-text__disabled:          @gray-80;
+@input-text__placeholder:       @gray-60;
 
-// .disabled
-@input-disabled:                 @gray-10;
+// Input icons
+@input-icon__error:             @red;
 
-// .form-label-helper-text
-@label-helper:                  @dark-gray;
+// .a-select
+@select-border:                 @gray-40;
+@select-icon:                   @gray-80;
+@select-icon-bg:                @gray-5;
+@select-text__disabled:         @input-text__disabled;
 
-// .form-l-inset_container
-@input-inset-bg:                @gray-10;
+// Large target area variables
+@input-lg-target:               #d6d7d9; // $color-gray-lighter
+@input-lg-target__selected:     #9bdaf1; // $color-primary-alt-light
+@input-lg-target__disabled:     #aeb0b5; // $color-gray-light
 
-// .form-l-inset_container.is-checked
-@input-inset-selected:          @pacific-20;
 
 // Sizing variables
 
-// .input__super
-@input__super-font-size:        @super-btn-font-size;
+// .a-select
+@select-height:                 30px;
 
 
 /* cf-grid
    ========================================================================== */
 
-@grid_box-sizing-polyfill-path: '/static/vendor/box-sizing-polyfill';
 @grid_wrapper-width:            1230px;
 @grid_gutter-width:             30px;
 @grid_total-columns:            12;
@@ -165,9 +213,14 @@
 /* cf-icons
    ========================================================================== */
 
+// Color variables
+
+@cf-icon-border-color:          @gray;
+
+// Icon generation variables
+
 @cf-icon-prefix:                cf-icon;
-@cf-icon-path:                  '../fonts';
-@cf-icon-ie7-support:           true;
+@cf-icon-path:                  'fonts';
 
 
 /* cf-layout
@@ -213,8 +266,21 @@
 
 // Sizing variables
 
-@pagination-font-size:          16px;
-@pagination-bp:                 640px;
+@pagination-font-size-px:       @base-font-size-px;
+@pagination-font-size-em:       unit( @pagination-font-size-px / @base-font-size-px, em );
+@pagination-btn-height-px:      42px;
+@pagination-btn-width-px:       130px;
+
+/* cf-tables
+   ========================================================================== */
+
+// Color variables
+
+@table-cell-bg:                 @white;
+@table-cell-bg_alt:             @gray-10;
+@table-row-link-bg-hover:       @pacific;
+@table-row-link-hover-color:    @white;
+@table-scrolling-border:        @gray;
 
 
 /* cf-typography
@@ -222,40 +288,40 @@
 
 // Color variables
 
-// .pull-quote
+// Running text elements
+
+// .a-micro-copy
+@micro-copy:                    @gray-80;
+
+// .a-date
+@date:                          @gray-80;
+
+// .m-pull-quote
 @pull-quote_body:               @black;
 @pull-quote_citation:           @gray-80;
 
-// .micro-copy
-@micro-copy-text:               @gray-80;
+// Headings
 
-// .date
-@date-text:                     @gray-80;
+// .a-heading__icon
+@heading__icon:                 @black;
+@heading__icon__hover:          @link-text-hover;
 
-// .category-slug
-@category-slug-text:            @black;
-@category-slug-hover:           @link-text-hover;
+// .a-heading__padded
+@heading__padded:               @dark-gray;
+@heading__padded_bg:            @gray-10;
+@heading__padded_border:        @gray-40;
 
-// .header-slug
-@header-slug-thin-border:       @gray-10;
-@header-slug-thick-border:      @green;
+// Headers
 
-// .padded-header
-@padded-header-text:            @dark-gray;
-@padded-header-bg:              @gray-10;
-@padded-header-border:          @gray-40;
+// .m-slug-header
+@slug-header_border__thin:      @gray-10;
+@slug-header_border__thick:     @green;
 
-// .fancy-slug
-@fancy-slug-text:               @black;
-@fancy-slug-bg:                 @white;
-@fancy-slug-border:             @gray-40;
+// .m-meta-header
+@meta-header_border:            @gray-40;
 
-// .meta-header
-@meta-header-border:            @gray-40;
+// Links
 
-// .jump-link
-@jump-link__bg:                 @gray-10;
-@jump-link__bg-border:          @gray-10;
-
-// .list__branded
-@list__branded-bullet:          @green;
+// .a-link__jump
+@jump-link_bg:                  @gray-10;
+@jump-link_border:              @gray-40;
