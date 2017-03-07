@@ -53,7 +53,8 @@ gulp watch
 After running `./setup.sh` or compiling with Gulp,
 you can view the site in a browser by opening `/dist/index.html`.
 Alternatively, you may want to use a local server with something like
-`http-server`. To do so, run `npm install http-server -g` and `npm start`.
+`http-server`. To do so, run `npm install http-server -g` and `npm start`
+(which starts the server and runs `gulp watch` to enabled auto-reloading).
 
 ## Known issues
 
