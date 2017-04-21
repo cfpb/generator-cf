@@ -10,6 +10,10 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Updated the theme overrides for v4 variable changes
 - Updated the example index page for v4 markup changes
 
+### Added
+- Added option to run http-server
+
+
 ## 2.2.2 - 2017-01-06
 
 ### Fixed
