@@ -1,11 +1,11 @@
 'use strict';
 
-var gulp = require( 'gulp' );
-var util = require( 'gulp-util' );
-var browserSync = require( 'browser-sync' );
+const gulp = require( 'gulp' );
+const gulpUtil = require( 'gulp-util' );
+const browserSync = require( 'browser-sync' );
 
-gulp.task( 'browserSync', function() {
-  var port = util.env.port || '7000';
+gulp.task( 'browserSync', () => {
+  const port = gulpUtil.env.port || '7000';
   browserSync.init( {
     proxy: 'localhost:' + port
   } );

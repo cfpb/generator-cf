@@ -11,7 +11,7 @@
     "url": "https://cfpb.github.io"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "test": "mocha"
@@ -25,14 +25,17 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "chalk": "~0.4.0",
-    "promisify-node": "^0.3.0",
-    "request-promise": "^0.3.2",
-    "rimraf": "^2.2.8",
-    "silent-npm-registry-client": "^2.0.0",
-    "update-notifier": "^0.2.2",
-    "yeoman-generator": "^0.17.7",
-    "yosay": "^0.1.0"
+    "chalk": "~2.0.1",
+    "download": "^6.2.5",
+    "promisify-node": "^0.4.0",
+    "request-promise": "^4.2.1",
+    "rimraf": "^2.6.1",
+    "silent-npm-registry-client": "^3.0.1",
+    "underscore": "^1.8.3",
+    "underscore.string": "^3.3.4",
+    "update-notifier": "^2.2.0",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
   },
   "devDependencies": {
     "mocha": "*"

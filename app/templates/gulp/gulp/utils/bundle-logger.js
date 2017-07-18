@@ -5,31 +5,31 @@
    Provides gulp style logs to the bundle method in browserify.js
 */
 
-var gutil = require( 'gulp-util' );
-var prettyHrtime = require( 'pretty-hrtime' );
-var startTime;
+const gulpUtil = require( 'gulp-util' );
+const prettyHrtime = require( 'pretty-hrtime' );
+let startTime = 0;
 
 module.exports = {
   start: function( filepath ) {
     startTime = process.hrtime();
-    gutil.log(
+    gulpUtil.log(
       'Bundling',
-      gutil.colors.green( filepath ) + '...'
+      gulpUtil.colors.green( filepath ) + '...'
     );
   },
   watch: function( bundleName ) {
-    gutil.log(
+    gulpUtil.log(
       'Watching files required by',
-      gutil.colors.yellow( bundleName )
+      gulpUtil.colors.yellow( bundleName )
     );
   },
   end: function( filepath ) {
-    var taskTime = process.hrtime( startTime );
-    var prettyTime = prettyHrtime( taskTime );
-    gutil.log(
+    const taskTime = process.hrtime( startTime );
+    const prettyTime = prettyHrtime( taskTime );
+    gulpUtil.log(
       'Bundled',
-      gutil.colors.green( filepath ),
-      'in', gutil.colors.magenta( prettyTime )
+      gulpUtil.colors.green( filepath ),
+      'in', gulpUtil.colors.magenta( prettyTime )
     );
   }
 };
