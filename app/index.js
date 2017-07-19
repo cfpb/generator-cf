@@ -34,15 +34,6 @@ const osLibraries = [
 ];
 
 // Grab a list of all CF components, we'll use it later.
-// TODO: Investigate an asynchronous download of these libraries.
-osLibraries.forEach( function( library ) {
-  download( library, '_cache', { extract: true } )
-    .catch( ( err ) => {
-      console.log( 'Error downloading', library, err );
-    } );
-} );
-
-// Grab a list of all CF components, we'll use it later.
 const components = requestPromise( {
   uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/src',
   json:    true,
@@ -186,6 +177,25 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
   },
 
   writing: {
+
+    downloadTemplate: function() {
+      const numLibraries = osLibraries.length;
+      let count = 0;
+      const done = this.async();
+      osLibraries.forEach( function( library ) {
+        download( library, '_cache', { extract: true } )
+          .then( () => {
+            count++;
+            console.log( 'Finished downloading…', library );
+            if ( numLibraries === count ) {
+              done();
+            }
+          } )
+          .catch( ( err ) => {
+            console.log( 'Error downloading!', library, err );
+          } );
+      } );
+    },
 
     appFiles: function() {
       var files = ['screenshot.png', 'CHANGELOG.md'];
