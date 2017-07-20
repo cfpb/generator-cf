@@ -4,14 +4,20 @@
 const path = require( 'path' );
 const helpers = require( 'yeoman-test' );
 const assert = require( 'yeoman-assert' );
-const rimraf = require( 'rimraf' );
 
 describe('cf generator', function () {
   this.timeout(10000);
 
+  beforeEach( () => {
+    this.generator = helpers.run( path.join( __dirname, '../app' ) );
+  } );
+
+  afterEach( () => {
+    this.generator.cleanTestDirectory();
+  })
+
   it( 'creates expected files when run', () => {
-    return helpers.run( path.join( __dirname, '../app' ) )
-      .withOptions( { 'skip-install': true } )
+    return this.generator
       .then( () => {
         const expected = [
           // add files you expect to exist here.
@@ -24,7 +30,7 @@ describe('cf generator', function () {
   } );
 
   it( 'creates expected files when run', () => {
-    return helpers.run( path.join( __dirname, '../app' ) )
+    return this.generator
       .withOptions( { 'skip-install': true } )
       .then( () => {
         const expected = [
@@ -38,7 +44,7 @@ describe('cf generator', function () {
   } );
 
   it('creates a gruntfile when Grunt is selected', () => {
-    return helpers.run( path.join( __dirname, '../app' ) )
+    return this.generator
       .withOptions( { 'skip-install': true } )
       .withPrompts( { buildToolChoice: 'grunt' } )
       .then( () => {
@@ -48,7 +54,7 @@ describe('cf generator', function () {
   });
 
   it('creates a gulpfile when Gulp is selected', () => {
-    return helpers.run( path.join( __dirname, '../app' ) )
+    return this.generator
       .withOptions( { 'skip-install': true } )
       .withPrompts( { buildToolChoice: 'gulp' } )
       .then( () => {
