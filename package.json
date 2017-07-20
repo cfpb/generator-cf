@@ -38,6 +38,8 @@
     "yosay": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "mocha": "*",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.7.0"
   }
 }

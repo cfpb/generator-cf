@@ -261,7 +261,7 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
   install: {
     installComponents: function() {
       if ( this.options['skip-install'] ) return;
-      var done = this.async();
+      const done = this.async();
       this.spawnCommand( './setup.sh' ).on( 'close', done );
     }
   },
@@ -269,7 +269,7 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
   end: {
 
     bye: function() {
-      var msg = `All done! Edit the files in the src directory and then
+      const msg = `All done! Edit the files in the src directory and then
                 \`${this.buildToolChoice } build\` to compile everything into the dist directory.`;
       this.log( yosay( msg ) );
     }

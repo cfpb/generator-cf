@@ -1,71 +1,60 @@
 /*global describe, beforeEach, it */
 'use strict';
-var path = require('path');
-var helpers = require('yeoman-generator').test;
-var rimraf = require('rimraf');
+
+const path = require( 'path' );
+const helpers = require( 'yeoman-test' );
+const assert = require( 'yeoman-assert' );
+const rimraf = require( 'rimraf' );
 
 describe('cf generator', function () {
   this.timeout(10000);
 
-  beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        return done(err);
-      }
-      this.app = helpers.createGenerator('cf:app', [
-        '../../app'
-      ]);
-      done();
-    }.bind(this));
+  it( 'creates expected files when run', () => {
+    return helpers.run( path.join( __dirname, '../app' ) )
+      .withOptions( { 'skip-install': true } )
+      .then( () => {
+        const expected = [
+          // add files you expect to exist here.
+          '.eslintrc',
+          '.gitignore',
+          'package.json'
+        ];
+        assert.file( expected );
+      } )
+  } );
+
+  it( 'creates expected files when run', () => {
+    return helpers.run( path.join( __dirname, '../app' ) )
+      .withOptions( { 'skip-install': true } )
+      .then( () => {
+        const expected = [
+          // add files you expect to exist here.
+          '.eslintrc',
+          '.gitignore',
+          'package.json'
+        ];
+        assert.file( expected );
+      } )
+  } );
+
+  it('creates a gruntfile when Grunt is selected', () => {
+    return helpers.run( path.join( __dirname, '../app' ) )
+      .withOptions( { 'skip-install': true } )
+      .withPrompts( { buildToolChoice: 'grunt' } )
+      .then( () => {
+        const expected = [ 'Gruntfile.js' ];
+        assert.file( expected );
+      } )
   });
 
-  afterEach(function (done) {
-    rimraf(path.join(__dirname, 'temp'), done);
-  });
-
-  it('creates expected files when run', function (done) {
-    var expected = [
-      // add files you expect to exist here.
-      '.eslintrc',
-      '.gitignore',
-      'package.json'
-    ];
-    helpers.mockPrompt(this.app, {
-      'buildToolChoice': 'grunt'
-    });
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expected);
-      done();
-    });
-  });
-
-  it('creates a gruntfile when Grunt is selected', function (done) {
-    var expected = [
-      'Gruntfile.js'
-    ];
-    helpers.mockPrompt(this.app, {
-      'buildToolChoice': 'grunt'
-    });
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expected);
-      done();
-    });
-  });
-
-  it('creates a gulpfile when Gulp is selected', function (done) {
-    var expected = [
-      'gulpfile.js'
-    ];
-    helpers.mockPrompt(this.app, {
-      'buildToolChoice': 'gulp'
-    });
-    this.app.options['skip-install'] = true;
-    this.app.run({}, function () {
-      helpers.assertFile(expected);
-      done();
-    });
+  it('creates a gulpfile when Gulp is selected', () => {
+    return helpers.run( path.join( __dirname, '../app' ) )
+      .withOptions( { 'skip-install': true } )
+      .withPrompts( { buildToolChoice: 'gulp' } )
+      .then( () => {
+        const expected = [ 'gulpfile.js' ];
+        assert.file( expected );
+      } )
   });
 
 });
