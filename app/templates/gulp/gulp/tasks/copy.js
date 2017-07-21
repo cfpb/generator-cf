@@ -1,15 +1,15 @@
 'use strict';
 
-var gulp = require( 'gulp' );
-var plugins = require( 'gulp-load-plugins' )();
-var configCopy = require( '../config' ).copy;
-var handleErrors = require( '../utils/handle-errors' );
-var browserSync = require( 'browser-sync' );
+const gulp = require( 'gulp' );
+const gulpChanged = require( 'gulp-changed' );
+const configCopy = require( '../config' ).copy;
+const handleErrors = require( '../utils/handle-errors' );
+const browserSync = require( 'browser-sync' );
 
-gulp.task( 'copy:files', function() {
-  var files = configCopy.files;
+gulp.task( 'copy:files', () => {
+  const files = configCopy.files;
   return gulp.src( files.src )
-    .pipe( plugins.changed( files.dest ) )
+    .pipe( gulpChanged( files.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( files.dest ) )
     .pipe( browserSync.reload( {
@@ -17,10 +17,10 @@ gulp.task( 'copy:files', function() {
     } ) );
 } );
 
-gulp.task( 'copy:icons', function() {
-  var icons = configCopy.icons;
+gulp.task( 'copy:icons', () => {
+  const icons = configCopy.icons;
   return gulp.src( icons.src )
-    .pipe( plugins.changed( icons.dest ) )
+    .pipe( gulpChanged( icons.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( icons.dest ) )
     .pipe( browserSync.reload( {
@@ -28,10 +28,10 @@ gulp.task( 'copy:icons', function() {
     } ) );
 } );
 
-gulp.task( 'copy:vendorjs', function() {
-  var vendorJs = configCopy.vendorJs;
+gulp.task( 'copy:vendorjs', () => {
+  const vendorJs = configCopy.vendorJs;
   return gulp.src( vendorJs.src )
-    .pipe( plugins.changed( vendorJs.dest ) )
+    .pipe( gulpChanged( vendorJs.dest ) )
     .on( 'error', handleErrors )
     .pipe( gulp.dest( vendorJs.dest ) )
     .pipe( browserSync.reload( {

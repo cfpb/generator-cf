@@ -28,7 +28,7 @@ module.exports = {
       loc.test + '/unit_tests/**/*.js',
       loc.test + '/browser_tests/**/*.js'
     ],
-    gulp: [
+    build: [
       'gulpfile.js',
       'gulp/**/*.js'
     ]

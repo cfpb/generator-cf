@@ -1,29 +1,34 @@
 'use strict';
 
-var gulp = require( 'gulp' );
-var plugins = require( 'gulp-load-plugins' )();
-var config = require( '../config' );
-var configPkg = config.pkg;
-var configBanner = config.banner;
-var configScripts = config.scripts;
-var handleErrors = require( '../utils/handle-errors' );
-var browserSync = require( 'browser-sync' );
+const browserSync = require( 'browser-sync' );
+const config = require( '../config' );
+const configPkg = config.pkg;
+const configBanner = config.banner;
+const configScripts = config.scripts;
+const gulp = require( 'gulp' );
+const gulpHeader = require( 'gulp-header' );
+const gulpRename = require( 'gulp-rename' );
+const gulpSourcemaps = require( 'gulp-sourcemaps' );
+const gulpUglify = require( 'gulp-uglify' );
+const handleErrors = require( '../utils/handle-errors' );
+const webpack = require( 'webpack' );
+const webpackStream = require( 'webpack-stream' );
 
-gulp.task( 'scripts', function() {
-  return gulp.src( configScripts.src )
-    .pipe( plugins.sourcemaps.init() )
-    .pipe( plugins.webpack( {
+gulp.task( 'scripts', () => {
+  gulp.src( configScripts.src )
+    .pipe( gulpSourcemaps.init() )
+    .pipe( webpackStream( {
       output: {
         filename: '[name].js'
       }
-    } ) )
-    .pipe( plugins.uglify() )
+    }, webpack ) )
+    .pipe( gulpUglify() )
     .on( 'error', handleErrors )
-    .pipe( plugins.header( configBanner, { pkg: configPkg } ) )
-    .pipe( plugins.rename( {
+    .pipe( gulpHeader( configBanner, { pkg: configPkg } ) )
+    .pipe( gulpRename( {
       suffix: '.min'
     } ) )
-    .pipe( plugins.sourcemaps.write( '.' ) )
+    .pipe( gulpSourcemaps.write( '.' ) )
     .pipe( gulp.dest( configScripts.dest ) )
     .pipe( browserSync.reload( {
       stream: true

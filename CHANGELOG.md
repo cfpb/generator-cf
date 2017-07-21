@@ -7,11 +7,33 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ## Changed
 
+- Updated variables to `const` plus ES6 features.
+- Updated min node version to greater than 6.
+- Updated `chalk` to `2.0.1` from `0.4.0`.
+- Updated `promisify-node` to `0.4.0` from `0.3.2`.
+- Updated `request-promise` to `4.2.1` from `0.3.2`.
+- Updated `rimraf` to `2.6.1` from `2.2.8`.
+- Updated `silent-npm-registry-client` to `3.0.1` from `2.0.0`.
+- Updated `update-notifier` to `2.2.0` from `0.2.2`.
+- Updated `yeoman-generator` to `1.1.1` from `0.17.7`.
+- Updated `yosay` to `2.0.0` from `0.1.0`.
+- Replaced `this._` with npm-imported underscore libraries.
+- Replaced `this.extract` with `download` package.
+- Updated Less `.webfont-*` to Capital Framework 4 `.u-webfont-*` syntax.
+- Updated `handle-errors.js` to match cfgov-refresh repo version.
+- Updated `lint.js` to match cfgov-refresh repo version.
+- Updated yeoman output message to automatically switch from grunt to gulp.
+- Updated yeoman generator to match latest Yeoman API.
+- Updated generated package dependencies.
+- Updated Travis node version to 8.
 - Updated the theme overrides for v4 variable changes
 - Updated the example index page for v4 markup changes
 
 ### Added
 - Added option to run http-server
+
+### Removed
+- Removed `gulp-load-plugins`.
 
 
 ## 2.2.2 - 2017-01-06
