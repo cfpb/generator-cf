@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require( 'gulp' );
 const gulpChanged = require( 'gulp-changed' );
 const configCopy = require( '../config' ).copy;
@@ -40,9 +38,9 @@ gulp.task( 'copy:vendorjs', () => {
 } );
 
 gulp.task( 'copy',
-  [
+  gulp.parallel(
     'copy:files',
     'copy:icons',
     'copy:vendorjs'
-  ]
+  )
 );

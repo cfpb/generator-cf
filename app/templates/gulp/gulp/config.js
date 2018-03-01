@@ -64,10 +64,7 @@ module.exports = {
     files: {
       src: [
         loc.src + '/**/*.html',
-        loc.src + '/**/*.pdf',
         loc.src + '/_*/**/*',
-        loc.src + '/robots.txt',
-        loc.src + '/favicon.ico',
         '!' + loc.lib + '/**/*.html'
       ],
       dest: loc.dist
@@ -78,7 +75,6 @@ module.exports = {
     },
     vendorJs: {
       src: [
-        loc.lib + '/box-sizing-polyfill/boxsizing.htc',
         loc.lib + '/html5shiv/dist/html5shiv-printshiv.min.js'
       ],
       dest: loc.dist + '/static/js/'

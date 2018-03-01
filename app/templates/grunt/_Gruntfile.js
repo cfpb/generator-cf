@@ -225,7 +225,6 @@ module.exports = function(grunt) {
             cwd: 'node_modules',
             src: [
               // Vendor files
-              'box-sizing-polyfill/boxsizing.htc',
               'html5shiv/dist/html5shiv-printshiv.min.js'
             ],
             dest: '<%%= loc.dist %>/static/vendor'

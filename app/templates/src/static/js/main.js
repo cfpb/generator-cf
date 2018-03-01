@@ -1,17 +1,15 @@
-'use strict';
+/* The following line imports jQuery into your project.
+   If you don't need jQuery, delete it. */
+const $ = global.$ = require( 'jquery' );
 
-// The following line imports jQuery into your project.
-// If you don't need jQuery, delete it.
-global.$ = require( 'jquery' );
-
-// If you'd like to include cf-expandables (or any other node module),
-// run `npm install cf-expandables --save` and require() it in this file.
+/* If you'd like to include cf-expandables (or any other node module),
+   run `npm install cf-expandables --save` and require() it in this file. */
 <%
-  var isExpandables = function( el ) {
+  const isExpandables = function( el ) {
     return el.name === 'cf-expandables';
   }
   if ( ! components.some( isExpandables ) ) {
-%>// <% } %>require( 'cf-expandables' );
+%> // <% } %>require( 'cf-expandables' );
 
 // Count all features included in the test page.
 $( '.feature-list' ).append(

@@ -1,5 +1,3 @@
-'use strict';
-
 const browserSync = require( 'browser-sync' );
 const config = require( '../config' );
 const configPkg = config.pkg;
@@ -9,20 +7,34 @@ const gulp = require( 'gulp' );
 const gulpHeader = require( 'gulp-header' );
 const gulpRename = require( 'gulp-rename' );
 const gulpSourcemaps = require( 'gulp-sourcemaps' );
-const gulpUglify = require( 'gulp-uglify' );
 const handleErrors = require( '../utils/handle-errors' );
+const UglifyWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 const webpack = require( 'webpack' );
 const webpackStream = require( 'webpack-stream' );
 
 gulp.task( 'scripts', () => {
-  gulp.src( configScripts.src )
+  return gulp.src( configScripts.src )
     .pipe( gulpSourcemaps.init() )
     .pipe( webpackStream( {
       output: {
         filename: '[name].js'
-      }
+      },
+      plugins: [
+        new UglifyWebpackPlugin( {
+          parallel: true,
+          uglifyOptions: {
+            ie8: false,
+            ecma: 5,
+            warnings: false,
+            mangle: true,
+            output: {
+              comments: false,
+              beautify: false
+            }
+          }
+        } )
+      ]
     }, webpack ) )
-    .pipe( gulpUglify() )
     .on( 'error', handleErrors )
     .pipe( gulpHeader( configBanner, { pkg: configPkg } ) )
     .pipe( gulpRename( {

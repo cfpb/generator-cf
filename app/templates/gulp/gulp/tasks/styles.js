@@ -1,5 +1,3 @@
-'use strict';
-
 const gulp = require( 'gulp' );
 const gulpAutoprefixer = require( 'gulp-autoprefixer' );
 const gulpCleanCss = require( 'gulp-clean-css' );
@@ -16,17 +14,14 @@ const handleErrors = require( '../utils/handle-errors' );
 const browserSync = require( 'browser-sync' );
 
 gulp.task( 'styles:modern', () => {
-  gulp.src( configStyles.cwd + configStyles.src )
+  return gulp.src( configStyles.cwd + configStyles.src )
     .pipe( gulpSourcemaps.init() )
     .pipe( gulpLess( configStyles.settings ) )
     .on( 'error', handleErrors.bind( this, { exitProcess: true } ) )
     .pipe( gulpAutoprefixer( {
       browsers: [
-        'last 2 version',
-        'not ie <= 8',
-        'android 4',
-        'BlackBerry 7',
-        'BlackBerry 10' ]
+        'last 2 versions',
+        'Explorer >= 9' ]
     } ) )
     .pipe( gulpHeader( configBanner, { pkg: configPkg } ) )
     .pipe( gulpRename( {
@@ -40,7 +35,7 @@ gulp.task( 'styles:modern', () => {
 } );
 
 gulp.task( 'styles:ie', () => {
-  gulp.src( configStyles.cwd + configStyles.src )
+  return gulp.src( configStyles.cwd + configStyles.src )
     .pipe( gulpLess( configStyles.settings ) )
     .on( 'error', handleErrors )
     .pipe( gulpAutoprefixer( {
@@ -63,7 +58,9 @@ gulp.task( 'styles:ie', () => {
     } ) );
 } );
 
-gulp.task( 'styles', [
-  'styles:modern',
-  'styles:ie'
-] );
+gulp.task( 'styles',
+  gulp.parallel(
+    'styles:modern',
+    'styles:ie'
+  )
+);
