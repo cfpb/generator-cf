@@ -7,13 +7,14 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ## Unreleased
 
 ### Changed
--
-
-### Added
--
+- Converts gulp task format to handle gulp 4.
+- Brings in latest ESLint 4 rules and fixes.
+- Changes to using `uglifyjs-webpack-plugin` instead of `gulp-uglify`.
+- Bumps versions of grunt-contrib-uglify, grunt-eslint, browser-sync, gulp, gulp-autoprefixer, gulp-changed, gulp-clean-css, gulp-eslint, gulp-header, gulp-imagemin, gulp-less, gulp-sourcemaps, parallelshell, webpack, and webpack-stream.
 
 ### Removed
--
+- Removes references to non-existent files.
+- Removes build and default gulp tasks and merges them into gulpfile.js.
 
 
 ## 2.3.0 - 2017-07-21
