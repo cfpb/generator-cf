@@ -166,27 +166,6 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
           } );
         }.bind( this ) );
       }.bind( this ) );
-    },
-
-    askForBuildTool: function() {
-      return this.prompt( [{
-        required: true,
-        type:     'list',
-        name:     'buildToolChoice',
-        message:  'Which build tool do you prefer?',
-        choices:  [
-          {
-            name:  'Gulp',
-            value: 'gulp'
-          },
-          {
-            name:  'Grunt',
-            value: 'grunt'
-          }
-        ]
-      }] ).then( function( answers ) {
-        this.buildToolChoice = answers.buildToolChoice;
-      }.bind( this ) );
     }
   },
 
@@ -233,19 +212,12 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
         fs.createReadStream( this.destinationRoot() + '/_cache/development-master/' + file )
           .pipe( fs.createWriteStream( file ) );
       }.bind( this ) );
-      if ( this.buildToolChoice === 'gulp' ) {
-        this.fs.copyTpl( this.templatePath( 'gulp/_package.json' ), 'package.json', this );
-        this.fs.copyTpl( this.templatePath( 'gulp/_README.md' ), 'README.md', this );
-        this.fs.copy( this.templatePath( 'gulp/_gulpfile.js' ), 'gulpfile.js' );
-        this.fs.copy( this.templatePath( 'gulp/_setup.sh' ), 'setup.sh' );
-        this.fs.copy( this.templatePath( 'gulp/gulp/' ), 'gulp/' );
-        this.fs.copyTpl( this.templatePath( 'gulp/gulp/config.js' ), 'gulp/config.js', this );
-      } else {
-        this.fs.copyTpl( this.templatePath( 'grunt/_package.json' ), 'package.json', this );
-        this.fs.copyTpl( this.templatePath( 'grunt/_README.md' ), 'README.md', this );
-        this.fs.copyTpl( this.templatePath( 'grunt/_Gruntfile.js' ), 'Gruntfile.js', this );
-        this.fs.copy( this.templatePath( 'grunt/_setup.sh' ), 'setup.sh' );
-      }
+      this.fs.copyTpl( this.templatePath( 'gulp/_package.json' ), 'package.json', this );
+      this.fs.copyTpl( this.templatePath( 'gulp/_README.md' ), 'README.md', this );
+      this.fs.copy( this.templatePath( 'gulp/_gulpfile.js' ), 'gulpfile.js' );
+      this.fs.copy( this.templatePath( 'gulp/_setup.sh' ), 'setup.sh' );
+      this.fs.copy( this.templatePath( 'gulp/gulp/' ), 'gulp/' );
+      this.fs.copyTpl( this.templatePath( 'gulp/gulp/config.js' ), 'gulp/config.js', this );
     },
 
     srcFiles: function() {
@@ -284,7 +256,7 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
 
     bye: function() {
       const msg = `All done! Edit the files in the src directory and then
-                \`${this.buildToolChoice } build\` to compile everything into the dist directory.`;
+                \`gulp build\` to compile everything into the dist directory.`;
       this.log( yosay( msg ) );
     }
   }
