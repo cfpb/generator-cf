@@ -1,5 +1,3 @@
-'use strict';
-
 const browserSync = require( 'browser-sync' );
 const configImages = require( '../config' ).images;
 const gulp = require( 'gulp' );
@@ -8,7 +6,7 @@ const gulpImagemin = require( 'gulp-imagemin' );
 const handleErrors = require( '../utils/handle-errors' );
 
 gulp.task( 'images', () => {
-  gulp.src( configImages.src )
+  return gulp.src( configImages.src )
     .pipe( gulpChanged( configImages.dest ) )
     .pipe( gulpImagemin() )
     .on( 'error', handleErrors )

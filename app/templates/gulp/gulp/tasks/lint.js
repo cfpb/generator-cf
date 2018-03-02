@@ -1,5 +1,3 @@
-'use strict';
-
 const configLint = require( '../config' ).lint;
 const gulp = require( 'gulp' );
 const gulpEslint = require( 'gulp-eslint' );
@@ -43,7 +41,9 @@ gulp.task( 'lint:scripts', () => _genericLint( configLint.src ) );
 /**
  * Lints all the js files for errors
  */
-gulp.task( 'lint', [
-  'lint:build',
-  'lint:scripts'
-] );
+gulp.task( 'lint',
+  gulp.series(
+    'lint:build',
+    'lint:scripts'
+  )
+);
