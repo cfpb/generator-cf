@@ -44,6 +44,7 @@ To hack on this generator, fork this repo, clone it and use `npm link`:
 $ cd generator-cf
 $ npm link
 $ cd some-empty-directory-somewhere
+$ npm link generator-cf
 $ yo cf
 ```
 
