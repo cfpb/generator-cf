@@ -63,7 +63,7 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
       );
       this.log(
         '\nTo learn about Capital Framework, visit ' +
-        chalk.bold( 'https://github.com/cfpb/capital-framework' ) + '.\n'
+        chalk.bold( 'https://cfpb.github.io/capital-framework/' ) + '.\n'
       );
     }
 
