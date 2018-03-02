@@ -75,11 +75,13 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
       return this.prompt( [ {
         name: 'name',
         message: 'What is the name of your project?',
-        default: underscoreString.humanize( this.existing && this.existing.name || path.basename(process.cwd()) ),
+        default: underscoreString.humanize(
+          this.existing && this.existing.name || path.basename(process.cwd())
+        ),
       } ] ).then( function( answers ) {
         this.humanName = answers.name;
         this.slugname = underscoreSlugify( answers.name );
-        this.safeSlugname = this.slugname.replace( /-+([a-zA-Z0-9])/g, function( g ) {
+        this.safeSlugname = this.slugname.replace( /-+([a-zA-Z0-9])/g, g => {
             return ' ' + g[1].toUpperCase();
         } );
       }.bind( this ) );
@@ -89,11 +91,13 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
       const prompts = [{
         name: 'description',
         message: 'Project\'s description',
-        default: this.existing && this.existing.description || 'The best website ever.'
+        default: this.existing && this.existing.description ||
+                 'The best website ever.'
       }, {
         name: 'homepage',
         message: 'Project\'s homepage',
-        default: this.existing && this.existing.homepage || 'http://www.consumerfinance.gov/'
+        default: this.existing && this.existing.homepage ||
+                 'https://www.consumerfinance.gov/'
       }, {
         name: 'license',
         message: 'Project\'s license',
@@ -101,23 +105,30 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
       }, {
         name: 'repoType',
         message: 'Repository type',
-        default: this.existing && this.existing.repository && this.existing.repository.type || 'git'
+        default: this.existing && this.existing.repository &&
+                 this.existing.repository.type || 'git'
       }, {
         name: 'repoUrl',
         message: 'Repository URL',
-        default: this.existing && this.existing.repository && this.existing.repository.url || 'https://github.com/cfpb/capital-framework.git'
+        default: this.existing && this.existing.repository &&
+                 this.existing.repository.url ||
+                 'https://github.com/cfpb/capital-framework.git'
       }, {
         name: 'authorName',
         message: 'Author\'s name',
-        default: this.existing && this.existing.author && this.existing.author.name || 'Consumer Financial Protection Bureau'
+        default: this.existing && this.existing.author &&
+                 this.existing.author.name ||
+                 'Consumer Financial Protection Bureau'
       }, {
         name: 'authorEmail',
         message: 'Author\'s email',
-        default: this.existing && this.existing.author && this.existing.author.email || 'tech@cfpb.gov'
+        default: this.existing && this.existing.author &&
+                 this.existing.author.email || 'tech@cfpb.gov'
       }, {
         name: 'authorUrl',
         message: 'Author\'s homepage',
-        default: this.existing && this.existing.author && this.existing.author.url || 'https://cfpb.github.io/'
+        default: this.existing && this.existing.author &&
+                 this.existing.author.url || 'https://cfpb.github.io/'
       }];
 
       return this.prompt( prompts ).then( function( answers ) {
