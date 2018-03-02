@@ -15,7 +15,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 ### Removed
 - Removes references to non-existent files.
 - Removes build and default gulp tasks and merges them into gulpfile.js.
-
+- Removes grunt workflow.
 
 ## 2.3.0 - 2017-07-21
 
