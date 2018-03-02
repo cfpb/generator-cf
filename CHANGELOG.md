@@ -11,6 +11,7 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 - Brings in latest ESLint 4 rules and fixes.
 - Changes to using `uglifyjs-webpack-plugin` instead of `gulp-uglify`.
 - Bumps versions of grunt-contrib-uglify, grunt-eslint, browser-sync, gulp, gulp-autoprefixer, gulp-changed, gulp-clean-css, gulp-eslint, gulp-header, gulp-imagemin, gulp-less, gulp-sourcemaps, parallelshell, webpack, and webpack-stream.
+- Updated markup and less for latest changes in CF v5.0.0
 
 ### Removed
 - Removes references to non-existent files.
