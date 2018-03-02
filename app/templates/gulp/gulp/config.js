@@ -70,8 +70,8 @@ module.exports = {
       dest: loc.dist
     },
     icons: {
-      src:  loc.lib + '/cf-icons/src/fonts/*',
-      dest: loc.dist + '/static/fonts/'
+      src:  loc.lib + '/cf-icons/src/icons/*',
+      dest: loc.dist + '/static/icons/'
     },
     vendorJs: {
       src: [
