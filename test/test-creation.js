@@ -37,30 +37,11 @@ describe('cf generator', function () {
           // add files you expect to exist here.
           '.eslintrc',
           '.gitignore',
-          'package.json'
+          'package.json',
+          'gulpfile.js'
         ];
         assert.file( expected );
       } )
   } );
-
-  it('creates a gruntfile when Grunt is selected', () => {
-    return this.generator
-      .withOptions( { 'skip-install': true } )
-      .withPrompts( { buildToolChoice: 'grunt' } )
-      .then( () => {
-        const expected = [ 'Gruntfile.js' ];
-        assert.file( expected );
-      } )
-  });
-
-  it('creates a gulpfile when Gulp is selected', () => {
-    return this.generator
-      .withOptions( { 'skip-install': true } )
-      .withPrompts( { buildToolChoice: 'gulp' } )
-      .then( () => {
-        const expected = [ 'gulpfile.js' ];
-        assert.file( expected );
-      } )
-  });
 
 });
