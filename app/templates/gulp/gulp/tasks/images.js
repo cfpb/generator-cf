@@ -5,7 +5,11 @@ const gulpChanged = require( 'gulp-changed' );
 const gulpImagemin = require( 'gulp-imagemin' );
 const handleErrors = require( '../utils/handle-errors' );
 
-gulp.task( 'images', () => {
+/**
+ * Move and process images for the project.
+ * @returns {PassThrough} A source stream.
+ */
+function images() {
   return gulp.src( configImages.src )
     .pipe( gulpChanged( configImages.dest ) )
     .pipe( gulpImagemin() )
@@ -14,4 +18,6 @@ gulp.task( 'images', () => {
     .pipe( browserSync.reload( {
       stream: true
     } ) );
-} );
+}
+
+gulp.task( 'images', images );

@@ -12,7 +12,11 @@ const UglifyWebpackPlugin = require( 'uglifyjs-webpack-plugin' );
 const webpack = require( 'webpack' );
 const webpackStream = require( 'webpack-stream' );
 
-gulp.task( 'scripts', () => {
+/**
+ * Bundle scripts.
+ * @returns {PassThrough} A source stream.
+ */
+function scripts() {
   return gulp.src( configScripts.src )
     .pipe( gulpSourcemaps.init() )
     .pipe( webpackStream( {
@@ -45,4 +49,6 @@ gulp.task( 'scripts', () => {
     .pipe( browserSync.reload( {
       stream: true
     } ) );
-} );
+}
+
+gulp.task( 'scripts', scripts );

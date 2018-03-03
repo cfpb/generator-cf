@@ -13,7 +13,11 @@ const configStyles = config.styles;
 const handleErrors = require( '../utils/handle-errors' );
 const browserSync = require( 'browser-sync' );
 
-gulp.task( 'styles:modern', () => {
+/**
+ * Process modern CSS.
+ * @returns {PassThrough} A source stream.
+ */
+function stylesModern() {
   return gulp.src( configStyles.cwd + configStyles.src )
     .pipe( gulpSourcemaps.init() )
     .pipe( gulpLess( configStyles.settings ) )
@@ -32,9 +36,13 @@ gulp.task( 'styles:modern', () => {
     .pipe( browserSync.reload( {
       stream: true
     } ) );
-} );
+}
 
-gulp.task( 'styles:ie', () => {
+/**
+ * Process legacy CSS for IE8.
+ * @returns {PassThrough} A source stream.
+ */
+function stylesIE() {
   return gulp.src( configStyles.cwd + configStyles.src )
     .pipe( gulpLess( configStyles.settings ) )
     .on( 'error', handleErrors )
@@ -56,7 +64,10 @@ gulp.task( 'styles:ie', () => {
     .pipe( browserSync.reload( {
       stream: true
     } ) );
-} );
+}
+
+gulp.task( 'styles:modern', stylesModern );
+gulp.task( 'styles:ie', stylesIE );
 
 gulp.task( 'styles',
   gulp.parallel(
