@@ -1,5 +1,3 @@
-'use strict';
-
 const gulpNotify = require( 'gulp-notify' );
 
 module.exports = function() {
@@ -22,9 +20,8 @@ module.exports = function() {
   } ).call( this, errorParam );
 
   if ( exitProcessParam === true && isWatching === false ) {
-    /* eslint-disable no-process-exit */
+    // eslint-disable-next-line no-process-exit
     process.exit( 1 );
-    /* eslint-enable no-process-exit */
   } else {
     // Keep gulp from hanging on this task.
     this.emit( 'end' );
