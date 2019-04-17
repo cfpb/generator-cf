@@ -8,17 +8,23 @@ We follow the [Semantic Versioning 2.0.0](http://semver.org/) format.
 
 ### Changed
 - Converts gulp task format to handle gulp 4.
-- Brings in latest ESLint 4 rules and fixes.
+- Brings in latest ESLint 5 rules and fixes.
 - Changes to using `uglifyjs-webpack-plugin` instead of `gulp-uglify`.
-- Bumps versions of grunt-contrib-uglify, grunt-eslint, browser-sync, gulp, gulp-autoprefixer, gulp-changed, gulp-clean-css, gulp-eslint, gulp-header, gulp-imagemin, gulp-less, gulp-sourcemaps, parallelshell, webpack, and webpack-stream.
-- Updated markup and less for latest changes in CF v5.0.0
+- Bumps versions of del, grunt-contrib-uglify, grunt-eslint, browser-sync, gulp, gulp-autoprefixer, gulp-changed, gulp-clean-css, gulp-eslint, gulp-header, gulp-imagemin, gulp-less, gulp-sourcemaps, parallelshell, webpack, and webpack-stream.
+- Updated markup and less for latest changes in CF v8.0.1
 - Add config files to linter.
 - Fix linter errors in config.
+- Updates syntax to ES6.
+- Replace gulp-mq-remove with postcss-unmq
+- Replace gulp-autoprefixer with gulp-postcss and autoprefixer.
+- General syntax spacing fixes.
 
 ### Removed
 - Removes references to non-existent files.
 - Removes build and default gulp tasks and merges them into gulpfile.js.
 - Removes grunt workflow.
+- Removes deprecated gulp-util
+
 
 ## 2.3.0 - 2017-07-21
 

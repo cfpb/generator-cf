@@ -2,14 +2,19 @@
    If you don't need jQuery, delete it. */
 const $ = global.$ = require( 'jquery' );
 
-/* If you'd like to include cf-expandables (or any other node module),
-   run `npm install cf-expandables --save` and require() it in this file. */
 <%
   const isExpandables = function( el ) {
     return el.name === 'cf-expandables';
   }
   if ( ! components.some( isExpandables ) ) {
-%> // <% } %>require( 'cf-expandables' );
+%> // <% } %>require( 'cf-expandables/src/Expandable' ).init();
+
+<%
+  const isTables = function( el ) {
+    return el.name === 'cf-tables';
+  }
+  if ( ! components.some( isTables ) ) {
+%> // <% } %>require( 'cf-tables/src/Table' ).init();
 
 // Count all features included in the test page.
 $( '.feature-list' ).append(
