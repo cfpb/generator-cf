@@ -3,7 +3,7 @@ const frameworkComponents = [];
 function getCfComponents( data ) {
   data.forEach( function( el, i ) {
     let name;
-    if ( el.type === 'dir' ) {
+    if ( el.type === 'dir' && el.name !== 'capital-framework' ) {
       name = el.name.replace( 'cf-', '' );
       frameworkComponents.push( {
         name: name.charAt( 0 ).toUpperCase() + name.slice( 1 ),
