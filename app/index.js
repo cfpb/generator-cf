@@ -40,10 +40,6 @@ if ( process.env.GITHUB_PERSONAL_TOKEN ) {
   opts.headers[ 'Authorization' ] = `token ${ process.env.GITHUB_PERSONAL_TOKEN }`
 }
 const components = requestPromise( opts ).then( filterComponents ).catch( console.error );
-  uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/packages',
-  json:    true,
-  headers: { 'user-agent': 'generator-cf' }
-} ).then( filterComponents ).catch( console.error );
 
 const manifestCheck = function() {
   try {
