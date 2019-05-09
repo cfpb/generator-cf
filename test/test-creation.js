@@ -1,11 +1,8 @@
-/*global describe, beforeEach, it */
-'use strict';
-
 const path = require( 'path' );
 const helpers = require( 'yeoman-test' );
 const assert = require( 'yeoman-assert' );
 
-describe('cf generator', function () {
+describe( 'cf generator', function() {
   this.timeout(10000);
 
   beforeEach( () => {
@@ -14,7 +11,7 @@ describe('cf generator', function () {
 
   afterEach( () => {
     this.generator.cleanTestDirectory();
-  })
+  } );
 
   it( 'creates expected files when run', () => {
     return this.generator
@@ -26,7 +23,7 @@ describe('cf generator', function () {
           'package.json'
         ];
         assert.file( expected );
-      } )
+      } );
   } );
 
   it( 'creates expected files when run', () => {
@@ -41,7 +38,7 @@ describe('cf generator', function () {
           'gulpfile.js'
         ];
         assert.file( expected );
-      } )
+      } );
   } );
 
-});
+} );

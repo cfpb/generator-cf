@@ -1,16 +1,16 @@
-var updateNotifier = require('update-notifier');
-var pkg = require('../../package.json');
+const updateNotifier = require( 'update-notifier' );
+const pkg = require( '../../package.json' );
 
-module.exports = function() {
+module.exports = () => {
 
-  var notifier = updateNotifier({
+  const notifier = updateNotifier( {
     packageName: pkg.name,
     packageVersion: pkg.version,
     updateCheckInterval: 1000 * 60 * 60 * 1 // 1 hr
-  });
+  } );
 
-  if (notifier.update) {
-    notifier.notify(true);
+  if ( notifier.update ) {
+    notifier.notify( true );
   }
 
 };

@@ -26,13 +26,21 @@ yo cf
 
 Compile the assets:
 ```bash
-grunt
+gulp
 ```
 
-View the demo page:
+A demo page is generated at:
 ```bash
-open ./dist/index.html
+./dist/index.html
 ```
+
+To view this page, run a simple server so that the assets resolve correctly:
+```bash
+cd ./dist/
+python -m SimpleHTTPServer
+```
+
+And visit `http://localhost:8000/` in a web browser.
 
 Build your project!
 

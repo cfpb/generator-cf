@@ -1,5 +1,3 @@
-'use strict';
-
 const banner = require( './banner' );
 const chalk = require( 'chalk' );
 const download = require( 'download' );
@@ -10,10 +8,9 @@ const path = require( 'path' );
 const requestPromise = require( 'request-promise' );
 const rimraf = require( 'rimraf' );
 const RegClient = require( 'silent-npm-registry-client' );
-const promisify = require( 'promisify-node' );
+const promisifyNode = require( 'promisify-node' );
 const underscoreString = require( 'underscore.string' );
 const underscoreSlugify = require( 'underscore.string/slugify' );
-const underscore = require( 'underscore' );
 const updateNotifier = require( './lib/notifier' );
 const YeomanGenerator = require( 'yeoman-generator' );
 const yosay = require( 'yosay' );
@@ -21,7 +18,7 @@ const yosay = require( 'yosay' );
 const client = new RegClient();
 
 // Give the npm registry client a promise interface.
-promisify( client );
+promisifyNode( client );
 
 // Alert the user if a newer version of this generator is available.
 updateNotifier();
@@ -34,11 +31,15 @@ const osLibraries = [
 ];
 
 // Grab a list of all CF components, we'll use it later.
-const components = requestPromise( {
-  uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/src',
+const opts = {
+  uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/packages',
   json:    true,
   headers: { 'user-agent': 'generator-cf' }
-} ).then( filterComponents ).catch( console.error );
+};
+if ( process.env.GITHUB_PERSONAL_TOKEN ) {
+  opts.headers[ 'Authorization' ] = `token ${ process.env.GITHUB_PERSONAL_TOKEN }`
+}
+const components = requestPromise( opts ).then( filterComponents ).catch( console.error );
 
 const manifestCheck = function() {
   try {
@@ -76,7 +77,7 @@ const CapitalFrameworkGenerator = YeomanGenerator.extend( {
         name: 'name',
         message: 'What is the name of your project?',
         default: underscoreString.humanize(
-          this.existing && this.existing.name || path.basename(process.cwd())
+          this.existing && this.existing.name || path.basename( process.cwd() )
         ),
       } ] ).then( function( answers ) {
         this.humanName = answers.name;

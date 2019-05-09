@@ -25,21 +25,20 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "chalk": "~2.0.1",
-    "download": "^6.2.5",
-    "promisify-node": "^0.4.0",
-    "request-promise": "^4.2.1",
-    "rimraf": "^2.6.1",
+    "chalk": "2.4.2",
+    "download": "7.1.0",
+    "promisify-node": "0.5.0",
+    "request-promise": "4.2.4",
+    "rimraf": "2.6.3",
     "silent-npm-registry-client": "^3.0.1",
-    "underscore": "^1.8.3",
-    "underscore.string": "^3.3.4",
-    "update-notifier": "^2.2.0",
+    "underscore.string": "3.3.5",
+    "update-notifier": "2.5.0",
     "yeoman-generator": "^1.1.1",
-    "yosay": "^2.0.0"
+    "yosay": "2.0.2"
   },
   "devDependencies": {
     "mocha": "*",
-    "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.7.0"
+    "yeoman-assert": "3.1.1",
+    "yeoman-test": "1.9.1"
   }
 }
