@@ -31,7 +31,15 @@ const osLibraries = [
 ];
 
 // Grab a list of all CF components, we'll use it later.
-const components = requestPromise( {
+const opts = {
+  uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/packages',
+  json:    true,
+  headers: { 'user-agent': 'generator-cf' }
+};
+if ( process.env.GITHUB_PERSONAL_TOKEN ) {
+  opts.headers[ 'Authorization' ] = `token ${ process.env.GITHUB_PERSONAL_TOKEN }`
+}
+const components = requestPromise( opts ).then( filterComponents ).catch( console.error );
   uri:     'https://api.github.com/repos/cfpb/capital-framework/contents/packages',
   json:    true,
   headers: { 'user-agent': 'generator-cf' }
